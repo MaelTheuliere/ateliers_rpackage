@@ -1,0 +1,15 @@
+name: "Creer son premier package R"
+title: "Creer son premier package R"
+description: |
+  Creer son premier package R
+output_dir: "docs"
+include: slides/
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "Ateliers"
+      menu:
+        - text: "Atelier 1"
+          href: atelier1.html
+output: distill::distill_article

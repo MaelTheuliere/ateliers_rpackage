@@ -1,0 +1,24 @@
+---
+title: "Creer son premier package R"
+description: |
+  Ce site presente les supports pour un atelier sur la creation de packages
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+```
+
+## Déroulé
+
+- [Atelier 1](atelier1.html) : créer un package
+
+- Atelier 2 : le workflow de l'alimentation package
+
+- Atelier 3 : gérer les versions d'un package
+
+- Atelier 4 : Aller plus loin
