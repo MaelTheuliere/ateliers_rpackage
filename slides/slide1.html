@@ -3,8 +3,10 @@
   <head>
     <title>Créer son premier package</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Maël THEULIERE" />
+    <meta name="author" content="Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE" />
     <meta name="date" content="2020-12-18" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
     <link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
     <script src="libs/anchor-sections/anchor-sections.js"></script>
     <script src="libs/clipboard/clipboard.min.js"></script>
@@ -12,14 +14,15 @@
     <script src="libs/shareon/shareon.min.js"></script>
     <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
-    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
 # Créer son premier package
-### Maël THEULIERE
+### Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE
 ### 2020-12-18
 
 ---
@@ -31,18 +34,71 @@ class: center, middle, inverse, title-slide
 
 
 
-background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
 
-???
 
-Image credit: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg)
+---
+# Objectif de cet séquence
+
+Après cet atelier vous saurez :
+
+  -  comprendre ce qu’est un package
+  
+  -  initialiser votre premier package depuis github ou gitlab
+
+  -  comprendre la structure d’un package
+
+  -  créer le site pkgdown de votre package
+
+---
+class: inverse, center, middle
+
+# Qu'est ce qu'un package ?
+
+---
+# Qu'est ce qu'un package ?
+
+En R, un package est le moyen le plus adapté pour étendre les fonctionnalités de R. 
+
+Un package est une collection de fonctions, de données, de documentations et de tests. 
+
+Un package est facilement partageable avec d'autres.
+
+Un package est le plus souvent versionné, c'est à dire qu'il peut exister plusieurs versions d'un même package pas forcément compatibles entre elles.
+
+---
+# Qu'est ce qu'un package ?
+
+Un package peut être hébergé sur le CRAN ou sur une forge logiciel comme github ou gitlab.
+
+Quand il est sur le cran, la fonction `install.packages()` permet de l'installer.
+
+
+```r
+install.packages("mon_package")
+```
+
+Quand il est sur une forge, on utilise les fonctions du package `{remotes}` pour les installer.
+Dans ce cas, il faut lui spécifier la forge et l'adresse relative de ce package.
+
+Exemples : 
+
+
+```r
+remotes::install_github("auteur_du_package/son_package")
+```
+
+
+```r
+remotes::install_gitlab("auteur_du_package/son_package")
+```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
 "highlightLines": true,
-"countIncrementalSlides": false
+"countIncrementalSlides": false,
+"ratio": "16:9"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

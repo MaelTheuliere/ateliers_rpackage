@@ -1,16 +1,16 @@
 ---
 title: "Créer son premier package"
 author: 
-  - "Maël THEULIERE"
+  - "Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE"
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: xaringan-themer.css
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+      ratio: '16:9'
 ---
 
 ```{r setup, include=FALSE}
@@ -30,9 +30,59 @@ style_duo_accent(
 xaringanExtra::use_share_again()
 ```
 
-background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
 
-???
+---
+# Objectif de cet séquence
 
-Image credit: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg)
+Après cet atelier vous saurez :
 
+  -  comprendre ce qu’est un package
+  
+  -  initialiser votre premier package depuis github ou gitlab
+
+  -  comprendre la structure d’un package
+
+  -  créer le site pkgdown de votre package
+
+---
+class: inverse, center, middle
+
+# Qu'est ce qu'un package ?
+
+---
+# Qu'est ce qu'un package ?
+
+En R, un package est le moyen le plus adapté pour étendre les fonctionnalités de R. 
+
+Un package est une collection de fonctions, de données, de documentations et de tests. 
+
+Un package est facilement partageable avec d'autres.
+
+Un package est le plus souvent versionné, c'est à dire qu'il peut exister plusieurs versions d'un même package pas forcément compatibles entre elles.
+
+---
+# Qu'est ce qu'un package ?
+
+Un package peut être hébergé sur le CRAN ou sur une forge logiciel comme github ou gitlab.
+
+Quand il est sur le cran, la fonction `install.packages()` permet de l'installer.
+
+```{r, eval = F}
+install.packages("mon_package")
+```
+
+Quand il est sur une forge, on utilise les fonctions du package `{remotes}` pour les installer.
+Dans ce cas, il faut lui spécifier la forge et l'adresse relative de ce package.
+
+Exemples : 
+
+```{r, eval = FALSE}
+remotes::install_github("auteur_du_package/son_package")
+```
+
+```{r, eval = FALSE}
+remotes::install_gitlab("auteur_du_package/son_package")
+```
