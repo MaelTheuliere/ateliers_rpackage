@@ -10,10 +10,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Après cet atelier vous saurez : 
 
-- comprendre ce qu'est un package
-- initialiser votre premier package depuis github ou gitlab
-- comprendre la structure d'un package
-- créer le site pkgdown de votre package
+  -  comprendre ce qu’est un package
+  
+  -  comprendre la structure d’un package
+
+  -  créer votre premier package
+
+  -  créer le site pkgdown de votre package
 
 ## supports
 
