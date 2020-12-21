@@ -236,3 +236,86 @@ Pour installer ces packages :
 install.packages(c('devtools','usethis','roxygen2','testthat'))
 ```
 ]
+---
+### Créer son premier package
+# Configurer votre environnement
+
+- gestion du proxy
+- compte github / gitlab
+- github / gitlab token
+- Rprofile
+
+---
+### Créer son premier package
+# Mon premier package
+
+Vous allez pouvoir utiliser `{usethis}` pour faciliter ce travail : 
+
+1 - création du package sur ma machine
+
+```{r, eval = FALSE}
+usethis::create_package("monpremierpackage")
+```
+
+2 - utilisation de git comme gestionnaire de version
+
+```{r, eval = FALSE}
+usethis::use_git()
+```
+
+3 - interface avec github ou gitlab
+
+```{r, eval = FALSE}
+usethis::use_github()
+usethis::use_git_remote(url = "gitlab.com/MON_ESPACE/monpremierpackage")
+```
+
+---
+### Créer son premier package
+# Mon premier package
+
+Vous allez pouvoir utiliser `{usethis}` pour faciliter ce travail : 
+
+4 - création d'une fichier `dev_history.R` pour tracer nos développements
+ - Création du fichier
+
+```{r, eval = FALSE}
+usethis::edit_file("dev_history.R") 
+```
+
+  - Ajout du fichier dans les fichiers à exclure lors de la compilation du package
+  
+```{r, eval = FALSE}
+usethis::use_build_ignore('devstuff.R')
+```
+
+5 - modification de la licence
+
+```{r, eval = F}
+usethis::use_gpl3_license()
+```
+---
+### Créer son premier package
+# Mon premier package
+
+Vous allez pouvoir utiliser `{usethis}` pour faciliter ce travail : 
+
+6 - modification du fichier description
+
+Modifier la description de votre package
+
+```{r, eval = F}
+usethis::edit_file('DESCRIPTION')
+```
+
+Et voilà, votre premier package est prêt !
+Certes, il ne contient pour l'instant RIEN, mais il peut se compiler et s'installer
+
+```{r, eval = F}
+devtools::check()
+devtools::install()
+```
+
+
+
+
