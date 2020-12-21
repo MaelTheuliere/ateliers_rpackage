@@ -315,7 +315,15 @@ Certes, il ne contient pour l'instant RIEN, mais il peut se compiler et s'instal
 devtools::check()
 devtools::install()
 ```
+---
+class: inverse,center,middle
 
+# Et maintenant ?
+---
+# Et maintenant ?
+
+Dans l'atelier suivant nous allons voir comment rajouter une fonction dans votre package, la documenter et la tester. 
+Vous verrez à travers cela le workflow type de travail pour développer votre package.
 
 
 
