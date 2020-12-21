@@ -5,6 +5,7 @@ author:
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
+    css: xaringan-themer.css
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -19,10 +20,10 @@ options(htmltools.dir.version = FALSE)
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
 library(xaringanthemer)
-style_duo_accent(
-  primary_color = "#1381B0",
-  secondary_color = "#FF961C",
-  inverse_header_color = "#FFFFFF"
+style_mono_light(
+  base_color = "#000091",
+  text_font_family = 'Marianne',
+  code_font_family = 'Fira Code'
 )
 ```
 
@@ -211,6 +212,27 @@ Son contenu est généré automatiquement grâce à Roxygen.
 .pull-right[
 ![](www/rd_file.png)
 ]
+---
+classe: inverse, center, middle
+# Créer son premier package
+---
+### Créer son premier package
+# Vos compagnons pour créer et développer votre package
 
+.left-column[
+![](www/packagescompagnons.png)
+]
 
+.right-column[
+4 packages vous seront indispensables pour développer vos packages : 
+- `{devtools}` recense les fonctions qui seront utilisées pour compiler ou installer votre package.
+- `{usethis}`  contient un ensemble de fonctions qui vous permetront d'automatiser la plupart des tâches dont vous aurez besoin.
+- `{roxygen2}` vous permettra de documenter vos fonctions (cf atelier 2).
+- `{testthat}` vous permettra de tester vos fonctions. C'est à dire de définir un ensemble d'instructions qui vous permettront de vérifier que vos fonctions produise bien le résultat attendu (cf atelier 2).
 
+Pour installer ces packages :
+
+```{r, eval = FALSE}
+install.packages(c('devtools','usethis','roxygen2','testthat'))
+```
+]

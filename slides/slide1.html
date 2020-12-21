@@ -4,9 +4,7 @@
     <title>Créer son premier package</title>
     <meta charset="utf-8" />
     <meta name="author" content="Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE" />
-    <meta name="date" content="2020-12-20" />
-    <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <meta name="date" content="2020-12-21" />
     <link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
     <script src="libs/anchor-sections/anchor-sections.js"></script>
     <script src="libs/clipboard/clipboard.min.js"></script>
@@ -17,6 +15,7 @@
     <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view/tile-view.js"></script>
     <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -24,7 +23,7 @@ class: center, middle, inverse, title-slide
 
 # Créer son premier package
 ### Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE
-### 2020-12-20
+### 2020-12-21
 
 ---
 
@@ -109,9 +108,9 @@ La structure minimale de celui va consister en :
 
 - un répertoire `R/` qui contient les fichiers sources des fonctions du package
 
-- un fichier `NAMESPACE` qui contient les fonctions exportées par le package et la liste des fonctions importées d'autres packages. Ce fichier est généré automatiquement.
+- un fichier `NAMESPACE` qui contient les fonctions exportées par le package et la liste des fonctions importées d'autres packages. Ce fichier est généré automatiquement
 
-- un répertoire `man/` qui contient la documentation des fonctions du package. Son contenu est généré automatiquement.
+- un répertoire `man/` qui contient la documentation des fonctions du package. Son contenu est généré automatiquement
 
 ]
 
@@ -127,8 +126,9 @@ La structure minimale de celui va consister en :
 .pull-left[
 Le fichier `DESCRIPTION`  contient : 
 
-- la description du package (nom, auteur, licence, version...).
-- la liste des packages qui seront nécessaires pour faire fonctionner ce package (rubrique `Imports`).
+- la description du package (nom, auteur, licence, version...)
+
+- la liste des packages qui seront nécessaires pour faire fonctionner ce package (rubrique `Imports`)
 
 ]
 
@@ -159,7 +159,7 @@ Chaque fichier R contient :
 
 - la définition de la fonction en R
 
-- le code roxygen qui permettent de construire la documentation et de définir les dépendances de la fonction. Le code roxygen commence toujours par `#'`. 
+- le code roxygen qui permettent de construire la documentation et de définir les dépendances de la fonction. Le code roxygen commence toujours par `#'`
 
 ]
 
@@ -175,7 +175,7 @@ Le fichier `NAMESPACE` contient :
 
 - les fonctions exportées par le package 
 
-- la liste des fonctions importées d'autres packages utilisées dans notre package. 
+- la liste des fonctions importées d'autres packages utilisées dans notre package
 
 Ce fichier est généré automatiquement grâce à Roxygen.
 ]
@@ -191,7 +191,7 @@ Ce fichier est généré automatiquement grâce à Roxygen.
 .pull-left[
 Le répertoire `man/`  contient la documentation des fonctions du package. 
 
-Pour chaque fonction, il contient un fichier `.Rd` qui contient la documentation de la fonction qui sera ensuite consultable dans l'aide de R
+Pour chaque fonction, il contient un fichier `.Rd` qui sera la documentation de la fonction consultable dans l'aide de R.
 
 Son contenu est généré automatiquement grâce à Roxygen.
 ]
@@ -207,12 +207,37 @@ Son contenu est généré automatiquement grâce à Roxygen.
 .pull-left[
 Le répertoire `man/`  contient la documentation des fonctions du package. 
 
-Pour chaque fonction, il contient un fichier `.Rd` qui contient la documentation de la fonction qui sera ensuite consultable dans l'aide de R
+Pour chaque fonction, il contient un fichier `.Rd` qui sera la documentation de la fonction consultable dans l'aide de R.
 
 Son contenu est généré automatiquement grâce à Roxygen.
 ]
 .pull-right[
 ![](www/rd_file.png)
+]
+---
+classe: inverse, center, middle
+# Créer son premier package
+---
+### Créer son premier package
+# Vos compagnons pour créer et développer votre package
+
+.left-column[
+![](www/packagescompagnons.png)
+]
+
+.right-column[
+4 packages vous seront indispensables pour développer vos packages : 
+- `{devtools}` recense les fonctions qui seront utilisées pour compiler ou installer votre package.
+- `{usethis}`  contient un ensemble de fonctions qui vous permetront d'automatiser la plupart des tâches dont vous aurez besoin.
+- `{roxygen2}` vous permettra de documenter vos fonctions (cf atelier 2).
+- `{testthat}` vous permettra de tester vos fonctions. C'est à dire de définir un ensemble d'instructions qui vous permettront de vérifier que vos fonctions produise bien le résultat attendu (cf atelier 2).
+
+Pour installer ces packages :
+
+
+```r
+install.packages(c('devtools','usethis','roxygen2','testthat'))
+```
 ]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
