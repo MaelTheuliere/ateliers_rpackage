@@ -27,6 +27,10 @@ style_mono_light(
 )
 ```
 
+```{r xaringanpanelset, echo=FALSE}
+xaringanExtra::use_panelset(in_xaringan = TRUE)
+```
+
 ```{r share-again, echo=FALSE}
 xaringanExtra::use_share_again()
 ```
@@ -34,11 +38,14 @@ xaringanExtra::use_share_again()
 ```{r xaringan-tile-view, echo=FALSE}
 xaringanExtra::use_tile_view()
 ```
+
 ```{r xaringan-tachyons, echo=FALSE}
 xaringanExtra::use_tachyons()
 ```
+
+
 ---
-# Objectif de cet séquence
+# Objectif de cette séquence
 
 Après cet atelier vous saurez :
 
@@ -240,6 +247,8 @@ install.packages(c('devtools','usethis','roxygen2','testthat'))
 ### Créer son premier package
 # Configurer votre environnement
 
+A FAIRE
+
 - gestion du proxy
 - compte github / gitlab
 - github / gitlab token
@@ -263,12 +272,27 @@ usethis::create_package("monpremierpackage")
 usethis::use_git()
 ```
 
-3 - interface avec github ou gitlab
+3 - Créer un repo sur github ou gitlab
 
-```{r, eval = FALSE}
+La fonction `use_github()` créer automatiquement le projet distant sur votre compte github.
+
+.panelset[
+.panel[.panel-name[github]
+```{r usegithub, eval = FALSE}
 usethis::use_github()
+
+```
+]
+.panel[.panel-name[gitlab]
+
+La fonction `use_git_remote()` créer automatiquement le projet distant sur votre compte gitlab ou autre en spécifiant l'url que vous souhaitez associer à votre projet.
+
+```{r usegitlab, eval = FALSE}
 usethis::use_git_remote(url = "gitlab.com/MON_ESPACE/monpremierpackage")
 ```
+]
+]
+
 
 ---
 ### Créer son premier package

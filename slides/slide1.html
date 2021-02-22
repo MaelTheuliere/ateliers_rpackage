@@ -4,9 +4,10 @@
     <title>Créer son premier package</title>
     <meta charset="utf-8" />
     <meta name="author" content="Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE" />
-    <meta name="date" content="2020-12-21" />
-    <link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
-    <script src="libs/anchor-sections/anchor-sections.js"></script>
+    <meta name="date" content="2021-02-19" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
     <script src="libs/clipboard/clipboard.min.js"></script>
     <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
     <script src="libs/shareon/shareon.min.js"></script>
@@ -23,7 +24,7 @@ class: center, middle, inverse, title-slide
 
 # Créer son premier package
 ### Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE
-### 2020-12-21
+### 2021-02-19
 
 ---
 
@@ -36,8 +37,13 @@ class: center, middle, inverse, title-slide
 
 
 
+
+
+
+
+
 ---
-# Objectif de cet séquence
+# Objectif de cette séquence
 
 Après cet atelier vous saurez :
 
@@ -243,6 +249,8 @@ install.packages(c('devtools','usethis','roxygen2','testthat'))
 ### Créer son premier package
 # Configurer votre environnement
 
+A FAIRE
+
 - gestion du proxy
 - compte github / gitlab
 - github / gitlab token
@@ -270,11 +278,21 @@ usethis::use_git()
 
 3 - interface avec github ou gitlab
 
+.panelset[
+.panel[.panel-name[github]
 
 ```r
 usethis::use_github()
+```
+]
+.panel[.panel-name[gitlab]
+
+```r
 usethis::use_git_remote(url = "gitlab.com/MON_ESPACE/monpremierpackage")
 ```
+]
+]
+
 
 ---
 ### Créer son premier package
@@ -333,7 +351,11 @@ class: inverse,center,middle
 ---
 # Et maintenant ?
 
-Dans l'atelier suivant nous allons voir comment rajouter une fonction dans votre package, la documenter et la tester.
+Dans l'atelier suivant nous allons voir comment rajouter une fonction dans votre package, la documenter et la tester. 
+Vous verrez à travers cela le workflow type de travail pour développer votre package.
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -382,6 +404,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -399,17 +447,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {

@@ -1,0 +1,27 @@
+{
+  "articles": [
+    {
+      "path": "atelier1.html",
+      "title": "atelier 1",
+      "author": [],
+      "contents": "\r\nObjectifs\r\nAprès cet atelier vous saurez :\r\ncomprendre ce qu’est un package\r\ncomprendre la structure d’un package\r\ncréer votre premier package\r\ncréer le site pkgdown de votre package\r\nsupports\r\ndiaporama\r\n\r\n\r\n\r\nfitvids('.shareagain', {players: 'iframe'});\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-02-19T20:19:46+01:00"
+    },
+    {
+      "path": "atelier2.html",
+      "title": "atelier 2",
+      "author": [],
+      "contents": "\r\nObjectifs\r\nAprès cet atelier vous saurez rajouter une fonction dans un package. C’est à dire que vous aurez compris :\r\nce qu’est une fonction\r\ncomment rajouter une fonction dans un package\r\ncomment documenter une fonction\r\ncomment tester une fonction\r\nsupports\r\ndiaporama\r\n\r\n\r\n\r\nfitvids('.shareagain', {players: 'iframe'});\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-02-19T20:19:49+01:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Creer son premier package R",
+      "description": "Ce site presente les supports pour un atelier sur la creation de packages\n",
+      "author": [],
+      "contents": "\r\nDéroulé\r\nAtelier 1 : créer un package\r\nAtelier 2 : le workflow de l’alimentation package\r\nAtelier 3 : gérer les versions d’un package\r\nAtelier 4 : Aller plus loin\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-02-19T20:19:51+01:00"
+    }
+  ],
+  "collections": []
+}

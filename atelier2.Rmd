@@ -1,0 +1,27 @@
+---
+title: "atelier 2"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Objectifs
+
+Après cet atelier vous saurez rajouter une fonction dans un package. C'est à dire que vous aurez compris : 
+
+  -  ce qu’est une fonction
+  
+  -  comment rajouter une fonction dans un package
+
+  -  comment documenter une fonction
+
+  -  comment tester une fonction
+
+## supports
+
+- [diaporama](slides/slide2.html)
+
+```{r embed-xaringan, echo=FALSE}
+xaringanExtra::embed_xaringan(url = "slides/slide2.html", ratio = "4:3")
+```

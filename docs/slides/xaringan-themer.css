@@ -25,14 +25,14 @@
 
 :root {
   /* Fonts */
-  --text-font-family: Marianne;
-  --text-font-is-google: 0;
+  --text-font-family: 'Noto Sans';
+  --text-font-is-google: 1;
   --text-font-family-fallback: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial;
   --text-font-base: sans-serif;
   --header-font-family: Cabin;
   --header-font-is-google: 1;
-  --code-font-family: 'Fira Code';
-  --code-font-is-google: 0;
+  --code-font-family: 'Source Code Pro';
+  --code-font-is-google: 1;
   --base-font-size: 20px;
   --text-font-size: 1rem;
   --code-font-size: 0.9rem;
@@ -42,22 +42,23 @@
   --header-h3-font-size: 1.75rem;
 
   /* Colors */
-  --text-color: #000065;
-  --header-color: #000091;
-  --background-color: #E5E5F4;
-  --link-color: #000091;
-  --text-bold-color: #000091;
+  --text-color: #000000;
+  --header-color: #1381B0;
+  --background-color: #FFFFFF;
+  --link-color: #1381B0;
+  --text-bold-color: #1381B0;
   --code-highlight-color: rgba(255,255,0,0.5);
-  --inverse-text-color: #E5E5F4;
-  --inverse-background-color: #000091;
-  --inverse-header-color: #E5E5F4;
-  --title-slide-background-color: #000091;
-  --title-slide-text-color: #E5E5F4;
-  --header-background-color: #000091;
-  --header-background-text-color: #E5E5F4;
-  --base: #000091;
-  --white: #E5E5F4;
-  --black: #000065;
+  --inverse-text-color: #000000;
+  --inverse-background-color: #FF961C;
+  --inverse-header-color: #FFFFFF;
+  --title-slide-background-color: #1381B0;
+  --title-slide-text-color: #000000;
+  --header-background-color: #1381B0;
+  --header-background-text-color: #FFFFFF;
+  --primary: #1381B0;
+  --secondary: #FF961C;
+  --white: #FFFFFF;
+  --black: #000000;
 }
 
 html {
@@ -98,10 +99,10 @@ h1, h2, h3 {
 }
 .remark-inline-code {
   font-size: var(--code-inline-font-size);
-  color: #000091;
+  color: #1381B0;
 }
 .remark-slide-number {
-  color: #000091;
+  color: #1381B0;
   opacity: 1;
   font-size: 0.9em;
 }
@@ -143,10 +144,10 @@ a, a > code {
   float: left;
 }
 .left-column h2, .left-column h3 {
-  color: #00009199;
+  color: #1381B099;
 }
 .left-column h2:last-of-type, .left-column h3:last-child {
-  color: #000091;
+  color: #1381B0;
 }
 .right-column {
   width: 75%;
@@ -168,7 +169,7 @@ img, video, iframe {
   max-width: 100%;
 }
 blockquote {
-  border-left: solid 5px #00009180;
+  border-left: solid 5px #FF961C80;
   padding-left: 1em;
 }
 .remark-slide table {
@@ -183,7 +184,7 @@ th, td {
   padding: 5px;
 }
 .remark-slide thead, .remark-slide tfoot, .remark-slide tr:nth-child(even) {
-  background: #CCCCE9;
+  background: #FFEAD1;
 }
 table.dataTable tbody {
   background-color: var(--background-color);
@@ -193,7 +194,7 @@ table.dataTable.display tbody tr.odd {
   background-color: var(--background-color);
 }
 table.dataTable.display tbody tr.even {
-  background-color: #CCCCE9;
+  background-color: #FFEAD1;
 }
 table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.5);
@@ -233,11 +234,17 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
   }
 }
 
-.base {
-  color: var(--base);
+.primary {
+  color: var(--primary);
 }
-.bg-base {
-  background-color: var(--base);
+.bg-primary {
+  background-color: var(--primary);
+}
+.secondary {
+  color: var(--secondary);
+}
+.bg-secondary {
+  background-color: var(--secondary);
 }
 .white {
   color: var(--white);
