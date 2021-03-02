@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Rajouter une fonction dans votre package</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE" />
+    <meta name="date" content="2021-02-19" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Rajouter une fonction dans votre package
+### Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE
+### 2021-02-19
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Qu'est ce qu'une fonction ?
+
+Une fonction est un objet de R. C'est une opération qui prend en entrée des arguments pour produire un résultat.
+
+Par exemple : 
+
+- `abs()` prend comme argument un vecteur de nombre et produit un vecteur de nombre contenant la valeur absolue des nombres en argument.
+
+- `select()` de `{dplyr}` prend comme argument un dataframe et une liste de colonne et produit en sortie un dataframe restreint à ces colonnes.
+
+- `write.csv()` prend en argument un dataframe, un lien vers un fichier et produit en sortie un fichier csv à l'endroit spécifié par le lien contenant le dataframe.
+---
+# Définir une fonction
+
+Une fonction classique dans R se définie de la sorte : 
+
+
+```r
+ma_fonction &lt;- function(a = 2,b = 1){
+  resultat &lt;- a + 2*b
+  return(resultat)
+}
+```
+
+L'instruction `function()` créer une fonction ici appelée `ma_function()`. 
+
+Elle prend en argument les paramètres de notre fonction, ici `a` et `b` auxquels ont peut assigner des valeurs par défaut, ici `1`. 
+
+L'intérieur de nos accolades `{}` va définir le résultat produit par notre fonction. Ce résultat doit être retourné par l'instruction `return()`.
+
+Voilà comment se défini une fonction type qui produit en retour un objet R. Certaines fonctions ne produisent pas des objets R mais des instructions, comme par exemple `write.csv()` vu précédemment.
+
+
+---
+
+# Les bonnes pratiques
+
+Pour créer une bonne fonction, il faut bien penser sa cohérence dans le workflow dans lequelle elle va s'inscrire : 
+
+- Pour faire telle opération, dois je créer une fonction ou deux car un résultat intermédiaire pourrait m'intéresser ailleurs ? 
+
+- Quels paramètres ? 
+
+- Quelle complémentarité avec les fonctions existantes ?
+
+- Quelle convention de nommage ?
+
+Ensuite cette fonction devra être correctement documentée et testée. On verra dans la suite ce qu'est un test.
+
+---
+class: inverse, center, middle
+# Rajouter une fonction dans votre package
+
+---
+#### Rajouter une fonction dans votre package
+
+# créer le fichier .R
+
+.pull-left[
+Pour rappel, le code d'une fonction doit être rajouté dans un script R du sous répertoire `R/`.
+
+Pour rajouter une fonction dans votre package, `{usethis}` vous facilite le travail :  `usethis::use_r("ma_fonction")` va créer un fichier `ma_fonction.R` dans votre répertoire `R/`.
+]
+
+.pull-right[
+![](www/ma_fonction.png)
+]
+---
+#### Rajouter une fonction dans votre package
+
+# Rajouter votre fonction dans le fichier
+
+.pull-left[
+Ici on créé la fonction `ma_fonction` qui prend en paramètres : 
+
+- un dataframe `data`
+- deux nombres `n_head` et `n_tail`
+
+Et produit en sortie un dataframe compilant le début et la fin du dataframe `data` en gardant `n_head` lignes du début et `n_tail` lignes de la fin.
+
+⚠️ Dans une fonction, il est commun d'utiliser des fonctions d'autres packages. Dans ce cas, appelez les en utilisant la convention `packages::fonction()`.
+]
+
+.pull-right[
+
+```r
+ma_fonction &lt;- function(data = NULL,
+                        n_head = 3,
+                        n_tail = 3){
+  res &lt;- rbind(dplyr::slice_head(data,
+                                 n = n_head),
+               dplyr::slice_tail(data,
+                                 n = n_tail)
+  )
+  return(res)
+}
+```
+
+]
+
+---
+
+#### Rajouter une fonction dans votre package
+
+# Utiliser votre fonction
+
+`devtools::load_all()` vous permet de charger le contenu du package sur lequel vous travaillez comme ci vous l'aviez installé. Dans votre workflow habituel, vous allez utiliser souvent cette fonction pour tester les fonctions que vous ajoutez.
+
+
+```r
+devtools::load_all()
+```
+
+Vous pouvez ensuite constater que votre fonction marche correctement 🎉
+
+
+```r
+ma_fonction(iris,2,3)
+```
+
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 1          5.1         3.5          1.4         0.2    setosa
+## 2          4.9         3.0          1.4         0.2    setosa
+## 3          6.5         3.0          5.2         2.0 virginica
+## 4          6.2         3.4          5.4         2.3 virginica
+## 5          5.9         3.0          5.1         1.8 virginica
+```
+
+---
+class: inverse, center, middle
+# Documenter votre fonction
+---
+#### Documenter votre fonction
+# {roxygen2}
+
+Le package `{roxygen2}` va vous permettre de documenter votre fonction afin qu'une aide soit accessible pour celle ci.  
+
+---
+#### Documenter votre fonction
+
+# {roxygen2} : créer un caneva
+
+.pull-left[
+Pour ajouter une documentation, mettez le pointeur sur la fonction dans son script et utiliser le raccourci clavier `Ctrl + Alt + Shift + R` ou utiliser l'interface de Rstudio en cliquant sur `Code Tools`.
+]
+
+.pull-right[
+![](www/ma_fonction_roxygen2.png)
+]
+
+---
+#### Documenter votre fonction
+
+# {roxygen2} : créer un caneva
+
+.pull-left[
+Pour ajouter une documentation, mettez le pointeur sur la fonction dans son script et utiliser le raccourci clavier `Ctrl + Alt + Shift + R` ou utiliser l'interface de Rstudio en cliquant sur `Code Tools`.
+
+Une fois activé, roxygen2 vous rajoute un caneva de documentation.
+]
+
+.pull-right[
+![](www/ma_fonction_roxygen2_caneva.png)
+]
+---
+#### Documenter votre fonction
+
+# {roxygen2} : compléter votre documentation
+
+.pull-left[
+Vous n'avez plus qu'à compléter 🎉! 
+]
+.pull-right[
+
+```r
+#' Garder les lignes de début et de fin d'un dataframe
+#'
+#' @param data un dataframe
+#' @param n_head le nombre de lignes à garder du début du fichier
+#' @param n_tail le nombre de lignes à garder de la fin du fichier
+#'
+#' @return un dataframe
+#' @export
+#'
+#' @examples
+#' ma_fonction(mpg,3,3)
+ma_fonction &lt;- function(data = NULL,
+                        n_head = 3,
+                        n_tail = 3){
+  res &lt;- rbind(dplyr::slice_head(data,n = n_head),
+               dplyr::slice_tail(data,n = n_tail)
+  )
+  return(res)
+}
+```
+
+]
+---
+#### Documenter votre fonction
+
+# {roxygen2} : gestion des dépendances
+
+.pull-left[
+`{roxygen2}` permet non seulement de gérer la documentation mais aussi les dépendances et les exports de notre package. Cela se traduit par l'alimentation du fichier `NAMESPACE`.
+
+La balise `@importFrom` permet de préciser les fonctions qu'on utilise dans le package. Cet ajout permettra de compléter le fichier `NAMESPACE` avec les dépendances de notre package.
+
+On ajoute une balise `@importFrom` pour chaque package utilisé.
+
+]
+.pull-right[
+
+```r
+#' Garder les lignes de début et de fin d'un dataframe
+#'
+#' @param data un dataframe
+#' @param n_head le nombre de lignes à garder du début du fichier
+#' @param n_tail le nombre de lignes à garder de la fin du fichier
+#'
+#' @return un dataframe
+#' @importFrom dplyr slice_head slice_tail
+#' @export
+#'
+#' @examples
+#' ma_fonction(mpg,3,3)
+ma_fonction &lt;- function(data = NULL,
+                        n_head = 3,
+                        n_tail = 3){
+  res &lt;- rbind(dplyr::slice_head(data,n = n_head),
+               dplyr::slice_tail(data,n = n_tail)
+  )
+  return(res)
+}
+```
+
+]
+---
+#### Documenter votre fonction
+
+# {roxygen2} : gestion des exports
+
+.pull-left[
+La balise `@export` permet aussi de compléter le fichier `NAMESPACE` en lui précisant cette fois ci que `ma_fonction()` est une fonction *exportée* de `{monpackage}`. 
+
+Si cette balise n'est pas ajoutée, dans ce cas, la fonction restera purement interne au package. Cela est une convention utile pour définir des fonctions nécessaires à d'autres fonctions du package mais pas directement utiles pour les utilisateurs.
+
+]
+.pull-right[
+
+```r
+#' Garder les lignes de début et de fin d'un dataframe
+#'
+#' @param data un dataframe
+#' @param n_head le nombre de lignes à garder du début du fichier
+#' @param n_tail le nombre de lignes à garder de la fin du fichier
+#'
+#' @return un dataframe
+#' @importFrom dplyr slice_head slice_tail
+#' @export
+#'
+#' @examples
+#' ma_fonction(mpg,3,3)
+ma_fonction &lt;- function(data = NULL,
+                        n_head = 3,
+                        n_tail = 3){
+  res &lt;- rbind(dplyr::slice_head(data,n = n_head),
+               dplyr::slice_tail(data,n = n_tail)
+  )
+  return(res)
+}
+```
+
+]
+---
+#### Documenter votre fonction
+
+# {roxygen2} : document()
+
+.pull-left[
+Une fois votre documentation effectuée, la fonction `devtools::document()` va traduire ces balises en créant le fichier `ma_fonction.Rd` dans le répertoire `man/` de documentation de votre fonction et en mettant à jour le fichier NAMESPACE.
+
+`devtools::check()` intègre `devtools::document()` donc vous aurez au départ rarement à utiliser `devtools::document()` de façon isolée.
+]
+.pull-right[
+
+```r
+&gt; devtools::document()
+Updating monpackage documentation
+Loading monpackage
+Writing NAMESPACE
+Writing NAMESPACE
+Writing ma_fonction.Rd
+```
+
+]
+
+
+---
+#### Documenter votre fonction
+
+# {roxygen2} : document()
+
+.pull-left[
+Une fois votre documentation effectuée, la fonction `devtools::document()` va traduire ces balises en créant le fichier **`ma_fonction.Rd`** dans le répertoire `man/` de documentation de votre fonction et en mettant à jour le fichier NAMESPACE.
+
+`devtools::check()` intègre `devtools::document()` donc vous aurez au départ rarement à utiliser `devtools::document()` de façon isolée.
+]
+.pull-right[
+![](www/ma_fonction_rd.png)
+]
+---
+#### Documenter votre fonction
+
+# {roxygen2} : document()
+
+.pull-left[
+Une fois votre documentation effectuée, la fonction `devtools::document()` va traduire ces balises en créant le fichier `ma_fonction.Rd` dans le répertoire `man/` de documentation de votre fonction et en mettant à jour le fichier **NAMESPACE**.
+
+`devtools::check()` intègre `devtools::document()` donc vous aurez au départ rarement à utiliser `devtools::document()` de façon isolée.
+]
+.pull-right[
+![](www/namespace.png)
+]
+
+
+---
+class : inverse, center, middle
+# Tester votre fonction
+---
+#### Tester votre fonction
+# Qu'est ce qu'un test ?
+
+Une fois une fonction ajoutée à votre package, vous allez créer un ou plusieurs tests la concernant.
+
+Un test défini un comportement attendu de votre fonction.
+
+Par exemple, on s'attend à ce que 2+2 soit égal à 4. Plus généralement on s'attend à ce qu'une addition renvoi un nombre.
+
+Sur notre exemple de fonction, le résultat de `ma_fonction()` doit être un *dataframe*.
+
+On va pouvoir écrire un test qui cherche à vérifier cela sur un exemple particulier.
+---
+#### Tester votre fonction
+# Pourquoi faire un test ?
+
+Les tests permettent de sécuriser votre développement. 
+
+Imaginez sur notre exemple que la définition de `slice_head()` et que par exemple le paramètre `n` change de nom et devient `nb`.
+
+Le fait d'avoir défini un test pour s'assurer sur un jeu d'exemples du résultats attendu vous permettra très vite d'identifier ce changement.
+De même si vous modfiez unz 
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

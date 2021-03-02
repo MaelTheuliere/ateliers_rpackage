@@ -1,0 +1,17 @@
+animate_css             Animate.css
+clipboard               Clipboard
+css_position            Helper to set absolute position of an element.
+editable                Editable
+embed_xaringan          Embed a xaringan presentation in a web page
+extra_styles            Add Extra CSS Styles
+fit_screen              Fit Slides to the Screen
+logo                    Add Logo
+panelset                Panelset
+share_again             Share or Embed xaringan Slides
+slide_tone              Slide Tone
+tachyons                Tachyons
+text_poster             Text Poster (Deprecated)
+tile_view               Tile View
+use_broadcast           Broadcast Your Slides
+use_xaringan_extra      Use xaringanExtra Extensions
+webcam                  Webcam

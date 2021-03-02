@@ -1,0 +1,89 @@
+Package: xaringanExtra
+Title: Extras And Extensions for Xaringan Slides
+Version: 0.2.4
+Authors@R: c(person(given = "Garrick",
+ family = "Aden-Buie",
+ role = c("aut", "cre"),
+ email = "garrick@aden-buie.com",
+ comment = c(ORCID = "0000-0002-7111-0077")),
+ person(given = "Yotam",
+ family = "Mann",
+ role = "ctb",
+ comment = "tone.js"),
+ person(given = "Daniel",
+ family = "Eden",
+ role = "ctb",
+ comment = "animate.css"),
+ person(family = "Tachyons authors",
+ role = "ctb"),
+ person(family = "Klaus Hartl, Fagner Brack, GitHub Contributors",
+ role = "ctb",
+ comment = "js-cookie"),
+ person(family = "Chris Andrejewski",
+ role = "ctb",
+ comment = "himalaya"),
+ person(given = "Eric",
+ family = "Londaits",
+ role = "ctb",
+ comment = "text-poster.js"),
+ person(given = "Zeno",
+ family = "Rocha",
+ role = "ctb",
+ comment = "clipboard.js"),
+ person(given = "Nikita",
+ family = "Karamov",
+ role = "ctb",
+ comment = "shareon.js"),
+ person(given = "Ross",
+ family = "Zurowski",
+ role = "ctb",
+ comment = "fitvids.js"),
+ person(family = "Michelle Bu and Eric Zhang",
+ role = "ctb",
+ comment = "peerjs"),
+ person(given = "Kiril", family = "Vatev", role = "ctb", comment = "tiny.toast."))
+Description: Extras and extensions for xaringan slides. Nagivate
+ your slides with tile view. Make your slides editable, live! Announce
+ slide changes with subtle tones. Animate slide transitions with
+ animate.css. Add tabbed panels to slides with panelset. Include
+ yourself in your slides with webcam. Add a "copy" button to your code
+ chunk with clipboard. Use the Tachyons CSS utility toolkit. Fit your
+ slides to fill the browser window.
+License: MIT + file LICENSE
+URL: https://github.com/gadenbuie/xaringanExtra
+BugReports: https://github.com/gadenbuie/xaringanExtra/issues
+Imports: htmltools, jsonlite, knitr, utils, uuid
+Suggests: rmarkdown, testthat (>= 2.1.0), xaringan
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Collate: 'animate.R' 'broadcast.R' 'clipboard.R' 'editable.R' 'fit-screen.R'
+    'panelset.R' 'share_again.R' 'slide-tone.R' 'styles.R' 'tachyons.R'
+    'text-poster.R' 'tile-view.R' 'use_logo.R' 'utils.R' 'webcam.R'
+    'xaringanExtra-package.R'
+Author: Garrick Aden-Buie [aut, cre] (<https://orcid.org/0000-0002-7111-0077>),
+ Yotam Mann [ctb] (tone.js),
+ Daniel Eden [ctb] (animate.css),
+ Tachyons authors [ctb],
+ Klaus Hartl, Fagner Brack, GitHub Contributors [ctb] (js-cookie),
+ Chris Andrejewski [ctb] (himalaya),
+ Eric Londaits [ctb] (text-poster.js),
+ Zeno Rocha [ctb] (clipboard.js),
+ Nikita Karamov [ctb] (shareon.js),
+ Ross Zurowski [ctb] (fitvids.js),
+ Michelle Bu and Eric Zhang [ctb] (peerjs),
+ Kiril Vatev [ctb] (tiny.toast.)
+Maintainer: Garrick Aden-Buie <garrick@aden-buie.com>
+Built: R 4.0.4; ; 2021-03-02 10:13:54 UTC; unix
+RemoteType: github
+RemoteHost: api.github.com
+RemoteRepo: xaringanExtra
+RemoteUsername: gadenbuie
+RemoteRef: HEAD
+RemoteSha: 93429efefb268a4df2f43935304a8f781f73ece8
+GithubHost: api.github.com
+GithubRepo: xaringanExtra
+GithubUsername: gadenbuie
+GithubRef: HEAD
+GithubSHA1: 93429efefb268a4df2f43935304a8f781f73ece8
