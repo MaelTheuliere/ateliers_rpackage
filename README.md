@@ -1,2 +1,5 @@
 # ateliers_rpackage
-ateliers pour apprendre à créer un package R
+
+Ateliers pour apprendre à créer un package R
+
+Projet en construction
