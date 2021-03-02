@@ -374,10 +374,11 @@ On va pouvoir écrire un test qui cherche à vérifier cela sur un exemple parti
 ---
 #### Tester votre fonction
 # Pourquoi faire un test ?
-Les tests permettent de sécuriser votre développement. 
-Imaginez sur notre exemple que la définition de `slice_head()` et que par exemple le paramètre `n` change de nom et devient `nb`.
-Le fait d'avoir défini un test pour s'assurer sur un jeu d'exemples du résultats attendu vous permettra très vite d'identifier ce changement.
-De même si vous modfiez unz 
 
+Les tests permettent de sécuriser votre développement. 
+
+Imaginez sur notre exemple que la définition de `slice_head()` et que par exemple le paramètre `n` change de nom et devient `nb`.
+
+Le fait d'avoir défini un test pour s'assurer sur un jeu d'exemples du résultats attendu vous permettra très vite d'identifier ce changement.
 
 
