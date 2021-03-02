@@ -417,8 +417,8 @@ Il contient un premier script R, `testthat.R`, qui initie les tests de notre pac
 # Comment faire un test ?  
 
 .pull-left[
-3. Dans le fichier de test `test-ma_fonction.R` qui s'est ouvert, 
-on exécute la fonction et on vérifie que le résultat a les propriétés attendues.
+<li value="3"> Dans le fichier de test `test-ma_fonction.R` qui s'est ouvert, 
+on exécute la fonction et on vérifie que le résultat a les propriétés attendues.</li>
 ]
 
 .pull-right[
