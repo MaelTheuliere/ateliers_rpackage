@@ -18,8 +18,6 @@ Après cet atelier vous saurez :
 
   -  créer votre premier package
 
-  -  créer le site pkgdown de votre package
-
 ## supports
 
 - [diaporama](slides/slide1.html)
