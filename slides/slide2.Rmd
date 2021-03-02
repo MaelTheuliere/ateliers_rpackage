@@ -53,28 +53,28 @@ Par exemple :
 
 - `abs()` prend comme argument un vecteur de nombre et produit un vecteur de nombre contenant la valeur absolue des nombres en argument.
 
-- `select()` de `{dplyr}` prend comme argument un dataframe et une liste de colonne et produit en sortie un dataframe restreint à ces colonnes.
+- `select()` de `{dplyr}` prend comme argument un dataframe et une liste de colonnes et produit en sortie un dataframe restreint à ces colonnes.
 
-- `write.csv()` prend en argument un dataframe, un lien vers un fichier et produit en sortie un fichier csv à l'endroit spécifié par le lien contenant le dataframe.
+- `write.csv()` prend en argument un dataframe, un lien vers un fichier, et produit en sortie un fichier csv contenant le dataframe, à l'endroit spécifié par le lien.
 ---
 # Définir une fonction
 
 Une fonction classique dans R se définie de la sorte : 
 
 ```{r eval = FALSE}
-ma_fonction <- function(a = 2,b = 1){
+ma_fonction <- function(a = 2, b = 1){
   resultat <- a + 2*b
   return(resultat)
 }
 ```
 
-L'instruction `function()` créer une fonction ici appelée `ma_function()`. 
+L'instruction `function()` créer une fonction ici appelée `ma_fonction()`. 
 
-Elle prend en argument les paramètres de notre fonction, ici `a` et `b` auxquels ont peut assigner des valeurs par défaut, ici `1`. 
+Elle prend en arguments les paramètres de notre fonction, ici `a` et `b` auxquels ont peut assigner des valeurs par défaut, ici `2` et `1`. 
 
 L'intérieur de nos accolades `{}` va définir le résultat produit par notre fonction. Ce résultat doit être retourné par l'instruction `return()`.
 
-Voilà comment se défini une fonction type qui produit en retour un objet R. Certaines fonctions ne produisent pas des objets R mais des instructions, comme par exemple `write.csv()` vu précédemment.
+Voilà comment se définit une fonction type qui produit en retour un objet R. Certaines fonctions ne produisent pas des objets R mais des instructions, comme par exemple `write.csv()` vu précédemment.
 
 
 ---
@@ -117,14 +117,14 @@ Pour rajouter une fonction dans votre package, `{usethis}` vous facilite le trav
 # Rajouter votre fonction dans le fichier
 
 .pull-left[
-Ici on créé la fonction `ma_fonction` qui prend en paramètres : 
+Ici on crée la fonction `ma_fonction` qui prend en paramètres : 
 
-- un dataframe `data`
-- deux nombres `n_head` et `n_tail`
+- un dataframe `data`,
+- deux nombres `n_head` et `n_tail`,
 
-Et produit en sortie un dataframe compilant le début et la fin du dataframe `data` en gardant `n_head` lignes du début et `n_tail` lignes de la fin.
+et produit en sortie un dataframe contenant le début et la fin du dataframe `data`, en gardant `n_head` lignes du début et `n_tail` lignes de la fin.
 
-`r emo::ji("warning")` Dans une fonction, il est commun d'utiliser des fonctions d'autres packages. Dans ce cas, appelez les en utilisant la convention `packages::fonction()`.
+`r emo::ji("warning")` Dans une fonction, il est commun d'utiliser des fonctions d'autres packages. Dans ce cas, appelez-les en utilisant la convention `packages::fonction()`.
 ]
 
 .pull-right[
@@ -150,7 +150,7 @@ ma_fonction <- function(data = NULL,
 
 # Utiliser votre fonction
 
-`devtools::load_all()` vous permet de charger le contenu du package sur lequel vous travaillez comme ci vous l'aviez installé. Dans votre workflow habituel, vous allez utiliser souvent cette fonction pour tester les fonctions que vous ajoutez.
+`devtools::load_all()` vous permet de charger le contenu du package sur lequel vous travaillez, comme si vous l'aviez installé. Dans votre workflow habituel, vous allez utiliser souvent cette fonction pour tester les fonctions que vous ajoutez.
 
 ```{r, eval = FALSE}
 devtools::load_all()
@@ -159,7 +159,7 @@ devtools::load_all()
 Vous pouvez ensuite constater que votre fonction marche correctement `r emo::ji("tada")`
 
 ```{r, eval = TRUE}
-ma_fonction(iris,2,3)
+ma_fonction(iris, 2, 3)
 ```
 
 ---
@@ -169,7 +169,7 @@ class: inverse, center, middle
 #### Documenter votre fonction
 # {roxygen2}
 
-Le package `{roxygen2}` va vous permettre de documenter votre fonction afin qu'une aide soit accessible pour celle ci.  
+Le package `{roxygen2}` va vous permettre de documenter votre fonction afin qu'une aide soit accessible pour celle-ci.  
 
 ---
 #### Documenter votre fonction
@@ -190,9 +190,9 @@ Pour ajouter une documentation, mettez le pointeur sur la fonction dans son scri
 # {roxygen2} : créer un caneva
 
 .pull-left[
-Pour ajouter une documentation, mettez le pointeur sur la fonction dans son script et utiliser le raccourci clavier `Ctrl + Alt + Shift + R` ou utiliser l'interface de Rstudio en cliquant sur `Code Tools`.
+Pour ajouter une documentation, mettez le pointeur sur la fonction dans son script et utiliser le raccourci clavier `Ctrl + Alt + Shift + R` ou utilisez l'interface de Rstudio en cliquant sur `Code Tools`.
 
-Une fois activé, roxygen2 vous rajoute un caneva de documentation.
+Une fois activé, roxygen2 vous rajoute un canevas de documentation.
 ]
 
 .pull-right[
@@ -222,8 +222,8 @@ Vous n'avez plus qu'à compléter `r emo::ji('tada')`!
 ma_fonction <- function(data = NULL,
                         n_head = 3,
                         n_tail = 3){
-  res <- rbind(dplyr::slice_head(data,n = n_head),
-               dplyr::slice_tail(data,n = n_tail)
+  res <- rbind(dplyr::slice_head(data, n = n_head),
+               dplyr::slice_tail(data, n = n_tail)
   )
   return(res)
 }
@@ -296,8 +296,8 @@ Si cette balise n'est pas ajoutée, dans ce cas, la fonction restera purement in
 ma_fonction <- function(data = NULL,
                         n_head = 3,
                         n_tail = 3){
-  res <- rbind(dplyr::slice_head(data,n = n_head),
-               dplyr::slice_tail(data,n = n_tail)
+  res <- rbind(dplyr::slice_head(data, n = n_head),
+               dplyr::slice_tail(data, n = n_tail)
   )
   return(res)
 }
@@ -310,7 +310,7 @@ ma_fonction <- function(data = NULL,
 # {roxygen2} : document()
 
 .pull-left[
-Une fois votre documentation effectuée, la fonction `devtools::document()` va traduire ces balises en créant le fichier `ma_fonction.Rd` dans le répertoire `man/` de documentation de votre fonction et en mettant à jour le fichier NAMESPACE.
+Une fois votre documentation effectuée, la fonction `devtools::document()` va exploiter ces balises en 1/ créant le fichier de documentation de votre fonction, `ma_fonction.Rd`, dans le répertoire `man/` et 2/ en mettant à jour le fichier NAMESPACE.
 
 `devtools::check()` intègre `devtools::document()` donc vous aurez au départ rarement à utiliser `devtools::document()` de façon isolée.
 ]
@@ -333,7 +333,7 @@ Writing ma_fonction.Rd
 # {roxygen2} : document()
 
 .pull-left[
-Une fois votre documentation effectuée, la fonction `devtools::document()` va traduire ces balises en créant le fichier **`ma_fonction.Rd`** dans le répertoire `man/` de documentation de votre fonction et en mettant à jour le fichier NAMESPACE.
+Une fois votre documentation effectuée, la fonction `devtools::document()` va exploiter ces balises en 1/ créant le fichier de documentation de votre fonction, **`ma_fonction.Rd`**, dans le répertoire `man/` et 2/ en mettant à jour le fichier NAMESPACE.
 
 `devtools::check()` intègre `devtools::document()` donc vous aurez au départ rarement à utiliser `devtools::document()` de façon isolée.
 ]
@@ -346,7 +346,7 @@ Une fois votre documentation effectuée, la fonction `devtools::document()` va t
 # {roxygen2} : document()
 
 .pull-left[
-Une fois votre documentation effectuée, la fonction `devtools::document()` va traduire ces balises en créant le fichier `ma_fonction.Rd` dans le répertoire `man/` de documentation de votre fonction et en mettant à jour le fichier **NAMESPACE**.
+Une fois votre documentation effectuée, la fonction `devtools::document()` va exploiter ces balises en 1/ créant le fichier de documentation de votre fonction, `ma_fonction.Rd`, dans le répertoire `man/` et 2/ en mettant à jour le fichier **NAMESPACE**.
 
 `devtools::check()` intègre `devtools::document()` donc vous aurez au départ rarement à utiliser `devtools::document()` de façon isolée.
 ]
@@ -364,20 +364,20 @@ class : inverse, center, middle
 
 Une fois une fonction ajoutée à votre package, vous allez créer un ou plusieurs tests la concernant.
 
-Un test défini un comportement attendu de votre fonction.
+Un test définit un comportement attendu de votre fonction.
 
-Par exemple, on s'attend à ce que 2+2 soit égal à 4. Plus généralement on s'attend à ce qu'une addition renvoi un nombre.
+Par exemple, on s'attend à ce que 2+2 soit égal à 4. Plus généralement on s'attend à ce qu'une addition renvoie un nombre.
 
 Sur notre exemple de fonction, le résultat de `ma_fonction()` doit être un *dataframe*.
 
 On va pouvoir écrire un test qui cherche à vérifier cela sur un exemple particulier.
 ---
-#### Tester votre fonction
-# Pourquoi faire un test ?
+#### Tester votre fonction  
+# Pourquoi faire un test ?  
 
 Les tests permettent de sécuriser votre développement. 
 
-Imaginez sur notre exemple que la définition de `slice_head()` et que par exemple le paramètre `n` change de nom et devient `nb`.
+Imaginez sur notre exemple que la définition de `slice_head()` et que par exemple le paramètre `n` change de nom et devient `nb`. 
 
 Le fait d'avoir défini un test pour s'assurer sur un jeu d'exemples du résultats attendu vous permettra très vite d'identifier ce changement.
 
