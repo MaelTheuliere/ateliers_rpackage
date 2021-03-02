@@ -310,7 +310,10 @@ ma_fonction <- function(data = NULL,
 # {roxygen2} : document()
 
 .pull-left[
-Une fois votre documentation effectuée, la fonction `devtools::document()` va exploiter ces balises en 1/ créant le fichier de documentation de votre fonction, `ma_fonction.Rd`, dans le répertoire `man/` et 2/ en mettant à jour le fichier NAMESPACE.
+Une fois votre documentation effectuée, la fonction `devtools::document()` va exploiter ces balises en   
+
+1. créant le fichier de documentation de votre fonction, `ma_fonction.Rd`, dans le répertoire `man/` et   
+2. en mettant à jour le fichier NAMESPACE. 
 
 `devtools::check()` intègre `devtools::document()` donc vous aurez au départ rarement à utiliser `devtools::document()` de façon isolée.
 ]
@@ -333,7 +336,10 @@ Writing ma_fonction.Rd
 # {roxygen2} : document()
 
 .pull-left[
-Une fois votre documentation effectuée, la fonction `devtools::document()` va exploiter ces balises en 1/ créant le fichier de documentation de votre fonction, **`ma_fonction.Rd`**, dans le répertoire `man/` et 2/ en mettant à jour le fichier NAMESPACE.
+Une fois votre documentation effectuée, la fonction `devtools::document()` va exploiter ces balises en   
+
+1. créant le fichier de documentation de votre fonction, **`ma_fonction.Rd`**, dans le répertoire `man/` et   
+2. en mettant à jour le fichier NAMESPACE. 
 
 `devtools::check()` intègre `devtools::document()` donc vous aurez au départ rarement à utiliser `devtools::document()` de façon isolée.
 ]
@@ -346,7 +352,10 @@ Une fois votre documentation effectuée, la fonction `devtools::document()` va e
 # {roxygen2} : document()
 
 .pull-left[
-Une fois votre documentation effectuée, la fonction `devtools::document()` va exploiter ces balises en 1/ créant le fichier de documentation de votre fonction, `ma_fonction.Rd`, dans le répertoire `man/` et 2/ en mettant à jour le fichier **NAMESPACE**.
+Une fois votre documentation effectuée, la fonction `devtools::document()` va exploiter ces balises en   
+
+1. créant le fichier de documentation de votre fonction, `ma_fonction.Rd`, dans le répertoire `man/` et   
+2. en mettant à jour le fichier **NAMESPACE**.  
 
 `devtools::check()` intègre `devtools::document()` donc vous aurez au départ rarement à utiliser `devtools::document()` de façon isolée.
 ]
@@ -384,11 +393,11 @@ Le fait d'avoir défini un test pour s'assurer sur un jeu d'exemples du résulta
 #### Tester votre fonction  
 # Comment faire un test ?  
 
-1/ Réfléchir au comportement attendu de la fonction.
+1. Réfléchir au comportement attendu de la fonction.
 Dans notre exemple, le résultat de notre fonction est un dataframe de `n_head` + `n_tail` lignes.
 
 .pull-left[
-2/ Grâce à `{usethis}` :  
+2. Grâce à `{usethis}` :  
 
 * initialiser les tests dans `dev_history.R`,    
 * et créer le fichier du test de la fonction `ma_fonction()`.
@@ -406,12 +415,13 @@ Il contient un premier script R, `testthat.R`, qui initie les tests de notre pac
 ---
 #### Tester votre fonction  
 # Comment faire un test ?  
+
 .pull-left[
-3/ Dans le fichier de test `test-ma_fonction.R` qui s'est ouvert, 
+3. Dans le fichier de test `test-ma_fonction.R` qui s'est ouvert, 
 on exécute la fonction et on vérifie que le résultat a les propriétés attendues.
+]
 
 .pull-right[
-On recourt pour cela à la librairie `{testthat}`.  
 ```{r eval = FALSE}
 
 objet <- ma_fonction(data = iris, n_head = 3, n_tail = 3)
