@@ -5,14 +5,14 @@
       "title": "atelier 1",
       "author": [],
       "contents": "\n⚠️ Site en construction ⚠️\nObjectifs\nAprès cet atelier vous saurez :\ncomprendre ce qu’est un package\ncomprendre la structure d’un package\ncréer votre premier package\nsupports\ndiaporama\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\n\n\n\n\n",
-      "last_modified": "2021-03-02T18:02:11+00:00"
+      "last_modified": "2021-03-02T18:02:52+00:00"
     },
     {
       "path": "atelier2.html",
       "title": "atelier 2",
       "author": [],
       "contents": "\n⚠️ Site en construction ⚠️\nObjectifs\nAprès cet atelier vous saurez rajouter une fonction dans un package. C’est à dire que vous aurez compris :\nce qu’est une fonction\ncomment rajouter une fonction dans un package\ncomment documenter une fonction\ncomment tester une fonction\nsupports\ndiaporama\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\n\n\n\n\n",
-      "last_modified": "2021-03-02T18:02:12+00:00"
+      "last_modified": "2021-03-02T18:02:52+00:00"
     },
     {
       "path": "index.html",
@@ -20,7 +20,7 @@
       "description": "Ce site presente les supports pour un atelier sur la creation de packages\n",
       "author": [],
       "contents": "\n⚠️ Site en construction ⚠️\nDéroulé\nAtelier 1 : Créer un package\nAtelier 2 : Le workflow de l’alimentation package\nAtelier 3 : gérer les versions d’un package\nAtelier 4 : Aller plus loin\n\n\n\n",
-      "last_modified": "2021-03-02T18:02:12+00:00"
+      "last_modified": "2021-03-02T18:02:53+00:00"
     }
   ],
   "collections": []
