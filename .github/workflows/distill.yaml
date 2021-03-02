@@ -31,15 +31,14 @@ jobs:
       - name: Install packages
         run: |
           R -e 'install.packages("renv")'
+          R -e 'renv::restore(packages = "renv")'
           R -e 'renv::restore()'
           
       - name: Build site
         run: Rscript -e 'rmarkdown::render_site()'
 
       - name: Deploy to GitHub Pages
-        uses: Cecilapp/GitHub-Pages-deploy@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }} # https://github.com/settings/tokens
-        with: 
-          email: ${{ secrets.EMAIL }}               # must be a verified email
-          build_dir: docs/                     # "_site/" by default
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_PAT }} # https://github.com/settings/tokens
+          publish_dir: docs/                     # "public/" by default
