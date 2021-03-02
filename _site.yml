@@ -12,4 +12,6 @@ navbar:
       menu:
         - text: "Atelier 1"
           href: atelier1.html
+        - text: "Atelier 2"
+          href: atelier2.html
 output: distill::distill_article
