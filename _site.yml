@@ -4,6 +4,7 @@ description: |
   Creer son premier package R
 output_dir: "docs"
 include: slides/
+exclude: ["renv"]
 navbar:
   right:
     - text: "Home"

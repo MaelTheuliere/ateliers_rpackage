@@ -38,7 +38,7 @@ jobs:
         run: Rscript -e 'rmarkdown::render_site()'
 
       - name: Build slides
-        run: Rscript -e 'list.files(path = "slides",pattern = '.Rmd',full.names = TRUE) %>% purrr::map(~rmarkdown::render(.x))'
+        run: Rscript -e 'purrr::map(list.files(path = "slides",pattern = '.Rmd',full.names = TRUE),~rmarkdown::render(.x))'
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

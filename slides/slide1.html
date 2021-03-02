@@ -4,7 +4,7 @@
     <title>Créer son premier package</title>
     <meta charset="utf-8" />
     <meta name="author" content="Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE" />
-    <meta name="date" content="2021-02-19" />
+    <meta name="date" content="2021-03-02" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/panelset/panelset.css" rel="stylesheet" />
     <script src="libs/panelset/panelset.js"></script>
@@ -24,7 +24,7 @@ class: center, middle, inverse, title-slide
 
 # Créer son premier package
 ### Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE
-### 2021-02-19
+### 2021-03-02
 
 ---
 
@@ -276,7 +276,9 @@ usethis::create_package("monpremierpackage")
 usethis::use_git()
 ```
 
-3 - interface avec github ou gitlab
+3 - Créer un repo sur github ou gitlab
+
+La fonction `use_github()` créer automatiquement le projet distant sur votre compte github.
 
 .panelset[
 .panel[.panel-name[github]
@@ -286,6 +288,9 @@ usethis::use_github()
 ```
 ]
 .panel[.panel-name[gitlab]
+
+La fonction `use_git_remote()` créer automatiquement le projet distant sur votre compte gitlab ou autre en spécifiant l'url que vous souhaitez associer à votre projet.
+
 
 ```r
 usethis::use_git_remote(url = "gitlab.com/MON_ESPACE/monpremierpackage")
