@@ -104,9 +104,8 @@ class: inverse, center, middle
 ### Structure d'un package
 # La structure minimale d'un package
 
-La structure d'un package va différer suivant le contenu de celui ci. 
-
-La structure minimale de celui va consister en : 
+La structure d'un package va différer suivant le contenu de celui-ci. 
+La structure minimale consiste en : 
 
 .pull-left[
 - un fichier `DESCRIPTION` qui contient la description d'un package et ses dépendances, c'est à dire la liste des packages qui seront nécessaires pour faire fonctionner ce package
@@ -235,7 +234,7 @@ classe: inverse, center, middle
 - `{devtools}` recense les fonctions qui seront utilisées pour compiler ou installer votre package.
 - `{usethis}`  contient un ensemble de fonctions qui vous permetront d'automatiser la plupart des tâches dont vous aurez besoin.
 - `{roxygen2}` vous permettra de documenter vos fonctions (cf atelier 2).
-- `{testthat}` vous permettra de tester vos fonctions. C'est à dire de définir un ensemble d'instructions qui vous permettront de vérifier que vos fonctions produise bien le résultat attendu (cf atelier 2).
+- `{testthat}` vous permettra de tester vos fonctions. C'est à dire de définir un ensemble d'instructions qui vous permettront de vérifier que vos fonctions produisent bien le résultat attendu (cf atelier 2).
 
 Pour installer ces packages :
 
