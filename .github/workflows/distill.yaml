@@ -11,6 +11,7 @@ jobs:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GH_PAT }}
+      RENV_PATHS_ROOT: ~/.local/share/renv
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -22,23 +23,24 @@ jobs:
         uses: r-lib/actions/setup-pandoc@master
 
       - name: Cache Renv packages
-        uses: actions/cache@v2
+        uses: actions/cache@v1
         with:
-          path: $HOME/.local/share/renv
-          key: r-${{ hashFiles('renv.lock') }}
-          restore-keys: r-
+          path: ${{ env.RENV_PATHS_ROOT }}
+          key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-renv-
 
       - name: Install packages
         run: |
           R -e 'install.packages("renv")'
           R -e 'renv::restore(packages = "renv")'
           R -e 'renv::restore()'
-          
-      - name: Build site
-        run: Rscript -e 'rmarkdown::render_site()'
 
       - name: Build slides
         run: Rscript -e 'purrr::map(list.files(path = "slides",pattern = ".Rmd",full.names = TRUE),~rmarkdown::render(.x))'
+          
+      - name: Build site
+        run: Rscript -e 'rmarkdown::render_site()'
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
