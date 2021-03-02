@@ -13,11 +13,13 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
+`r emo::ji("warning")` Site en construction `r emo::ji("warning")`
+
 ## Déroulé
 
-- [Atelier 1](atelier1.html) : créer un package
+- [Atelier 1](atelier1.html) : Créer un package
 
-- [Atelier 2](atelier2.html) : le workflow de l'alimentation package
+- [Atelier 2](atelier2.html) : Le workflow de l'alimentation package
 
 - Atelier 3 : gérer les versions d'un package
 

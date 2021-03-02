@@ -6,6 +6,8 @@ title: "atelier 1"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+`r emo::ji("warning")` Site en construction `r emo::ji("warning")`
+
 ## Objectifs
 
 Après cet atelier vous saurez : 
