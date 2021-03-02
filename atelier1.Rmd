@@ -6,6 +6,8 @@ title: "atelier 1"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+`r emo::ji("warning")` Site en construction `r emo::ji("warning")`
+
 ## Objectifs
 
 Après cet atelier vous saurez : 
@@ -15,8 +17,6 @@ Après cet atelier vous saurez :
   -  comprendre la structure d’un package
 
   -  créer votre premier package
-
-  -  créer le site pkgdown de votre package
 
 ## supports
 
