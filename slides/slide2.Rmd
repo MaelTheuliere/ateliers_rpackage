@@ -174,7 +174,7 @@ Le package `{roxygen2}` va vous permettre de documenter votre fonction afin qu'u
 ---
 #### Documenter votre fonction
 
-# {roxygen2} : créer un caneva
+# {roxygen2} : créer un canevas
 
 .pull-left[
 Pour ajouter une documentation, mettez le pointeur sur la fonction dans son script et utiliser le raccourci clavier `Ctrl + Alt + Shift + R` ou utiliser l'interface de Rstudio en cliquant sur `Code Tools`.
@@ -187,7 +187,7 @@ Pour ajouter une documentation, mettez le pointeur sur la fonction dans son scri
 ---
 #### Documenter votre fonction
 
-# {roxygen2} : créer un caneva
+# {roxygen2} : créer un canevas
 
 .pull-left[
 Pour ajouter une documentation, mettez le pointeur sur la fonction dans son script et utiliser le raccourci clavier `Ctrl + Alt + Shift + R` ou utilisez l'interface de Rstudio en cliquant sur `Code Tools`.
@@ -393,14 +393,14 @@ Le fait d'avoir défini un test pour s'assurer sur un jeu d'exemples du résulta
 #### Tester votre fonction  
 # Comment faire un test ?  
 
-1. Réfléchir au comportement attendu de la fonction.
+- Réfléchir au comportement attendu de la fonction.
 Dans notre exemple, le résultat de notre fonction est un dataframe de `n_head` + `n_tail` lignes.
 
 .pull-left[
-2. Grâce à `{usethis}` :  
+- Grâce à `{usethis}` :  
 
-* initialiser les tests dans `dev_history.R`,    
-* et créer le fichier du test de la fonction `ma_fonction()`.
+  * initialiser les tests dans `dev_history.R`,    
+  * et créer le fichier du test de la fonction `ma_fonction()`.
 ]
 .pull-right[
 On recourt pour cela à la librairie `{testthat}`.  
@@ -417,8 +417,8 @@ Il contient un premier script R, `testthat.R`, qui initie les tests de notre pac
 # Comment faire un test ?  
 
 .pull-left[
-<li value="3"> Dans le fichier de test `test-ma_fonction.R` qui s'est ouvert, 
-on exécute la fonction et on vérifie que le résultat a les propriétés attendues.</li>
+- Dans le fichier de test `test-ma_fonction.R` qui s'est ouvert, 
+on exécute la fonction et on vérifie que le résultat a les propriétés attendues.
 ]
 
 .pull-right[
