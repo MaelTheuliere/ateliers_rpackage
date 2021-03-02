@@ -260,8 +260,8 @@ On ajoute une balise `@importFrom` pour chaque package utilisé.
 ma_fonction <- function(data = NULL,
                         n_head = 3,
                         n_tail = 3){
-  res <- rbind(dplyr::slice_head(data,n = n_head),
-               dplyr::slice_tail(data,n = n_tail)
+  res <- rbind(dplyr::slice_head(data, n = n_head),
+               dplyr::slice_tail(data, n = n_tail)
   )
   return(res)
 }
@@ -380,5 +380,51 @@ Les tests permettent de sécuriser votre développement.
 Imaginez sur notre exemple que la définition de `slice_head()` et que par exemple le paramètre `n` change de nom et devient `nb`. 
 
 Le fait d'avoir défini un test pour s'assurer sur un jeu d'exemples du résultats attendu vous permettra très vite d'identifier ce changement.
+---
+#### Tester votre fonction  
+# Comment faire un test ?  
 
+1/ Réfléchir au comportement attendu de la fonction.
+Dans notre exemple, le résultat de notre fonction est un dataframe de `n_head` + `n_tail` lignes.
 
+.pull-left[
+2/ Grâce à `{usethis}` :  
+
+* initialiser les tests dans `dev_history.R`,    
+* et créer le fichier du test de la fonction `ma_fonction()`.
+]
+.pull-right[
+On recourt pour cela à la librairie `{testthat}`.  
+```{r eval = FALSE}
+usethis::use_testthat()
+usethis::use_test("ma_fonction")
+```
+]
+
+Un répertoire `tests` dédié aux tests a été créé à la racine du projet.
+Il contient un premier script R, `testthat.R`, qui initie les tests de notre package, et un répertoire `testthat` qui contient les fichiers de tests de chaque fonction.
+---
+#### Tester votre fonction  
+# Comment faire un test ?  
+.pull-left[
+3/ Dans le fichier de test `test-ma_fonction.R` qui s'est ouvert, 
+on exécute la fonction et on vérifie que le résultat a les propriétés attendues.
+
+.pull-right[
+On recourt pour cela à la librairie `{testthat}`.  
+```{r eval = FALSE}
+
+objet <- ma_fonction(data = iris, n_head = 3, n_tail = 3)
+
+test_that("ma_fonction() renvoie un dataframe", {
+  expect_is(objet, "data.frame")
+})
+
+test_that("ma_fonction() renvoie le bon nombre de lignes", {
+  expect_equal(nrow(objet), 6)
+})
+
+```
+]
+
+Lors d'une prochaine vérification de notre package, avec `devtools::check()`, le test sera automatiquement exécuté.
