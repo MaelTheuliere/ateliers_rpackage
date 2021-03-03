@@ -45,7 +45,6 @@ xaringanExtra::use_tachyons()
 ```
 
 
----
 # Objectif de cette séquence
 
 Après cet atelier vous saurez :
