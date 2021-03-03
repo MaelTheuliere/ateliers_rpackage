@@ -7,7 +7,7 @@ site: distill::distill_website
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-
+library(gouvdown.fonts)
 # Learn more about creating websites with Distill at:
 # https://rstudio.github.io/distill/website.html
 
@@ -24,3 +24,8 @@ knitr::opts_chunk$set(echo = FALSE)
 - Atelier 3 : gérer les versions d'un package
 
 - Atelier 4 : Aller plus loin
+
+```{r,fig.width=300}
+knitr::include_graphics("https://github.com/MaelTheuliere/ateliers_rpackage/raw/main/slides/www/packagescompagnons.png")
+```
+

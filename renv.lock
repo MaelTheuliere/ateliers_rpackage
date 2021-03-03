@@ -287,6 +287,18 @@
       "Repository": "CRAN",
       "Hash": "6efd734b14c6471cfe443345f3e35e29"
     },
+    "gouvdown.fonts": {
+      "Package": "gouvdown.fonts",
+      "Version": "0.0.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "gouvdown.fonts",
+      "RemoteUsername": "spyrales",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "d40dfe7cd22fbe9f476b7f480b6cc2a263c95264",
+      "Hash": "2ddbe8a5ddf28f4deed822d05d39e841"
+    },
     "highr": {
       "Package": "highr",
       "Version": "0.8",
