@@ -246,7 +246,9 @@ install.packages(c('devtools','usethis','roxygen2','testthat'))
 ### Créer son premier package
 # Configurer votre environnement
 
-Avant de créer votre premier package, il va falloir réaliser quelques démarches initiales à faire une bonne fois pour toute pour configurer votre poste : configuration du proxy, de git... Suivez le guide à [cette adresse](../configuration.html) pour cela. 
+Avant de créer votre premier package, il va falloir réaliser quelques démarches initiales à faire une bonne fois pour toute pour configurer votre poste : configuration du proxy, de git...
+
+Suivez le guide à [cette adresse](../configuration.html) pour cela. 
 
 
 ---
