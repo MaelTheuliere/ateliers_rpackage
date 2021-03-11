@@ -9,11 +9,13 @@ navbar:
   right:
     - text: "Home"
       href: index.html
+    - text: "Configuration"
+      href: configuration.html
     - text: "Ateliers"
       menu:
-        - text: "Atelier 1"
+        - text: "Creer son premier package"
           href: atelier1.html
-        - text: "Atelier 2"
+        - text: "Le workflow de l'alimentation d'un package"
           href: atelier2.html
 output: 
   distill::distill_article:

@@ -23,7 +23,7 @@ library(gouvdown.fonts)
 
 - [Atelier 1](atelier1.html) : Créer un package `r emo::ji("baby")`
 
-- [Atelier 2](atelier2.html) : Le workflow de l'alimentation package `r emo::ji("loop")`
+- [Atelier 2](atelier2.html) : Le workflow de l'alimentation d'un package `r emo::ji("loop")`
 
 - Atelier 3 : Ajouter des datasets `r emo::ji("open_file_folder")`
 
