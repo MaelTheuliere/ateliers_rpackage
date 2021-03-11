@@ -15,6 +15,10 @@ library(gouvdown.fonts)
 
 `r emo::ji("warning")` Site en construction `r emo::ji("warning")`
 
+## Avant de commencer
+
+- [Configurer votre poste](configuration.html)
+
 ## Déroulé
 
 - [Atelier 1](atelier1.html) : Créer un package
