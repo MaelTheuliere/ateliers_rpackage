@@ -86,26 +86,26 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Creer son premier package R: atelier 1</title>
+  <title>Creer son premier package R: Avant de commencer</title>
   
   
   
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Creer son premier package R: atelier 1"/>
+  <meta property="og:title" content="Creer son premier package R: Avant de commencer"/>
   <meta property="og:type" content="article"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Creer son premier package R"/>
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Creer son premier package R: atelier 1"/>
+  <meta property="twitter:title" content="Creer son premier package R: Avant de commencer"/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title"]}},"value":[{"type":"character","attributes":{},"value":["atelier 1"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title"]}},"value":[{"type":"character","attributes":{},"value":["Avant de commencer"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2359,7 +2359,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/fitvids-2.1.1/fitvids.min.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2379,7 +2378,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"atelier 1","authors":[]}
+{"title":"Avant de commencer","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2412,7 +2411,7 @@ Ateliers
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>atelier 1</h1>
+<h1>Avant de commencer</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 
@@ -2421,24 +2420,110 @@ Ateliers
 
 <div class="d-article">
 <p>⚠️ Site en construction ⚠️</p>
-<h2 id="objectifs">Objectifs</h2>
-<p>Après cet atelier vous saurez :</p>
+<p>Avant de pouvoir créer un package en R, vous allez devoir configurer votre poste de travail pour installer et paramétrer les différents outils nécessaires à la création de packages.</p>
+<h2 id="configuration-du-proxy">Configuration du proxy</h2>
 <ul>
-<li><p>comprendre ce qu’est un package</p></li>
-<li><p>comprendre la structure d’un package</p></li>
-<li><p>créer votre premier package</p></li>
-</ul>
-<h2 id="supports">supports</h2>
-<ul>
-<li><a href="slides/slide1.html">diaporama</a></li>
+<li><p>Ouvrir Rstudio et naviguez dans Tools -&gt; Global Options / Packages : cliquez sur <strong>Use Internet Explorer library/proxy for HTTP</strong>.</p></li>
+<li><p>Créer un fichier texte appelé <strong><em>.Renviron</em></strong> à mettre dans le répertoire de travail par défaut de Rstudio, avec les informations ci-dessous. Pour se faire vous pouvez utiliser la commande <code>usethis::edit_r_environ()</code> après avoir installé le package {<code>usethis</code>} via <code>install.packages("usethis")</code></p></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<div class="shareagain" style="min-width:300px;margin:1em auto;">
-<iframe src="slides/slide1.html" width="400" height="300" style="border:2px solid currentColor;" loading="lazy" allowfullscreen></iframe>
-<script>fitvids('.shareagain', {players: 'iframe'});</script>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>internet.info <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
+
+<span class='va'>http_proxy</span><span class='op'>=</span><span class='va'>URL_DU_PROXY</span>
+
+<span class='va'>https_proxy</span><span class='op'>=</span><span class='va'>URL_DU_PROXY</span>
+</code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<aside>
+Le fichier <strong><em>.Renviron</em></strong> est un fichier éditable qui permet de créer des variables d’environnement. Ces variables sont utiles par exemple pour définir comme ici un proxy, ou des clefs d’API. Chaque clefs définies dans le .Renviron peuvent ensuite s’appeler en utilisant <code>Sys.getenv("NOM_DE_LA_CLEF")</code>. Ici par exemple <code>Sys.getenv("http_proxy")</code> renvoi l’url du proxy. Le fichier .Renviron peut être défini au niveau du répertoire par défaut de travail ou pour un projet particulier. Dans ce cas, seul le .Renviron du projet s’applique.
+</aside>
+<h2 id="configuration-de-git">Configuration de GIT</h2>
+<h3 id="télécharger-git">Télécharger git</h3>
+<ul>
+<li><a href="https://git-scm.com/downloads">Télécharger</a> et installer GIT.</li>
+</ul>
+<h3 id="sidentifier">s’identifier</h3>
+<p>Pour cela, utiliser le terminal dans Rstudio et déclarez votre nom et email.</p>
+<pre><code>git config --global user.name &quot;Jean Claude Dusse&quot;
+git config --global user.email jcdusse@pays_merveilleux.fr</code></pre>
+<h3 id="déclarer-le-proxy-dans-git">Déclarer le proxy dans GIT</h3>
+<p>Dans le terminal de Rstudio, taper les lignes de commande suivante</p>
+<pre><code>git config --global http.proxy URL_DU_PROXY
+git config --global https.proxy URL_DU_PROXY`</code></pre>
+<h2 id="déclarer-un-outil-de-gestion-de-conflit">Déclarer un outil de gestion de conflit</h2>
+<p>Winmerge est un outil graphique utile pour gérer la résolution des conflits de fusion dans GIT.</p>
+<pre><code>git config --global merge.tool winmerge
+git config --global mergetool.prompt false
+git config --global mergetool.winmerge.trustExitCode true
+git config --global mergetool.winmerge.cmd &quot;\&quot;C:\Program Files\WinMerge\WinMergeU.exe\&quot; -e -u -dl \&quot;Mine\&quot; -wr -dr \&quot;Theirs\&quot; \&quot;$LOCAL\&quot; \&quot;$REMOTE\&quot; \&quot;$MERGED\&quot;&quot;</code></pre>
+<p>Pour éviter de taper sans cesse son mot de passe, on peut aussi demander à git de le mémoriser :</p>
+<pre><code>git config --global credential.helper store</code></pre>
+<p>Pour retrouver les options de git déclarées, vous pouvez taper <code>git config --list</code> dans le terminal.</p>
+<h2 id="créer-un-compte-github-etou-gitlab">Créer un compte github et/ou gitlab</h2>
+<p>Ou tout autre forge que vous souhaitez utiliser.</p>
+<p>Pensez à prendre le même mail pour votre compte que celui que vous avez défini pour GIT.</p>
+<h2 id="créer-token-github">Créer token github</h2>
+<p>Si vous voulez utiliser github, créer un token github, qui vous permettra de faciliter l’utilisation de {<code>usethis</code>}.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/github-token.html'>create_github_token</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="déclarer-git-dans-rstudio">Déclarer git dans Rstudio</h2>
+<p>On active le contrôle de version pour les projets R dans les options globales du menu <em>Tools</em> de RStudio :</p>
+<p><img src="www/rsutdio-config-git.png" /></p>
+<h2 id="configurer-ssh">Configurer ssh</h2>
+<p>Sur ce même écran, Rstudio vous permet de générer simplement la paire de clés d’authentification SSH via le bouton <em>Create RSA key</em>.</p>
+<aside>
+Le SSH est une protocole de communication sécurisé qui utilise la cryptographie asymétrique.
+</aside>
+<p>Il faut ensuite déclarer la clé publique dans son profil github ou gitlab pour être reconnu par le serveur automatiquement lorsqu’on lui envoie des modifications.</p>
+<p>Sous Windows, vous trouverez votre clef publique sous <code>C:\Users\VOTRENOM\.ssh</code>.</p>
+<p>Sous gitlab, vous devrez la déclarer à l’adresse <a href="https://gitlab.com/-/profile/keys">https://gitlab.com/-/profile/keys</a></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="www/gitlab_create_ssh.png" width="486" /></p>
+</div>
+<p>Sous github, vous devrez la déclarer à l’adresse <a href="https://github.com/settings/ssh/new">https://github.com/settings/ssh/new</a></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="www/github_create_ssh.png" width="511" /></p>
+</div>
+<h2 id="configurer-usethis">Configurer {usethis}</h2>
+<p>Vous pouvez éditer votre fichier <strong><em>.Rprofile</em></strong> pour ajouter des informations par défaut qui seront exploitées par {<code>usethis</code>} lors de la création de package.</p>
+<p>Pour éditer votre .Rprofile :</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/edit.html'>edit_r_profile</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<aside>
+Le fichier <strong><em>.Rprofile</em></strong> est un fichier éditable qui permet de définir des options. Plus globalement, tout ce qui est dans un fichier .Rprofile est du code qui sera lancé à chaque ouverture de session. Il peut être utilisé au niveau du répertoire par défaut de travail ou pour un projet particulier. Dans ce cas, seul le <strong><em>.Rprofile</em></strong> du projet s’applique.
+</aside>
+<p>Vous pouvez ensuite rajouter ces informations :</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>
+  usethis.full_name <span class='op'>=</span> <span class='st'>"Jean Clade Dusse"</span>,
+  usethis.protocol  <span class='op'>=</span> <span class='st'>"ssh"</span>,
+  usethis.description <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+    <span class='st'>"Authors@R"</span> <span class='op'>=</span> <span class='fu'>utils</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/utils/person.html'>person</a></span><span class='op'>(</span>
+        <span class='st'>"Jean Claude"</span>, <span class='st'>"Dusse"</span>,
+        email <span class='op'>=</span> <span class='st'>"jcdusse@pays_merveilleux.fr"</span>,
+        role <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"aut"</span>, <span class='st'>"cre"</span><span class='op'>)</span>,
+        comment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>ORCID <span class='op'>=</span> <span class='st'>"JANE'S-ORCID-ID"</span><span class='op'>)</span>
+    <span class='op'>)</span>,
+    Version <span class='op'>=</span> <span class='st'>"0.0.0.9000"</span>
+  <span class='op'>)</span>,
+  usethis.destdir <span class='op'>=</span> <span class='st'>"~/the/place/where/I/keep/my/R/projects"</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Ainsi à la création de vos packages, vous serez automatiquement rajouté en tant qu’auteur et créateur du package.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
