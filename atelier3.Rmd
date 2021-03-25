@@ -1,0 +1,20 @@
+---
+title: "atelier 3 - Ajouter des datasets"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+`r emo::ji("warning")` Site en construction `r emo::ji("warning")`
+
+## Objectifs
+
+Après cet atelier vous saurez rajouter des jeux de données dans votre package.
+## supports
+
+- [diaporama](slides/slide3.html)
+
+```{r embed-xaringan, echo=FALSE}
+xaringanExtra::embed_xaringan(url = "slides/slide3.html", ratio = "4:3")
+```

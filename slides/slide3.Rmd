@@ -1,0 +1,115 @@
+---
+title: "Rajouter un dataset dans votre package"
+author: 
+  - "Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    self_contained: TRUE
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#000091",
+  text_font_family = 'Marianne',
+  code_font_family = 'Fira Code'
+)
+```
+
+
+```{r xaringanpanelset, echo=FALSE}
+xaringanExtra::use_panelset(in_xaringan = TRUE)
+```
+
+```{r share-again, echo=FALSE}
+xaringanExtra::use_share_again()
+```
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+
+```{r xaringan-tachyons, echo=FALSE}
+xaringanExtra::use_tachyons()
+```
+
+# Objectif de cet atelier
+
+Après cet atelier vous saurez :
+
+  - Ajouter un dataset dans votre package
+  - Documenter votre dataset
+  - Ajouter des données sous forme de fichiers plats (csv, xls, gpkg...)
+
+`r emo::ji("warning")` Diapo en construction `r emo::ji("warning")`
+
+---
+class: inverse, center, middle
+
+# Ajouter un dataset
+---
+## Ajouter un dataset
+# Documenter votre datapréparation
+
+Un dataset que vous intégrez dans votre package vient forcément d'une source externe diverse (via un fichier plat, un sgbd, une api...) ou éventuellement d'un fichier que vous créer directement de R. 
+Ce fichier a put être retraité pour arriver dans votre package. 
+
+Vous aurez donc besoin de documenter ce processus de datapréparation. La convention dans ce cas dans R est d'avoir un répertoire data-raw qui contient ces scripts.
+
+---
+## Ajouter un dataset
+# Documenter votre datapréparation
+
+.pull-left[
+`{usethis}` vous facilite là aussi ce travail !
+
+Imaginons que nous voulions intégrer dans notre package un fichier contenant l'ensemble des entreprises et artisans certifiés RGE.
+
+`usethis::use_data_raw(name = "rge")` va créer un fichier rge.R qui intègre par ailleurs directement la fonction qui vous sera utile ensuite pour créer votre dataset une fois celui ci créé : `usethis::use_data(rge, overwrite = TRUE)`
+]
+
+.pull-right[
+```{r, echo=FALSE,eval=TRUE}
+knitr::include_graphics("www/usethis_use_data_raw.png")
+```
+
+]
+
+---
+## Ajouter un dataset
+# Documenter votre datapréparation
+
+
+## Où mettre vos données sources ?
+
+Si vous importez vos données d'un fichier plat, la bonne pratique va être de mettre votre fichier source dans votre projet tout en l'excluant du package, car vos utilisateurs n'auront pas besoin de ce fichier intermédiaire.
+
+Vous pouvez par exemple les rajouter dans un répertoire `extdata/` à la racine de votre projet.
+
+Si ce fichier est au format tableur, privilégier l'usage du csv qui peut être historisé par git contrairement aux fichiers xls ou ods.
+
+---
+## Ajouter un dataset
+# Documenter votre datapréparation
+
+
+## Où mettre vos données sources ?
+
+Attention, ceci ne sera optimum que pour des fichiers source de **petite taille**. 
+
+Si votre fichier de départ est vraiment très volumineux, et que vous êtes amené à le mettre à jour régulièrement, cette pratique est à proscrire, car le poids de votre projet git est appelé à devenir d'une taille déraisonnable. 
+
+Il vaut mieux dans ce cas charger votre donnée de départ dans un sgbd ou privilégier l'usage d'une api si elle existe.
