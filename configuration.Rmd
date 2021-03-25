@@ -11,6 +11,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Avant de pouvoir créer un package en R, vous allez devoir configurer votre poste de travail pour installer et paramétrer les différents outils nécessaires à la création de packages.
 
+## installer les packages nécessaires à l'atelier.
+
+Nous aurons besoins des packages suivants pour cet atelier :
+
+```{r, eval=FALSE}
+install.packages(c('devtools','usethis','roxygen2','testthat', 'pkgdown'))
+```
+
 ## Configuration du proxy
 
 Etape à réaliser quand vous êtes derrière un proxy.
