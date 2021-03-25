@@ -2422,6 +2422,7 @@ Ateliers
 <p>⚠️ Site en construction ⚠️</p>
 <p>Avant de pouvoir créer un package en R, vous allez devoir configurer votre poste de travail pour installer et paramétrer les différents outils nécessaires à la création de packages.</p>
 <h2 id="configuration-du-proxy">Configuration du proxy</h2>
+<p>Etape à réaliser quand vous êtes derrière un proxy.</p>
 <ul>
 <li><p>Ouvrir Rstudio et naviguez dans Tools -&gt; Global Options / Packages : cliquez sur <strong>Use Internet Explorer library/proxy for HTTP</strong>.</p></li>
 <li><p>Créer un fichier texte appelé <strong><em>.Renviron</em></strong> à mettre dans le répertoire de travail par défaut de Rstudio, avec les informations ci-dessous. Pour se faire vous pouvez utiliser la commande <code>usethis::edit_r_environ()</code> après avoir installé le package {<code>usethis</code>} via <code>install.packages("usethis")</code></p></li>
@@ -2437,7 +2438,7 @@ Ateliers
 </div>
 </div>
 <aside>
-Le fichier <strong><em>.Renviron</em></strong> est un fichier éditable qui permet de créer des variables d’environnement. Ces variables sont utiles par exemple pour définir comme ici un proxy, ou des clefs d’API. Chaque clefs définies dans le .Renviron peuvent ensuite s’appeler en utilisant <code>Sys.getenv("NOM_DE_LA_CLEF")</code>. Ici par exemple <code>Sys.getenv("http_proxy")</code> renvoi l’url du proxy. Le fichier .Renviron peut être défini au niveau du répertoire par défaut de travail ou pour un projet particulier. Dans ce cas, seul le .Renviron du projet s’applique.
+Le fichier <strong><em>.Renviron</em></strong> est un fichier éditable qui permet de créer des variables d’environnement. Ces variables sont utiles par exemple pour définir comme ici un proxy, ou des clefs d’API. Chaque clefs définies dans le <em><strong>.Renviron</strong> peuvent ensuite s’appeler en utilisant <code>Sys.getenv("NOM_DE_LA_CLEF")</code>. Ici par exemple <code>Sys.getenv("http_proxy")</code> renvoi l’url du proxy. Le fichier </em><strong>.Renviron</strong>* peut être défini au niveau du répertoire par défaut de travail ou pour un projet particulier. Dans ce cas, seul le .Renviron du projet s’applique.
 </aside>
 <h2 id="configuration-de-git">Configuration de GIT</h2>
 <h3 id="télécharger-git">Télécharger git</h3>
@@ -2453,7 +2454,7 @@ git config --global user.email jcdusse@pays_merveilleux.fr</code></pre>
 <pre><code>git config --global http.proxy URL_DU_PROXY
 git config --global https.proxy URL_DU_PROXY`</code></pre>
 <h2 id="déclarer-un-outil-de-gestion-de-conflit">Déclarer un outil de gestion de conflit</h2>
-<p>Winmerge est un outil graphique utile pour gérer la résolution des conflits de fusion dans GIT.</p>
+<p><a href="https://winmerge.org/?lang=fr">Winmerge</a> est un outil graphique utile pour gérer la résolution des conflits de fusion dans GIT.</p>
 <pre><code>git config --global merge.tool winmerge
 git config --global mergetool.prompt false
 git config --global mergetool.winmerge.trustExitCode true
@@ -2462,6 +2463,10 @@ git config --global mergetool.winmerge.cmd &quot;\&quot;C:\Program Files\WinMerg
 <pre><code>git config --global credential.helper store</code></pre>
 <p>Pour retrouver les options de git déclarées, vous pouvez taper <code>git config --list</code> dans le terminal.</p>
 <h2 id="créer-un-compte-github-etou-gitlab">Créer un compte github et/ou gitlab</h2>
+<ul>
+<li>Sur github, cliquer sur <a href="https://github.com/join?ref_cta=Sign+up&amp;ref_loc=header+logged+out&amp;ref_page=%2F&amp;source=header-home">ce lien</a>.</li>
+</ul>
+<p>Sur gitlab, cliquer sur <a href="https://gitlab.com/users/sign_up?test=capabilities">ce lien</a>.</p>
 <p>Ou tout autre forge que vous souhaitez utiliser.</p>
 <p>Pensez à prendre le même mail pour votre compte que celui que vous avez défini pour GIT.</p>
 <h2 id="créer-token-github">Créer token github</h2>
@@ -2506,7 +2511,7 @@ Le fichier <strong><em>.Rprofile</em></strong> est un fichier éditable qui perm
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>
-  usethis.full_name <span class='op'>=</span> <span class='st'>"Jean Clade Dusse"</span>,
+  usethis.full_name <span class='op'>=</span> <span class='st'>"Jean Claude Dusse"</span>,
   usethis.protocol  <span class='op'>=</span> <span class='st'>"ssh"</span>,
   usethis.description <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
     <span class='st'>"Authors@R"</span> <span class='op'>=</span> <span class='fu'>utils</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/utils/person.html'>person</a></span><span class='op'>(</span>
