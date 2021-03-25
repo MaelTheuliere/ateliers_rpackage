@@ -13,6 +13,7 @@ Avant de pouvoir créer un package en R, vous allez devoir configurer votre post
 
 ## Configuration du proxy
 
+Etape à réaliser quand vous êtes derrière un proxy.
 
 - Ouvrir Rstudio et naviguez dans Tools -> Global Options / Packages : cliquez sur **Use Internet Explorer library/proxy for HTTP**.
 
@@ -30,8 +31,8 @@ https_proxy=URL_DU_PROXY
 ```
 
 <aside>
-Le fichier ***.Renviron*** est un fichier éditable qui permet de créer des variables d'environnement. Ces variables sont utiles par exemple pour définir comme ici un proxy, ou des clefs d'API. Chaque clefs définies dans le .Renviron peuvent ensuite s'appeler en utilisant `Sys.getenv("NOM_DE_LA_CLEF")`. Ici par exemple `Sys.getenv("http_proxy")` renvoi l'url du proxy.
-Le fichier .Renviron peut être défini au niveau du répertoire par défaut de travail ou pour un projet particulier. Dans ce cas, seul le .Renviron du projet s'applique.
+Le fichier ***.Renviron*** est un fichier éditable qui permet de créer des variables d'environnement. Ces variables sont utiles par exemple pour définir comme ici un proxy, ou des clefs d'API. Chaque clefs définies dans le ***.Renviron** peuvent ensuite s'appeler en utilisant `Sys.getenv("NOM_DE_LA_CLEF")`. Ici par exemple `Sys.getenv("http_proxy")` renvoi l'url du proxy.
+Le fichier ***.Renviron*** peut être défini au niveau du répertoire par défaut de travail ou pour un projet particulier. Dans ce cas, seul le .Renviron du projet s'applique.
 </aside>
 
 ## Configuration de GIT
@@ -61,7 +62,7 @@ git config --global https.proxy URL_DU_PROXY`
 
 ## Déclarer un outil de gestion de conflit
 
-Winmerge est un outil graphique utile pour gérer la résolution des conflits de fusion dans GIT.
+[Winmerge](https://winmerge.org/?lang=fr) est un outil graphique utile pour gérer la résolution des conflits de fusion dans GIT.
 
 ```
 git config --global merge.tool winmerge
@@ -80,6 +81,10 @@ Pour retrouver les options de git déclarées, vous pouvez taper `git config --l
 
 
 ## Créer un compte github et/ou gitlab
+
+- Sur github, cliquer sur [ce lien](https://github.com/join?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home).
+
+Sur gitlab, cliquer sur [ce lien](https://gitlab.com/users/sign_up?test=capabilities).
 
 Ou tout autre forge que vous souhaitez utiliser.
 
@@ -146,7 +151,7 @@ Vous pouvez ensuite rajouter ces informations :
 
 ```{r, eval = FALSE}
 options(
-  usethis.full_name = "Jean Clade Dusse",
+  usethis.full_name = "Jean Claude Dusse",
   usethis.protocol  = "ssh",
   usethis.description = list(
     "Authors@R" = utils::person(
