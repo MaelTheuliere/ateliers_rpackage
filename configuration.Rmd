@@ -70,7 +70,9 @@ git config --global https.proxy URL_DU_PROXY`
 
 ## Déclarer un outil de gestion de conflit
 
-[Winmerge](https://winmerge.org/?lang=fr) est un outil graphique utile pour gérer la résolution des conflits de fusion dans GIT.
+- [Télécharger](https://winmerge.org/?lang=fr) et installer Winmerge
+
+Winmerge est un outil graphique utile pour gérer la résolution des conflits de fusion dans GIT.
 
 ```
 git config --global merge.tool winmerge
@@ -92,7 +94,7 @@ Pour retrouver les options de git déclarées, vous pouvez taper `git config --l
 
 - Sur github, cliquer sur [ce lien](https://github.com/join?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home).
 
-Sur gitlab, cliquer sur [ce lien](https://gitlab.com/users/sign_up?test=capabilities).
+- Sur gitlab, cliquer sur [ce lien](https://gitlab.com/users/sign_up?test=capabilities).
 
 Ou tout autre forge que vous souhaitez utiliser.
 
