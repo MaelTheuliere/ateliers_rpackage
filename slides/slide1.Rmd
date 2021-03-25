@@ -239,7 +239,7 @@ classe: inverse, center, middle
 Pour installer ces packages :
 
 ```{r, eval = FALSE}
-install.packages(c('devtools','usethis','roxygen2','testthat'))
+install.packages(c('devtools','usethis','roxygen2','testthat', 'pkgdown'))
 ```
 ]
 ---
