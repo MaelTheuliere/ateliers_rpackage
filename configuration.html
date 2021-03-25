@@ -2488,6 +2488,11 @@ git config --global mergetool.winmerge.cmd &quot;\&quot;C:\Program Files\WinMerg
 </code></pre>
 </div>
 </div>
+<p>Une page web de configuration de votre compte github s’ouvre pour que vous puissiez y générer le token d’accès personnel à Github (en anglais PAT, pour personal access token).<br />
+Ne pas toucher aux choix par défaut et y générer le token en cliquant sur le bouton vert en bas ‘Generate token’.</p>
+<p>Ce token personnel d’accès à Github est utile pour <strong>installer des packages depuis Github</strong>, avec la fonction <code>remotes::install_github()</code>. Sans le token, l’utilisateur est soumis à des limitations de téléchargement.</p>
+<p>Pour cela il faut le déclarer à Rstudio dans le .Renviron en créant une nouvelle variable : <code>GITHUB_PAT=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code>.</p>
+<p>Si vous souhaitez contribuer à des projets hébergés sur la forge github, il vous faudra également déclarer ce token à git. Pour cela, lancer <code>gitcreds::gitcreds_set()</code> depuis RStudio. A la question <code>Enter new password or token:</code> repondre en indiquant <code>GITHUB_PAT=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code>.</p>
 <h2 id="déclarer-git-dans-rstudio">Déclarer git dans Rstudio</h2>
 <p>On active le contrôle de version pour les projets R dans les options globales du menu <em>Tools</em> de RStudio :</p>
 <p><img src="www/rsutdio-config-git.png" /></p>
@@ -2506,6 +2511,10 @@ Le SSH est une protocole de communication sécurisé qui utilise la cryptographi
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="www/github_create_ssh.png" width="511" /></p>
 </div>
+<aside>
+La clé SSH permet de s’identifier de manière sûre et pratique mais, en configuration vpn, elle ne fonctionnera pas sur les forges web que sont github.com et gitlab.com. Elle fonctionnera en revanche sur notre serveur gitlab intranet.<br />
+Pour une configuration valide à la fois en et hors vpn, utiliser le protocole HTTPS pour vous relier votre projet local à la forge distante.
+</aside>
 <h2 id="configurer-usethis">Configurer {usethis}</h2>
 <p>Vous pouvez éditer votre fichier <strong><em>.Rprofile</em></strong> pour ajouter des informations par défaut qui seront exploitées par {<code>usethis</code>} lors de la création de package.</p>
 <p>Pour éditer votre .Rprofile :</p>
