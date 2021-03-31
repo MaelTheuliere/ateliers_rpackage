@@ -50,6 +50,12 @@ Le fichier ***.Renviron*** peut être défini au niveau du répertoire par défa
 
 - [Télécharger](https://git-scm.com/downloads) et installer GIT.
 
+### Déclarer git dans Rstudio
+
+On active le contrôle de version pour les projets R dans les options globales du menu *Tools* de RStudio :
+
+![](www/rsutdio-config-git.png)
+
 ### s'identifier
 
 Pour cela, utiliser le terminal dans Rstudio et déclarez votre nom et email.
@@ -66,6 +72,13 @@ Dans le terminal de Rstudio, taper les lignes de commande suivante
 ```   
 git config --global http.proxy URL_DU_PROXY
 git config --global https.proxy URL_DU_PROXY`
+```
+
+En DREAL PdL, l'url du proxy est 'http://pfrie-std.proxy.e2.rie.gouv.fr:8080', ça nous donne :  
+
+```   
+git config --global http.proxy pfrie-std.proxy.e2.rie.gouv.fr:8080
+git config --global https.proxy pfrie-std.proxy.e2.rie.gouv.fr:8080
 ```
 
 ## Déclarer un outil de gestion de conflit
@@ -119,12 +132,6 @@ Pour cela il faut le déclarer à Rstudio dans le .Renviron en créant une nouve
 Si vous souhaitez contribuer à des projets hébergés sur la forge github, il vous faudra également déclarer ce token à git. Pour cela, lancer `gitcreds::gitcreds_set()` depuis RStudio. A la question `Enter new password or token:` repondre en indiquant `GITHUB_PAT=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`.  
 
 
-## Déclarer git dans Rstudio
-
-On active le contrôle de version pour les projets R dans les options globales du menu *Tools* de RStudio :
-
-![](www/rsutdio-config-git.png)
-
 
 ## Configurer ssh
 
@@ -132,7 +139,7 @@ On active le contrôle de version pour les projets R dans les options globales d
 Sur ce même écran, Rstudio vous permet de générer simplement la paire de clés d’authentification SSH via le bouton *Create RSA key*. 
 
 <aside>
-Le SSH est une  protocole de communication sécurisé qui utilise la cryptographie asymétrique.
+Le SSH est un protocole de communication sécurisé qui utilise la cryptographie asymétrique.
 </aside>
 
 Il faut ensuite déclarer la clé publique dans son profil github ou gitlab pour être reconnu par le serveur automatiquement lorsqu’on lui envoie des modifications.
@@ -154,11 +161,19 @@ Sous github, vous devrez la déclarer à l'adresse [https://github.com/settings/
 knitr::include_graphics("www/github_create_ssh.png")
 ```
 
-<aside>
-La clé SSH permet de s'identifier de manière sûre et pratique mais, en configuration vpn, elle ne fonctionnera pas sur les forges web que sont github.com et gitlab.com. Elle fonctionnera en revanche sur notre serveur gitlab intranet.  
-Pour une configuration valide à la fois en et hors vpn, utiliser le protocole HTTPS pour vous relier votre projet local à la forge distante.
-</aside>
 
+La clé SSH permet de s'identifier de manière sûre et pratique mais, en raison de notre proxy, une manipulation supplémentaire est nécessaire pour que le protocole ssh fonctionne depuis un PC relié au réseau du ministère vers les forges web github.com et gitlab.com.
+
+1. Trouver et récupérer le chemin vers le fichier connect.exe de votre répertoire d'installation de git, par exemple  
+`C:/Program Files (x86)/Git/mingw64/bin/connect.exe` ou `C:/Program Files/Git/mingw64/bin/connect.exe`.
+
+2. Ouvrir le bloc note et y inscrire l'unique ligne de commande   
+`ProxyCommand "/c/Program Files (x86)/Git/mingw64/bin/connect.exe" -H pfrie-std.proxy.e2.rie.gouv.fr:8080 %h %p`
+en adaptant éventuellement le chemin vers `connect.exe` à votre propre répertoire d'installation de git.
+
+3. Enregistrer ce fichier sous le nom 'config', **sans l'extension .txt**, dans le répertoire .ssh mentionné plus haut `C:\Users\VOTRENOM\.ssh`.
+
+La configuration de l'identification par clé SSH est terminée ! `r emo::ji("tada")` 
 
 
 ## Configurer {usethis}
