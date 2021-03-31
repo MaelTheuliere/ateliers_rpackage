@@ -2453,6 +2453,9 @@ Le fichier <strong><em>.Renviron</em></strong> est un fichier éditable qui perm
 <ul>
 <li><a href="https://git-scm.com/downloads">Télécharger</a> et installer GIT.</li>
 </ul>
+<h3 id="déclarer-git-dans-rstudio">Déclarer git dans Rstudio</h3>
+<p>On active le contrôle de version pour les projets R dans les options globales du menu <em>Tools</em> de RStudio :</p>
+<p><img src="www/rsutdio-config-git.png" /></p>
 <h3 id="sidentifier">s’identifier</h3>
 <p>Pour cela, utiliser le terminal dans Rstudio et déclarez votre nom et email.</p>
 <pre><code>git config --global user.name &quot;Jean Claude Dusse&quot;
@@ -2461,6 +2464,9 @@ git config --global user.email jcdusse@pays_merveilleux.fr</code></pre>
 <p>Dans le terminal de Rstudio, taper les lignes de commande suivante</p>
 <pre><code>git config --global http.proxy URL_DU_PROXY
 git config --global https.proxy URL_DU_PROXY`</code></pre>
+<p>En DREAL PdL, l’url du proxy est ‘<a href="http://pfrie-std.proxy.e2.rie.gouv.fr:8080" class="uri">http://pfrie-std.proxy.e2.rie.gouv.fr:8080</a>’, ça nous donne :</p>
+<pre><code>git config --global http.proxy pfrie-std.proxy.e2.rie.gouv.fr:8080
+git config --global https.proxy pfrie-std.proxy.e2.rie.gouv.fr:8080</code></pre>
 <h2 id="déclarer-un-outil-de-gestion-de-conflit">Déclarer un outil de gestion de conflit</h2>
 <ul>
 <li><a href="https://winmerge.org/?lang=fr">Télécharger</a> et installer Winmerge</li>
@@ -2493,13 +2499,10 @@ Ne pas toucher aux choix par défaut et y générer le token en cliquant sur le 
 <p>Ce token personnel d’accès à Github est utile pour <strong>installer des packages depuis Github</strong>, avec la fonction <code>remotes::install_github()</code>. Sans le token, l’utilisateur est soumis à des limitations de téléchargement.</p>
 <p>Pour cela il faut le déclarer à Rstudio dans le .Renviron en créant une nouvelle variable : <code>GITHUB_PAT=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code>.</p>
 <p>Si vous souhaitez contribuer à des projets hébergés sur la forge github, il vous faudra également déclarer ce token à git. Pour cela, lancer <code>gitcreds::gitcreds_set()</code> depuis RStudio. A la question <code>Enter new password or token:</code> repondre en indiquant <code>GITHUB_PAT=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code>.</p>
-<h2 id="déclarer-git-dans-rstudio">Déclarer git dans Rstudio</h2>
-<p>On active le contrôle de version pour les projets R dans les options globales du menu <em>Tools</em> de RStudio :</p>
-<p><img src="www/rsutdio-config-git.png" /></p>
 <h2 id="configurer-ssh">Configurer ssh</h2>
 <p>Sur ce même écran, Rstudio vous permet de générer simplement la paire de clés d’authentification SSH via le bouton <em>Create RSA key</em>.</p>
 <aside>
-Le SSH est une protocole de communication sécurisé qui utilise la cryptographie asymétrique.
+Le SSH est un protocole de communication sécurisé qui utilise la cryptographie asymétrique.
 </aside>
 <p>Il faut ensuite déclarer la clé publique dans son profil github ou gitlab pour être reconnu par le serveur automatiquement lorsqu’on lui envoie des modifications.</p>
 <p>Sous Windows, vous trouverez votre clef publique sous <code>C:\Users\VOTRENOM\.ssh</code>.</p>
@@ -2511,10 +2514,15 @@ Le SSH est une protocole de communication sécurisé qui utilise la cryptographi
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="www/github_create_ssh.png" width="511" /></p>
 </div>
-<aside>
-La clé SSH permet de s’identifier de manière sûre et pratique mais, en configuration vpn, elle ne fonctionnera pas sur les forges web que sont github.com et gitlab.com. Elle fonctionnera en revanche sur notre serveur gitlab intranet.<br />
-Pour une configuration valide à la fois en et hors vpn, utiliser le protocole HTTPS pour vous relier votre projet local à la forge distante.
-</aside>
+<p>La clé SSH permet de s’identifier de manière sûre et pratique mais, en raison de notre proxy, une manipulation supplémentaire est nécessaire pour que le protocole ssh fonctionne depuis un PC relié au réseau du ministère vers les forges web github.com et gitlab.com.</p>
+<ol type="1">
+<li><p>Trouver et récupérer le chemin vers le fichier connect.exe de votre répertoire d’installation de git, par exemple<br />
+<code>C:/Program Files (x86)/Git/mingw64/bin/connect.exe</code> ou <code>C:/Program Files/Git/mingw64/bin/connect.exe</code>.</p></li>
+<li><p>Ouvrir le bloc note et y inscrire l’unique ligne de commande<br />
+<code>ProxyCommand "/c/Program Files (x86)/Git/mingw64/bin/connect.exe" -H pfrie-std.proxy.e2.rie.gouv.fr:8080 %h %p</code> en adaptant éventuellement le chemin vers <code>connect.exe</code> à votre propre répertoire d’installation de git.</p></li>
+<li><p>Enregistrer ce fichier sous le nom ‘config’, <strong>sans l’extension .txt</strong>, dans le répertoire .ssh mentionné plus haut <code>C:\Users\VOTRENOM\.ssh</code>.</p></li>
+</ol>
+<p>La configuration de l’identification par clé SSH est terminée ! 🎉</p>
 <h2 id="configurer-usethis">Configurer {usethis}</h2>
 <p>Vous pouvez éditer votre fichier <strong><em>.Rprofile</em></strong> pour ajouter des informations par défaut qui seront exploitées par {<code>usethis</code>} lors de la création de package.</p>
 <p>Pour éditer votre .Rprofile :</p>
@@ -2548,7 +2556,7 @@ Le fichier <strong><em>.Rprofile</em></strong> est un fichier éditable qui perm
 </div>
 </div>
 <p>Ainsi à la création de vos packages, vous serez automatiquement rajouté en tant qu’auteur et créateur du package.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
