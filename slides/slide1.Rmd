@@ -293,10 +293,10 @@ La fonction `use_git_remote()` créer automatiquement le projet distant sur votr
 usethis::use_git_remote(url = "https://gitlab.com/MON_ESPACE/monpremierpackage.git"")
 ```
 
-Il faut ensuite la première fois déclarer cela à git par un premier push. Taper dans le terminal l'instruction suivante : 
+Il faut ensuite la première fois déclarer cela à git par un premier push. Vous pouvez le faire de la console R grace à gert, un package qui permet de lancer des instructions git.
 
-```{bash, eval = FALSE}
-git push --set-upstream origin master
+```{r, eval = FALSE}
+gert::git_push(set_upstream = TRUE)
 ```
 
 ]
@@ -319,7 +319,7 @@ usethis::edit_file("dev_history.R")
   - Ajout du fichier dans les fichiers à exclure lors de la compilation du package
   
 ```{r, eval = FALSE}
-usethis::use_build_ignore('devstuff.R')
+usethis::use_build_ignore('dev_history.R')
 ```
 
 5 - modification de la licence
