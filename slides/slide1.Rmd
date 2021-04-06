@@ -264,6 +264,8 @@ usethis::create_package("monpremierpackage")
 
 2 - utilisation de git comme gestionnaire de version
 
+Une invite de commande s'affiche dans la console pour savoir si vous voulez réaliser un premier commit, répondez oui.
+
 ```{r, eval = FALSE}
 usethis::use_git()
 ```
