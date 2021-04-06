@@ -295,7 +295,7 @@ La fonction `use_git_remote()` créer automatiquement le projet distant sur votr
 usethis::use_git_remote(url = "https://gitlab.com/MON_ESPACE/monpremierpackage.git"")
 ```
 
-Il faut ensuite la première fois déclarer cela à git par un premier push. Vous pouvez le faire de la console R grace à gert, un package qui permet de lancer des instructions git.
+Il faut ensuite la première fois déclarer cela à git par un premier push. Vous pouvez le faire de la console R grace à [`{gert}`](https://docs.ropensci.org/gert/), un package qui permet de lancer des instructions git depuis un script R.
 
 ```{r, eval = FALSE}
 gert::git_push(set_upstream = TRUE)
