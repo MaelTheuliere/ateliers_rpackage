@@ -55,8 +55,6 @@ Après cet atelier vous saurez :
 
   -  créer votre premier package
 
-  -  créer le site pkgdown de votre package
-
 ---
 class: inverse, center, middle
 
@@ -234,6 +232,7 @@ classe: inverse, center, middle
 - `{devtools}` recense les fonctions qui seront utilisées pour compiler ou installer votre package.
 - `{usethis}`  contient un ensemble de fonctions qui vous permetront d'automatiser la plupart des tâches dont vous aurez besoin.
 - `{roxygen2}` vous permettra de documenter vos fonctions (cf atelier 2).
+- `{pkgdown}` vous permettra de créer un site de documentation de votre package.
 - `{testthat}` vous permettra de tester vos fonctions. C'est à dire de définir un ensemble d'instructions qui vous permettront de vérifier que vos fonctions produisent bien le résultat attendu (cf atelier 2).
 
 Pour installer ces packages :
@@ -268,11 +267,16 @@ usethis::create_package("monpremierpackage")
 ```{r, eval = FALSE}
 usethis::use_git()
 ```
+---
+### Créer son premier package
+# Mon premier package
+
 
 3 - Créer un repo sur github ou gitlab
 
 
 .panelset[
+
 .panel[.panel-name[github]
 
 La fonction `use_github()` créer automatiquement le projet distant sur votre compte github.
@@ -286,8 +290,15 @@ usethis::use_github()
 La fonction `use_git_remote()` créer automatiquement le projet distant sur votre compte gitlab ou autre en spécifiant l'url que vous souhaitez associer à votre projet.
 
 ```{r usegitlab, eval = FALSE}
-usethis::use_git_remote(url = "gitlab.com/MON_ESPACE/monpremierpackage")
+usethis::use_git_remote(url = "https://gitlab.com/MON_ESPACE/monpremierpackage.git"")
 ```
+
+Il faut ensuite la première fois déclarer cela à git par un premier push. Taper dans le terminal l'instruction suivante : 
+
+```{bash, eval = FALSE}
+git push --set-upstream origin master
+```
+
 ]
 ]
 
