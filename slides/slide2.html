@@ -4,7 +4,7 @@
     <title>Rajouter une fonction dans votre package</title>
     <meta charset="utf-8" />
     <meta name="author" content="Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE" />
-    <meta name="date" content="2021-04-06" />
+    <meta name="date" content="2021-04-13" />
     <link href="libs/panelset/panelset.css" rel="stylesheet" />
     <script src="libs/panelset/panelset.js"></script>
     <script src="libs/clipboard/clipboard.min.js"></script>
@@ -23,7 +23,7 @@ class: center, middle, inverse, title-slide
 
 # Rajouter une fonction dans votre package
 ### Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE
-### 2021-04-06
+### 2021-04-13
 
 ---
 
@@ -376,7 +376,53 @@ Une fois votre documentation effectuée, la fonction `devtools::document()` va e
 ![](www/namespace.png)
 ]
 
+---
+#### Documenter votre fonction
 
+# Partie 'imports' de DESCRIPTION
+Il reste une dernière chose à faire pour que les dépendances de notre package soient traitées correctement : déclarer le ou les packages dont dépend notre fonction au niveau du fichier DESCRIPTION.
+
+Cela se fait notamment avec l'instruction `usethis::use_package("nomdupackage")` à consigner dans le dev_history.R.  
+Dans le cas de notre exemple : `usethis::use_package("dplyr")`
+.pull-left[
+![](www/use_package_devhist.png)
+]
+.pull-right[
+
+
+```r
+&gt; usethis::use_package("dplyr")
+√ Setting active project to 'C:/Users/juliette.engelaere/Documents/Travail/R_local/monpremierpackage'
+* Refer to functions with `dplyr::fun()`
+```
+]
+---
+#### Documenter votre fonction
+
+# Partie 'imports' de DESCRIPTION
+L'instruction `usethis::use_package` va compléter notre fichier DESCRIPTION au niveau de la partie 'imports' :
+
+![](www/use_package_description.png)  
+Le fichier DESCRIPTION peut être complété à la main.  
+---
+#### Documenter votre fonction
+
+# Partie 'imports' de DESCRIPTION
+Dans le cas de dépendance à des packages **qui ne sont pas hébergés par le CRAN** (par exemple COGiter), il faut le préciser. 
+Sans ça, la gestion de cette dépendance ne sera pas traitée correctement par R lors de l'installation du package par l'utilisateur.  
+.pull-left[
+Cela se fait par exemple avec :   
+
+```r
+&gt; usethis::use_dev_package("COGiter", type = "Imports", remote = "gitlab::dreal-datalab/cogiter")
+√ Adding 'gitlab::dreal-datalab/cogiter' to Remotes field in DESCRIPTION
+* Refer to functions with `COGiter::fun()`
+```
+]
+.pull-right[
+Cela a pour effet d'ajouter une partie *'Remotes :'* à notre fichier description :
+![](www/use_remote_package.png)
+]
 ---
 class : inverse, center, middle
 # Tester votre fonction
