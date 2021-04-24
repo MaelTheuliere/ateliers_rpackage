@@ -15,15 +15,23 @@ library(gouvdown.fonts)
 
 `r emo::ji("warning")` Site en construction `r emo::ji("warning")`
 
+## Avant de commencer
+
+- [Configurer votre poste](configuration.html) `r emo::ji("hammer")`       
+
 ## Déroulé
 
-- [Atelier 1](atelier1.html) : Créer un package
+- [Atelier 1](atelier1.html) : Créer un package `r emo::ji("baby")`
 
-- [Atelier 2](atelier2.html) : Le workflow de l'alimentation package
+- [Atelier 2](atelier2.html) : Le workflow de l'alimentation d'un package `r emo::ji("loop")`
 
-- Atelier 3 : gérer les versions d'un package
+- Atelier 3 : Ajouter des datasets `r emo::ji("open_file_folder")`
 
-- Atelier 4 : Aller plus loin
+- Atelier 4 : Ajouter des templates `r emo::ji("page")`
+
+- Atelier 5 : gérer les versions d'un package `r emo::ji("newspaper")`
+
+- Atelier 6 : Aller plus loin
 
 ```{r,fig.width=300}
 knitr::include_graphics("https://github.com/MaelTheuliere/ateliers_rpackage/raw/main/slides/www/packagescompagnons.png")

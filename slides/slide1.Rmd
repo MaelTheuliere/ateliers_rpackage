@@ -55,8 +55,6 @@ Après cet atelier vous saurez :
 
   -  créer votre premier package
 
-  -  créer le site pkgdown de votre package
-
 ---
 class: inverse, center, middle
 
@@ -234,30 +232,29 @@ classe: inverse, center, middle
 - `{devtools}` recense les fonctions qui seront utilisées pour compiler ou installer votre package.
 - `{usethis}`  contient un ensemble de fonctions qui vous permetront d'automatiser la plupart des tâches dont vous aurez besoin.
 - `{roxygen2}` vous permettra de documenter vos fonctions (cf atelier 2).
+- `{pkgdown}` vous permettra de créer un site de documentation de votre package.
 - `{testthat}` vous permettra de tester vos fonctions. C'est à dire de définir un ensemble d'instructions qui vous permettront de vérifier que vos fonctions produisent bien le résultat attendu (cf atelier 2).
 
 Pour installer ces packages :
 
 ```{r, eval = FALSE}
-install.packages(c('devtools','usethis','roxygen2','testthat'))
+install.packages(c('devtools','usethis','roxygen2','testthat', 'pkgdown'))
 ```
 ]
 ---
 ### Créer son premier package
 # Configurer votre environnement
 
-A FAIRE
+Avant de créer votre premier package, il va falloir réaliser quelques démarches initiales à faire une bonne fois pour toute pour configurer votre poste : configuration du proxy, de git...
 
-- gestion du proxy
-- compte github / gitlab
-- github / gitlab token
-- Rprofile
+Suivez le guide à [cette adresse](../configuration.html) pour cela. 
+
 
 ---
 ### Créer son premier package
 # Mon premier package
 
-Vous allez pouvoir utiliser `{usethis}` pour faciliter ce travail : 
+Vous êtes maintenant prêt à créer votre premier package. Vous allez pouvoir utiliser `{usethis}` pour faciliter ce travail : 
 
 1 - création du package sur ma machine
 
@@ -267,19 +264,27 @@ usethis::create_package("monpremierpackage")
 
 2 - utilisation de git comme gestionnaire de version
 
+Une invite de commande s'affiche dans la console pour savoir si vous voulez réaliser un premier commit, répondez oui.
+
 ```{r, eval = FALSE}
 usethis::use_git()
 ```
+---
+### Créer son premier package
+# Mon premier package
+
 
 3 - Créer un repo sur github ou gitlab
 
-La fonction `use_github()` créer automatiquement le projet distant sur votre compte github.
 
 .panelset[
+
 .panel[.panel-name[github]
+
+La fonction `use_github()` créer automatiquement le projet distant sur votre compte github.
+
 ```{r usegithub, eval = FALSE}
 usethis::use_github()
-
 ```
 ]
 .panel[.panel-name[gitlab]
@@ -287,8 +292,15 @@ usethis::use_github()
 La fonction `use_git_remote()` créer automatiquement le projet distant sur votre compte gitlab ou autre en spécifiant l'url que vous souhaitez associer à votre projet.
 
 ```{r usegitlab, eval = FALSE}
-usethis::use_git_remote(url = "gitlab.com/MON_ESPACE/monpremierpackage")
+usethis::use_git_remote(url = "https://gitlab.com/MON_ESPACE/monpremierpackage.git"")
 ```
+
+Il faut ensuite la première fois déclarer cela à git par un premier push. Vous pouvez le faire de la console R grace à [`{gert}`](https://docs.ropensci.org/gert/), un package qui permet de lancer des instructions git depuis un script R.
+
+```{r, eval = FALSE}
+gert::git_push(set_upstream = TRUE)
+```
+
 ]
 ]
 
@@ -309,7 +321,7 @@ usethis::edit_file("dev_history.R")
   - Ajout du fichier dans les fichiers à exclure lors de la compilation du package
   
 ```{r, eval = FALSE}
-usethis::use_build_ignore('devstuff.R')
+usethis::use_build_ignore('dev_history.R')
 ```
 
 5 - modification de la licence

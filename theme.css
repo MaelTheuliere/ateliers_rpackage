@@ -11,7 +11,7 @@
 /* Optional: embed custom fonts here with `@import`          */
 /* This must remain at the top of this file.                 */
 
-
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono');
 
 html {
   /*-- Main font sizes --*/
@@ -53,6 +53,19 @@ d-appendix {
   --heading-color:   rgba(0, 0, 0, 0.65);
   --text-size:       0.8em;
   --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+d-article div.sourceCode, 
+d-article pre {
+  font-family: 'Fira Mono', monospace;
+  font-size: 1rem;
+	background: #E5E5F4;
+	padding: 1em;
+}
+
+d-article p code {
+  font-family: 'Fira Mono', monospace;
+	background: #E5E5F4;
 }
 
 /*-- WEBSITE HEADER + FOOTER --*/
