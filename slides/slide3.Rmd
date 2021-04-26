@@ -61,24 +61,25 @@ class: inverse, center, middle
 
 # Ajouter un dataset
 ---
-## Ajouter un dataset
-# Documenter votre datapréparation
+
+### Ajouter un dataset
+## Documenter votre datapréparation
 
 Un dataset que vous intégrez dans votre package vient forcément d'une source externe diverse (via un fichier plat, un sgbd, une api...) ou éventuellement d'un fichier que vous créer directement de R. 
 Ce fichier a put être retraité pour arriver dans votre package. 
 
-Vous aurez donc besoin de documenter ce processus de datapréparation. La convention dans ce cas dans R est d'avoir un répertoire data-raw qui contient ces scripts.
+Vous aurez donc besoin de documenter ce processus de datapréparation. La convention dans ce cas dans R est d'avoir un répertoire `data-raw/` qui contient ces scripts.
 
 ---
-## Ajouter un dataset
-# Documenter votre datapréparation
+### Ajouter un dataset
+## Documenter votre datapréparation
 
 .pull-left[
 `{usethis}` vous facilite là aussi ce travail !
 
-Imaginons que nous voulions intégrer dans notre package un fichier contenant l'ensemble des entreprises et artisans certifiés RGE.
+Imaginons que nous voulions intégrer dans notre package un fichier contenant les séries sur les [émissions globales de CO2](https://ourworldindata.org/co2-emissions).
 
-`usethis::use_data_raw(name = "rge")` va créer un fichier rge.R qui intègre par ailleurs directement la fonction qui vous sera utile ensuite pour créer votre dataset une fois celui ci créé : `usethis::use_data(rge, overwrite = TRUE)`
+`usethis::use_data_raw(name = "co2_emission")` va créer un fichier `co2_emission.R` qui intègre par ailleurs directement la fonction qui vous sera utile ensuite pour créer votre dataset une fois celui ci créé : `usethis::use_data(co2_emission, overwrite = TRUE)`
 ]
 
 .pull-right[
@@ -89,27 +90,157 @@ knitr::include_graphics("www/usethis_use_data_raw.png")
 ]
 
 ---
-## Ajouter un dataset
-# Documenter votre datapréparation
+### Ajouter un dataset
+## Stocker la donnée source
 
 
-## Où mettre vos données sources ?
+Où mettre vos données sources ? Si vous importez vos données d'un fichier plat, la bonne pratique va être de mettre votre fichier source dans votre projet tout en l'excluant du package (avec `usethis::use_build_ignore()`), car vos utilisateurs n'auront pas besoin de ce fichier intermédiaire.
 
-Si vous importez vos données d'un fichier plat, la bonne pratique va être de mettre votre fichier source dans votre projet tout en l'excluant du package, car vos utilisateurs n'auront pas besoin de ce fichier intermédiaire.
-
+.pull-left[
 Vous pouvez par exemple les rajouter dans un répertoire `extdata/` à la racine de votre projet.
+
+Puis utiliser `usethis::use_build_ignore("extdata/")` pour que ce répertoire ne soit pas compris comme faisant parti du package par R.
+
+]
+.pull-right[
+```{r, echo=FALSE,eval=TRUE}
+knitr::include_graphics("www/use_ext_data.png")
+```
+
+]
+---
+### Ajouter un dataset
+## Stocker la donnée source
 
 Si ce fichier est au format tableur, privilégier l'usage du csv qui peut être historisé par git contrairement aux fichiers xls ou ods.
 
----
-## Ajouter un dataset
-# Documenter votre datapréparation
-
-
-## Où mettre vos données sources ?
-
-Attention, ceci ne sera optimum que pour des fichiers source de **petite taille**. 
+Attention, ceci ne sera optimum que pour des fichiers source de ***petite taille***. 
 
 Si votre fichier de départ est vraiment très volumineux, et que vous êtes amené à le mettre à jour régulièrement, cette pratique est à proscrire, car le poids de votre projet git est appelé à devenir d'une taille déraisonnable. 
 
-Il vaut mieux dans ce cas charger votre donnée de départ dans un sgbd ou privilégier l'usage d'une api si elle existe.
+Il vaut mieux dans ce cas au choix : 
+
+- charger votre donnée de départ dans un sgbd 
+- privilégier l'usage d'une api si elle existe
+- utiliser les fonctions de téléchargement distant de R dans votre script de datapréparation pour que celui ci intègre le téléchargement depuis l'url où se trouve le fichier si celui ci est disponible via url.
+
+---
+### Ajouter un dataset
+## Coder votre datapréparation
+
+Ici la datapréparation est assez sommaire, on se contente d'importer le fichier csv et de lui attribuer des noms de colonnes en format snake case.
+
+```{r, eval = FALSE}
+## code to prepare `co2_emission` dataset goes here
+
+library(readr)
+library(purrr)
+co2_emission <- read_csv("extdata/annual-co2-emissions-per-country.csv") %>%
+  set_names("entity","code","year","annual_co2_emissions")
+
+usethis::use_data(co2_emission, overwrite = TRUE)
+```
+
+---
+### Ajouter un dataset
+## Coder votre datapréparation
+
+.pull-left[
+Une fois votre script de datapréparation lancé, vous aurez un message dans la console qui vous précise ce que fait R : 
+
+- Changement du fichier description
+- Création d'un répertoire `data/`
+- Création d'un fichier `co2_emission.rda` dans ce répertoire
+
+Et on vous invite à documenter votre dataset.
+]
+
+.pull-right[
+```{r, echo=FALSE,eval=TRUE}
+knitr::include_graphics("www/use_data.png")
+```
+
+]
+---
+### Ajouter un dataset
+## Documenter votre dataset
+
+Pour documenter votre dataset, vous allez devoir créer un fichier `data.R` dans votre répertoire `R/`. Et utiliser une syntaxe Roxygen spécifique aux datasets.
+
+```{r, eval = FALSE}
+#' Emissions annuelles de CO2 par pays
+#'
+#' Un dataset contenant pour chaque pays et année les émmissions annuelles de CO2
+#'
+#' @format Un data frame avec 23170 lignes and 4 variables:
+#' \describe{
+#'   \item{entity}{Libellé du pays ou de la zone}
+#'   \item{code}{Code du pays ou de la zone}
+#'   \item{year}{Année de l'observation}
+#'   \item{annual_co2_emissions}{Emmissions annuelles de CO2}
+#' }
+#' @source \url{https://ourworldindata.org/co2-emissions}
+"co2_emission"
+```
+---
+### Ajouter un dataset
+## Utiliser votre dataset
+
+.pull-left[
+Votre fichier sera maintenant disponible dès que vous appeler votre package avec `library()`.
+
+Pour le tester, vous pouvez utiliser `devtools::load_all()` et appeler votre dataset co2_emissions.
+]
+
+.pull-right[
+```{r, echo=FALSE,eval=TRUE}
+knitr::include_graphics("www/load_all_data.png")
+```
+]
+---
+class: inverse, center, middle
+
+# Ajouter un fichier plat
+---
+#### Ajouter un fichier plat
+## Pourquoi ajouter un fichier plat dans votre package ?
+
+Ajouter un fichier plat peut servir de plusieurs façon : 
+
+- Disposer de données pour des tests
+- Disposer de données exemple pour des fonctions d'importation
+- Disposer de données pour des vignettes
+
+Ces données doivent être située par convention dans un répertoire `inst/extdata`.
+
+Le contenu du répertoire `inst/` à l'installation du package est intégralement copié a la racine du répertoire du package. On peut rajouter ce que l'on veut dans ce répertoire. 
+
+Attention toutefois de ne pas utiliser des noms de répertoire déjà utilisés par R/ par convention comme par exemple `data/`.
+---
+#### Ajouter un fichier plat
+## Charger votre fichier plat
+
+On va ici ajouter un fichier géo correspondant aux frontières des pays.
+
+.pull-left[
+- Télécharger [ce fichier](https://github.com/tsamsonov/r-geo-course/raw/master/data/ne/countries.gpkg)
+
+- Placer le dans `inst/extdata`
+]
+
+.pull-right[
+```{r, echo=FALSE,eval=TRUE}
+knitr::include_graphics("www/inst_extdata.png")
+```
+]
+--- 
+
+#### Ajouter un fichier plat
+## Comment utiliser votre fichier
+
+La fonction `system.file()` va vous permettre ensuite d'appeler votre fichier depuis votre package installé. 
+
+```{r}
+system.file("extdata", "countries.gpkg", package = "monpremierpackage")
+```
+
