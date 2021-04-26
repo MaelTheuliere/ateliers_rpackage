@@ -54,15 +54,13 @@ Après cet atelier vous saurez :
   - Documenter votre dataset
   - Ajouter des données sous forme de fichiers plats (csv, xls, gpkg...)
 
-`r emo::ji("warning")` Diapo en construction `r emo::ji("warning")`
-
 ---
 class: inverse, center, middle
 
 # Ajouter un dataset
 ---
 
-### Ajouter un dataset
+#### Ajouter un dataset
 ## Documenter votre datapréparation
 
 Un dataset que vous intégrez dans votre package vient forcément d'une source externe diverse (via un fichier plat, un sgbd, une api...) ou éventuellement d'un fichier que vous créer directement de R. 
@@ -71,7 +69,7 @@ Ce fichier a put être retraité pour arriver dans votre package.
 Vous aurez donc besoin de documenter ce processus de datapréparation. La convention dans ce cas dans R est d'avoir un répertoire `data-raw/` qui contient ces scripts.
 
 ---
-### Ajouter un dataset
+#### Ajouter un dataset
 ## Documenter votre datapréparation
 
 .pull-left[
@@ -90,7 +88,7 @@ knitr::include_graphics("www/usethis_use_data_raw.png")
 ]
 
 ---
-### Ajouter un dataset
+#### Ajouter un dataset
 ## Stocker la donnée source
 
 
@@ -109,7 +107,7 @@ knitr::include_graphics("www/use_ext_data.png")
 
 ]
 ---
-### Ajouter un dataset
+#### Ajouter un dataset
 ## Stocker la donnée source
 
 Si ce fichier est au format tableur, privilégier l'usage du csv qui peut être historisé par git contrairement aux fichiers xls ou ods.
@@ -120,12 +118,12 @@ Si votre fichier de départ est vraiment très volumineux, et que vous êtes ame
 
 Il vaut mieux dans ce cas au choix : 
 
-- charger votre donnée de départ dans un sgbd 
-- privilégier l'usage d'une api si elle existe
-- utiliser les fonctions de téléchargement distant de R dans votre script de datapréparation pour que celui ci intègre le téléchargement depuis l'url où se trouve le fichier si celui ci est disponible via url.
+- Charger votre donnée de départ dans un sgbd 
+- Privilégier l'usage d'une api si elle existe
+- Utiliser les fonctions de téléchargement distant de R dans votre script de datapréparation pour que celui ci intègre le téléchargement depuis l'url où se trouve le fichier si celui ci est disponible via url.
 
 ---
-### Ajouter un dataset
+#### Ajouter un dataset
 ## Coder votre datapréparation
 
 Ici la datapréparation est assez sommaire, on se contente d'importer le fichier csv et de lui attribuer des noms de colonnes en format snake case.
@@ -142,7 +140,7 @@ usethis::use_data(co2_emission, overwrite = TRUE)
 ```
 
 ---
-### Ajouter un dataset
+#### Ajouter un dataset
 ## Coder votre datapréparation
 
 .pull-left[
@@ -162,7 +160,7 @@ knitr::include_graphics("www/use_data.png")
 
 ]
 ---
-### Ajouter un dataset
+#### Ajouter un dataset
 ## Documenter votre dataset
 
 Pour documenter votre dataset, vous allez devoir créer un fichier `data.R` dans votre répertoire `R/`. Et utiliser une syntaxe Roxygen spécifique aux datasets.
@@ -182,14 +180,28 @@ Pour documenter votre dataset, vous allez devoir créer un fichier `data.R` dans
 #' @source \url{https://ourworldindata.org/co2-emissions}
 "co2_emission"
 ```
+
 ---
-### Ajouter un dataset
+#### Ajouter un dataset
+## Documenter votre dataset
+
+.pull-left[
+Cette documentation se traduira ensuite par une page spécifique d'aide dans votre package.
+]
+
+.pull-right[
+```{r, echo=FALSE,eval=TRUE}
+knitr::include_graphics("www/data_doc.png")
+```
+]
+---
+#### Ajouter un dataset
 ## Utiliser votre dataset
 
 .pull-left[
 Votre fichier sera maintenant disponible dès que vous appeler votre package avec `library()`.
 
-Pour le tester, vous pouvez utiliser `devtools::load_all()` et appeler votre dataset co2_emissions.
+Pour le tester, vous pouvez utiliser `devtools::load_all()` et appeler votre dataset `co2_emissions`.
 ]
 
 .pull-right[
@@ -215,17 +227,18 @@ Ces données doivent être située par convention dans un répertoire `inst/extd
 
 Le contenu du répertoire `inst/` à l'installation du package est intégralement copié a la racine du répertoire du package. On peut rajouter ce que l'on veut dans ce répertoire. 
 
-Attention toutefois de ne pas utiliser des noms de répertoire déjà utilisés par R/ par convention comme par exemple `data/`.
+Attention toutefois de ne pas utiliser des noms de répertoire déjà utilisés par R par convention comme par exemple `data/`.
 ---
 #### Ajouter un fichier plat
 ## Charger votre fichier plat
 
-On va ici ajouter un fichier géo correspondant aux frontières des pays.
+On va ici ajouter un fichier géomatique (format geopackage) correspondant aux frontières des pays.
 
 .pull-left[
 - Télécharger [ce fichier](https://github.com/tsamsonov/r-geo-course/raw/master/data/ne/countries.gpkg)
+- Créer un répertoire `inst/extdata` dans votre package
 
-- Placer le dans `inst/extdata`
+- Placer le fichier dans le répertoire
 ]
 
 .pull-right[
@@ -233,14 +246,40 @@ On va ici ajouter un fichier géo correspondant aux frontières des pays.
 knitr::include_graphics("www/inst_extdata.png")
 ```
 ]
---- 
+---
 
 #### Ajouter un fichier plat
-## Comment utiliser votre fichier
+## Comment exploiter votre fichier
 
-La fonction `system.file()` va vous permettre ensuite d'appeler votre fichier depuis votre package installé. 
+Pour utiliser votre fichier, les utilisateurs de votre package vont devoir aller le chercher à l'endroit où il se trouve après l'installation de votre package. Mais cet emplacement va dépendre de chaque utilisateur suivant  son système d'exploitation ou ses options de configuration par exemple.
+
+La fonction `system.file()` va vous permettre de régler ce problème en permettant de reconstituer le chemin d'accès de ce fichier sur votre poste. 
+Elle prend en paramètre le nom du package et le chemin d'accès de votre fichier dans ce package.
 
 ```{r}
-system.file("extdata", "countries.gpkg", package = "monpremierpackage")
+countries_files <- system.file("extdata", "countries.gpkg", package = "monpremierpackage")
 ```
+---
+
+#### Ajouter un fichier plat
+## Comment exploiter votre fichier
+
+On peut ensuite utiliser ce chemin pour par exemple importer notre fichier gpkg avec `{sf}`.
+
+```{r, echo=FALSE, eval = TRUE}
+countries_files <- "www/countries.gpkg"
+```
+
+.pull-left[
+```{r countries, eval = FALSE, echo = TRUE }
+countries <- sf::read_sf(countries_files)
+plot(countries[,1])
+```
+]
+
+.pull-right[
+```{r countries-out, ref.label="countries", eval = TRUE, echo = FALSE, fig.height=4}
+```
+
+]
 
