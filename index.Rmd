@@ -3,6 +3,8 @@ title: "Creer son premier package R"
 description: |
   Ce site presente les supports pour un atelier sur la creation de packages
 site: distill::distill_website
+base_url: https://maeltheuliere.github.io/ateliers_rpackage
+preview: www/twittercard.png
 ---
 
 ```{r setup, include=FALSE}
