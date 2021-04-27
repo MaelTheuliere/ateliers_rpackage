@@ -1,5 +1,5 @@
 ---
-title: "Creer son premier package R"
+title: "Créer son premier package R"
 description: |
   Ce site presente les supports pour un atelier sur la creation de packages
 site: distill::distill_website
