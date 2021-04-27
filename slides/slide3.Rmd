@@ -265,7 +265,7 @@ Ajouter un fichier plat peut servir de plusieurs façon :
 
 Ces données doivent être situées par convention dans un répertoire `inst/extdata`.
 
-`emo::ji('note')` Lors de l'installation du package, le contenu du répertoire `inst/` est intégralement copié à la racine du répertoire du package. On peut rajouter ce que l'on veut dans ce répertoire. 
+`r emo::ji("memo")` Lors de l'installation du package, le contenu du répertoire `inst/` est intégralement copié à la racine du répertoire du package. On peut rajouter ce que l'on veut dans ce répertoire. 
 
 Attention toutefois de ne pas utiliser des noms de répertoire déjà utilisés par R par convention comme par exemple `data/`.
 ---
