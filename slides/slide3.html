@@ -358,24 +358,29 @@ Imaginons que nous voulions intégrer dans notre package un fichier contenant le
 ## Stocker la donnée source
 
 
-Où mettre vos données sources ? Si vous importez vos données d&#39;un fichier plat, la bonne pratique va être de mettre votre fichier source dans votre projet tout en l&#39;excluant du package (avec `usethis::use_build_ignore()`), car vos utilisateurs n&#39;auront pas besoin de ce fichier intermédiaire.
+Où mettre vos données sources ? Si vous importez vos données d&#39;un fichier plat, la bonne pratique va être de mettre votre fichier source dans votre projet tout en l&#39;excluant du package, car vos utilisateurs n&#39;auront pas besoin de ce fichier intermédiaire.
 
-.pull-left[
-Vous pouvez par exemple les rajouter dans un répertoire `extdata/` à la racine de votre projet.
+Vous pouvez par exemple les rajouter dans un répertoire `extdata/` à la racine de votre projet. 
 
 Puis utiliser `usethis::use_build_ignore(&quot;extdata/&quot;)` pour que ce répertoire ne soit pas compris comme faisant parti du package par R.
+---
+#### Ajouter un dataset
+## Stocker la donnée source
+
+**Mise en pratique :**
+
+.pull-left[
+&gt;    
+
+&gt;1. créer le répertoire `extdata/` à la racine du projet `{monpremierpackage}`
+&gt;2. y télécharger le jeu de données  [`annual-co2-emissions-per-country.csv`](https://ourworldindata.org/co2-emissions) ⬇️
+&gt;3. sortir le répertoire `extdata/` des répertoires pris en compte dans la compilation du package, càd consigner `usethis::use_build_ignore(&quot;extdata/&quot;)` dans le dev_history.R et l&#39;exécuter. 
 
 ]
+
 .pull-right[
 &lt;img src=&quot;data:image/png;base64,#www/use_ext_data.png&quot; width=&quot;793&quot; /&gt;
-
 ]
-
-&gt; Mise en pratique :     
-
-&gt;1. créer le répertoire extdata à la racine du projet `{monpremierpackage}`
-&gt;2. y télécharger le jeu de données &#39;annual-co2-emissions-per-country.csv&#39; 
-&gt;3. sortir le répertoire `extdata/` des répertoires pris en compte dans la compilation du package, càd consigner `usethis::use_build_ignore(&quot;extdata/&quot;)` dans le dev_history.R et l&#39;exécuter. 
 
 ---
 #### Ajouter un dataset
@@ -383,7 +388,7 @@ Puis utiliser `usethis::use_build_ignore(&quot;extdata/&quot;)` pour que ce rép
 
 Si ce fichier est au format tableur, privilégier l&#39;usage du csv qui peut être historisé par git, contrairement aux fichiers xls ou ods.
 
-Attention, ceci ne sera optimum que pour des fichiers source de ***petite taille***. 
+⚠️ Ceci ne sera optimum que pour des fichiers source de ***petite taille***. 
 
 Si votre fichier de départ est vraiment très volumineux, et que vous êtes amené.e à le mettre à jour régulièrement, cette pratique est à proscrire, car le poids de votre projet git deviendra déraisonnable. 
 
