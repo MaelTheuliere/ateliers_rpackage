@@ -17,5 +17,5 @@ Après cet atelier vous saurez rajouter des jeux de données dans votre package.
 - [diaporama](slides/slide3.html)
 
 ```{r embed-xaringan, echo=FALSE}
-xaringanExtra::embed_xaringan(url = "slides/slide3.html", ratio = "4:3")
+xaringanExtra::embed_xaringan(url = "slides/slide3.html", ratio = "16:9")
 ```

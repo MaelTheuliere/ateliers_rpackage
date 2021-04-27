@@ -23,5 +23,5 @@ Après cet atelier vous saurez :
 - [diaporama](slides/slide1.html)
 
 ```{r embed-xaringan, echo=FALSE}
-xaringanExtra::embed_xaringan(url = "slides/slide1.html", ratio = "4:3")
+xaringanExtra::embed_xaringan(url = "slides/slide1.html", ratio = "16:9")
 ```
