@@ -9,6 +9,13 @@
     ]
   },
   "Packages": {
+    "AsioHeaders": {
+      "Package": "AsioHeaders",
+      "Version": "1.16.1-1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "9305444d113b052089eba3694047d42d"
+    },
     "BH": {
       "Package": "BH",
       "Version": "1.75.0-0",
@@ -114,6 +121,18 @@
       "Repository": "CRAN",
       "Hash": "b7d7f1e926dfcd57c74ce93f5c048e80"
     },
+    "chromote": {
+      "Package": "chromote",
+      "Version": "0.0.0.9003",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "chromote",
+      "RemoteUsername": "rstudio",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "ba9bffc291be468c48e658f95fa2bc952a1dbff5",
+      "Hash": "230a546c70d44055b030d8a41a522819"
+    },
     "class": {
       "Package": "class",
       "Version": "7.3-17",
@@ -162,6 +181,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "6d80a9fc3c0c8473153b54fa54719dfd"
+    },
+    "cpp11": {
+      "Package": "cpp11",
+      "Version": "0.2.7",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "730eebcc741a5c36761f7d4d0f5e37b8"
     },
     "crayon": {
       "Package": "crayon",
@@ -399,10 +425,10 @@
     },
     "later": {
       "Package": "later",
-      "Version": "1.1.0.1",
+      "Version": "1.2.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "d0a62b247165aabf397fded504660d8a"
+      "Hash": "b61890ae77fea19fc8acadd25db70aa4"
     },
     "lazyeval": {
       "Package": "lazyeval",
@@ -445,6 +471,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "a0bc51650201a56d00a4798523cc91b3"
+    },
+    "metathis": {
+      "Package": "metathis",
+      "Version": "1.0.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "5056a889bccd51d78697799bc25ece39"
     },
     "mime": {
       "Package": "mime",
@@ -760,6 +793,26 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "181d1a31b1ba2009ef20926f2ee0570c"
+    },
+    "webshot2": {
+      "Package": "webshot2",
+      "Version": "0.0.0.9000",
+      "Source": "GitHub",
+      "Remotes": "rstudio/chromote",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "webshot2",
+      "RemoteUsername": "rstudio",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "f62e743c9fee3dea313677ee061c041a8bbccb19",
+      "Hash": "c6846e55aecd1c48cd45c8417c7f6a13"
+    },
+    "websocket": {
+      "Package": "websocket",
+      "Version": "1.4.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "39668631bda1dd7f693fdbb7b4c9fed8"
     },
     "whisker": {
       "Package": "whisker",
