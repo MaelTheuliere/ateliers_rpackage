@@ -17,6 +17,8 @@ navbar:
           href: atelier1.html
         - text: "Le workflow de l'alimentation d'un package"
           href: atelier2.html
+        - text: "Ajouter des datasets"
+          href: atelier3.html
 output: 
   distill::distill_article:
     theme: theme.css
