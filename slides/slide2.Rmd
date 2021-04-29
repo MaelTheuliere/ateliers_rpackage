@@ -393,6 +393,77 @@ Dans le cas de notre exemple : `usethis::use_package("dplyr")`
 ```
 ]
 ---
+#### Documenter votre fonction  
+# Aller plus vite avec `{prefixer}`  
+.pull-left[
+Le package `{prefixer}` permet de finaliser votre fonction et produire la documentation plus facilement.  
+![](www/addin_prefixer_logo.png)  
+Il s'installe via :   
+```{r eval = FALSE}
+remotes::install_github("dreamRs/prefixer")
+```
+Il s'agit d'un package qui installe un addins, c'est à dire qui ajoute des fonctionnalités à RStudio.
+L'objectif des addins est généralement d'accélérer la réalisation de tâches répétitives ou fastidieuses.
+]
+.pull-right[   
+On accède aux fonctionnalités nouvelles via le menu addins :    
+
+![](www/addin_prefixer.png)  
+  
+
+On peut ajouter des raccourcis clavier pour accélérer encore l'utilisation des fonctions des addins.
+]
+---
+#### Documenter votre fonction  
+# `{prefixer}` : commande `Prefixer::`  
+La commande `Prefixer::` scanne votre fonction, ouvre une boite de dialogue qui vous propose d'ajouter, pour chaque fonction utilisée dans notre script de définition de fonction, le préfixe adéquat.    
+`r emo::ji("warning")` Seuls les packages actuellement actifs (appelés via library) seront proposés.  
+
+![](www/addin_prefixer_fonct.png)
+
+La commande `Unprefix` supprime tous les préfixes de notre script actif.
+---
+#### Documenter votre fonction  
+# `{prefixer}` : commande `@importFrom`  
+La commande `@importFrom` scanne votre script de définition de fonction, détecte toutes les préfixes utilisés et ajoute au dessus la ou les balises @importFrom package fonctions
+![](www/addin_prefixer_importFrom.png)
+
+`r emo::ji("warning")` Ces lignes restent à adapter :   
+
+- on n'importe pas les autres fonctions du package en cours de développement, 
+- il faut préfixer les datasets, mais ne pas les faire figurer dans une balise importFrom qui est réservée aux fonctions.
+- le pronom `.data` n'est pas préfixé : ajouter `importFrom rlang .data` quand on y recourt.
+---
+#### Documenter votre fonction  
+# Aller plus vite avec `{prefixer}` : commande `Not-ASCII`  
+
+Utiliser un encodage multi-plateforme est absolument nécessaire pour que notre package puisse être installé et fonctionner partout, que ce soit sur un serveur linux, un PC, un Mac... 
+
+La commande `@Not-ASCII` scanne votre script de définition de fonction, détecte toutes les caractères qui peuvent poser problème dans le corps du script (dans les chaînes de caractères entre "") et les convertit avec leur code.
+Par exemple 
+
+.pull-left[   
+    
+```{r, eval = FALSE}
+filter(dataset, TypeZone == "Régions")
+"Source : enqu\u00eate sur le parc locatif social, MTES" 
+```
+]  
+
+.pull-right[
+devient  
+```{r, eval = FALSE}
+filter(dataset, TypeZone == "R\u00e9gions")
+"Source : enqu\u00eate sur le parc locatif social, MTES" 
+```
+]  
+
+
+
+Ca ne fonctionne pas dans les commentaires de documentation, de toutes façons, ça ne serait rendu correctement.
+
+---
+
 #### Documenter votre fonction
 
 # Partie 'imports' de DESCRIPTION
@@ -419,7 +490,7 @@ Cela a pour effet d'ajouter une partie *'Remotes :'* à notre fichier descriptio
 ![](www/use_remote_package.png)
 ]
 ---
-class : inverse, center, middle
+class: inverse, center, middle
 # Tester votre fonction
 ---
 #### Tester votre fonction
