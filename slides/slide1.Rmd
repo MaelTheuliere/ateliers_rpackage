@@ -5,46 +5,74 @@ author:
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
-    css: xaringan-themer.css
+    css: [xaringan-themer.css,progress-bar.css]
     lib_dir: libs
+    seal: false
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
       ratio: '16:9'
+      slideNumberFormat: |
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>`
 ---
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE,  warning=FALSE, message = FALSE)
 ```
 
-```{r xaringan-themer, include=FALSE, warning=FALSE}
+```{r xaringan-themer, include=FALSE, warning=FALSE, eval=TRUE}
 library(xaringanthemer)
-library(showtext)
-style_mono_light(
+style_mono_accent(
   base_color = "#000091",
   text_font_family = 'Marianne',
-  code_font_family = 'Fira Code'
+  code_font_family = 'Fira Code',
+  background_color = 'white',
+  title_slide_text_color = "#000091"
 )
 ```
 
-```{r xaringanpanelset, echo=FALSE}
+
+```{r xaringanpanelset, echo=FALSE, eval=TRUE}
 xaringanExtra::use_panelset(in_xaringan = TRUE)
 ```
 
-```{r share-again, echo=FALSE}
+```{r share-again, echo=FALSE, eval=TRUE}
 xaringanExtra::use_share_again()
 ```
 
-```{r xaringan-tile-view, echo=FALSE}
+```{r xaringan-tile-view, echo=FALSE, eval=TRUE}
 xaringanExtra::use_tile_view()
 ```
 
-```{r xaringan-tachyons, echo=FALSE}
+```{r xaringan-tachyons, echo=FALSE, eval=TRUE}
 xaringanExtra::use_tachyons()
 ```
 
-```{r xaringanExtra-clipboard, echo=FALSE}
+```{r meta, echo=FALSE, eval=TRUE, message = FALSE}
+library(metathis)
+meta() %>%
+  meta_general(
+    description = "Créer son premier package R.",
+    generator = "xaringan et remark.js"
+  ) %>% 
+  meta_name("github-repo" = "maeltheuliere/ateliers_rpackage") %>% 
+  meta_social(
+    title = "Créer son premier package R",
+    url = "https://maeltheuliere.github.io/ateliers_rpackage/atelier3.html",
+    image = "https://maeltheuliere.github.io/ateliers_rpackage/slides/www/slide3-card.png",
+    image_alt = "Diapo titre du diaporama Créer son premier package R",
+    og_type = "website",
+    og_author = "Juliette ENGELAERE-LEFEBVRE - Maël THEULIERE",
+    twitter_card_type = "summary_large_image"
+  )
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE, eval=TRUE}
 htmltools::tagList(
   xaringanExtra::use_clipboard(
     button_text = "<i class=\"fa fa-clipboard\"></i>",
@@ -54,6 +82,26 @@ htmltools::tagList(
   rmarkdown::html_dependency_font_awesome()
 )
 ```
+class: center, middle
+
+.fl.w-40.pa2[
+```{r, include=TRUE,echo=FALSE, eval=TRUE, fig.width=3}
+knitr::include_graphics("https://raw.githubusercontent.com/MaelTheuliere/ateliers_rpackage/main/slides/www/packagescompagnons.png")
+```
+]
+
+
+
+.f1[Créer son premier] .yellow.f1[package R]   
+
+
+
+.tr[
+.f4[Juliette ENGELAERE-LEFEBVRE - Maël THEULIERE]
+]
+
+
+---
 
 
 # Objectif de cette séquence
