@@ -66,7 +66,7 @@ meta() %>%
   meta_social(
     title = "Créer son premier package R",
     url = "https://maeltheuliere.github.io/ateliers_rpackage/atelier3.html",
-    image = "https://maeltheuliere.github.io/ateliers_rpackage/slides/www/slide1-card.png",
+    image = "https://maeltheuliere.github.io/ateliers_rpackage/slides/www/slide1.png",
     image_alt = "Diapo titre du diaporama Créer son premier package R",
     og_type = "website",
     og_author = "Juliette ENGELAERE-LEFEBVRE - Maël THEULIERE",
