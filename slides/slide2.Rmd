@@ -64,7 +64,7 @@ meta() %>%
   meta_social(
     title = "Créer son premier package R - Ajouter une fonction dans votre package",
     url = "https://maeltheuliere.github.io/ateliers_rpackage/atelier3.html",
-    image = "https://maeltheuliere.github.io/ateliers_rpackage/slides/www/slide3-card.png",
+    image = "https://maeltheuliere.github.io/ateliers_rpackage/slides/www/slide2-card.png",
     image_alt = "Diapo titre du diaporama ajouter une fonction dans votre package",
     og_type = "website",
     og_author = "Juliette ENGELAERE-LEFEBVRE - Maël THEULIERE",
