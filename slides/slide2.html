@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Rajouter une fonction dans votre package</title>
+    <title>Ajouter une fonction dans votre package</title>
     <meta charset="utf-8" />
     <meta name="author" content="Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE" />
-    <meta name="date" content="2021-04-27" />
+    <meta name="date" content="2021-05-02" />
     <link href="libs/panelset/panelset.css" rel="stylesheet" />
     <script src="libs/panelset/panelset.js"></script>
     <script src="libs/clipboard/clipboard.min.js"></script>
@@ -15,38 +15,82 @@
     <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view/tile-view.js"></script>
     <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <meta name="description" content="Aprendre comment intégrer une fonction dans votre package."/>
+    <meta name="generator" content="xaringan et remark.js"/>
+    <meta name="github-repo" content="maeltheuliere/ateliers_rpackage"/>
+    <meta name="twitter:title" content="Créer son premier package R - Ajouter une fonction dans votre package"/>
+    <meta name="twitter:description" content="Aprendre comment intégrer une fonction dans votre package."/>
+    <meta name="twitter:url" content="https://maeltheuliere.github.io/ateliers_rpackage/atelier3.html"/>
+    <meta name="twitter:image:src" content="https://maeltheuliere.github.io/ateliers_rpackage/slides/www/slide2-card.png"/>
+    <meta name="twitter:image:alt" content="Diapo titre du diaporama ajouter une fonction dans votre package"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta property="og:title" content="Créer son premier package R - Ajouter une fonction dans votre package"/>
+    <meta property="og:description" content="Aprendre comment intégrer une fonction dans votre package."/>
+    <meta property="og:url" content="https://maeltheuliere.github.io/ateliers_rpackage/atelier3.html"/>
+    <meta property="og:image" content="https://maeltheuliere.github.io/ateliers_rpackage/slides/www/slide2-card.png"/>
+    <meta property="og:image:alt" content="Diapo titre du diaporama ajouter une fonction dans votre package"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="article:author" content="Juliette ENGELAERE-LEFEBVRE - Maël THEULIERE"/>
     <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="progress-bar.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
-class: center, middle, inverse, title-slide
 
-# Rajouter une fonction dans votre package
-### Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE
-### 2021-04-27
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class: center, middle
+
+.fl.w-40.pa2[
+![](https://raw.githubusercontent.com/MaelTheuliere/ateliers_rpackage/main/slides/www/packagescompagnons.png)&lt;!-- --&gt;
+]
+
+.fl.w-60.pa2[
+
+.f3[Créer son premier] .yellow.f3[package R]
+
+.f1[Ajouter] .yellow.f1[une fonction] .f1[dans votre package]
+]
+
+.tr[
+.f4[Juliette ENGELAERE-LEFEBVRE - Maël THEULIERE]
+]
+---
+# Objectif de cet atelier
+
+Après cet atelier vous saurez ajouter une fonction dans un package. C’est à dire que vous aurez compris :  
+
+- ce qu’est une fonction ;  
+- comment ajouter une fonction dans un package ;  
+- comment documenter une fonction ;
+- comment tester une fonction.  
 
 ---
+class: inverse, center, middle
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Qu'est ce qu'une fonction ?
+---
 
 # Qu'est ce qu'une fonction ?
 
@@ -99,10 +143,10 @@ Ensuite cette fonction devra être correctement documentée et testée. On verra
 
 ---
 class: inverse, center, middle
-# Rajouter une fonction dans votre package
+# Ajouter une fonction dans votre package
 
 ---
-#### Rajouter une fonction dans votre package
+#### Ajouter une fonction dans votre package
 
 # créer le fichier .R
 
@@ -116,9 +160,9 @@ Pour rajouter une fonction dans votre package, `{usethis}` vous facilite le trav
 ![](www/ma_fonction.png)
 ]
 ---
-#### Rajouter une fonction dans votre package
+#### Ajouter une fonction dans votre package
 
-# Rajouter votre fonction dans le fichier
+# Ajouter votre fonction dans le fichier
 
 .pull-left[
 Ici on crée la fonction `ma_fonction` qui prend en paramètres : 
@@ -150,7 +194,7 @@ ma_fonction &lt;- function(data = NULL,
 
 ---
 
-#### Rajouter une fonction dans votre package
+#### Ajouter une fonction dans votre package
 
 # Utiliser votre fonction
 
@@ -323,6 +367,91 @@ ma_fonction &lt;- function(data = NULL,
 
 ]
 ---
+#### Documenter votre fonction  
+# Des actuces avec `{prefixer}`  ![](www/addin_prefixer_logo.png)     
+.pull-left[
+
+Le package `{prefixer}` permet de finaliser votre fonction et produire la documentation plus facilement.  
+
+Il s'installe via :   
+
+```r
+remotes::install_github("dreamRs/prefixer")
+```
+Il s'agit d'un package qui installe un addin, c'est à dire qui ajoute des fonctionnalités à RStudio.  
+
+L'objectif des addins est généralement d'accélérer la réalisation de tâches répétitives ou fastidieuses.
+]
+.pull-right[   
+On accède aux fonctionnalités nouvelles via le menu addins :    
+
+![](www/addin_prefixer.png)  
+  
+On peut ajouter des raccourcis clavier pour accélérer encore l'utilisation des fonctions des addins.
+]
+---
+#### Documenter votre fonction - Astuces `{prefixer}`  
+# Commande addin `Prefixer::`   
+
+La commande `Prefixer::` ouvre une boite de dialogue qui vous propose d'ajouter, pour chaque fonction utilisée dans notre script de définition de fonction, le préfixe adéquat.     
+
+⚠️ Seuls les packages actuellement actifs (appelés via `library`) seront proposés.  
+
+![](www/addin_prefixer_fonct.png)
+
+La commande `Unprefix` supprime tous les préfixes de notre script actif.
+
+---
+#### Documenter votre fonction - Astuces `{prefixer}`     
+# Commande addin `@importFrom`  
+
+.pull-left[
+La commande `@importFrom` :  
+
+- parcourt votre script de définition de fonction, 
+- y détecte toutes les préfixes utilisés et
+- ajoute au dessus de la fonction, la ou les balises `@importFrom package1 fonctions1`
+]
+
+.pull-right[
+![](www/addin_prefixer_importFrom.png)
+]  
+
+⚠️ Ces lignes restent à adapter :   
+- il faut préfixer les datasets, mais ne pas les faire figurer dans une balise importFrom qui est réservée aux fonctions,
+- on n'importe pas les autres fonctions du package en cours de développement, 
+- le pronom `.data` n'est pas préfixé : ajouter `importFrom rlang .data` quand on y recourt.
+---
+#### Documenter votre fonction - Astuces `{prefixer}`  
+# Commande addin `Not-ASCII`  
+
+Utiliser un encodage multi-plateforme est absolument nécessaire pour que notre package puisse fonctionner partout, que ce soit sur un serveur linux, un PC, un Mac... 
+
+.pull-left[
+
+La commande `@Not-ASCII` :
+
+- scanne l'ensemble du fichier contenant le script de définition de fonction,    
+- y détecte tous les caractères à problème (entre "quote"),    
+- et les convertit avec leur code unicode.   
+]
+.pull-right[
+Par exemple :  
+
+```r
+filter(dataset, TypeZone == "Régions")
+```
+  
+devient : 
+
+```r
+filter(dataset, TypeZone == "R\u00e9gions")
+```
+]   
+
+
+Cela ne fonctionne pas dans les commentaires de documentation, de toutes façons, ils ne seraient rendus correctement.
+---
 #### Documenter votre fonction
 
 # {roxygen2} : document()
@@ -403,6 +532,7 @@ Dans le cas de notre exemple : `usethis::use_package("dplyr")`
 ```
 ]
 ---
+
 #### Documenter votre fonction
 
 # Partie 'imports' de DESCRIPTION
@@ -430,7 +560,7 @@ Cela a pour effet d'ajouter une partie *'Remotes :'* à notre fichier descriptio
 ![](www/use_remote_package.png)
 ]
 ---
-class : inverse, center, middle
+class: inverse, center, middle
 # Tester votre fonction
 ---
 #### Tester votre fonction
@@ -510,7 +640,8 @@ Lors d'une prochaine vérification de notre package, avec `devtools::check()`, l
 "highlightStyle": "github",
 "highlightLines": true,
 "countIncrementalSlides": false,
-"ratio": "16:9"
+"ratio": "16:9",
+"slideNumberFormat": "<div class=\"progress-bar-container\">\n  <div class=\"progress-bar\" style=\"width: calc(%current% / %total% * 100%);\">\n  </div>\n</div>`"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
