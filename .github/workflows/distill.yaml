@@ -47,8 +47,7 @@ jobs:
 
       - name: Build slides png
         run: |
-          R -e 'source("R/screenshot_share_image.R")'
-          R -e 'purrr::map(list.files(path = "slides",pattern = ".Rmd",full.names = TRUE), ~screenshot_share_image(.x, path_image = xfun::with_ext(.x,"png")))'
+          R -e 'source("R/screenshot_share_image.R"); purrr::map(list.files(path = "slides",pattern = ".Rmd",full.names = TRUE), ~screenshot_share_image(.x, path_image = xfun::with_ext(.x,"png")))'
           
       - name: Build site
         run: Rscript -e 'rmarkdown::render_site()'
