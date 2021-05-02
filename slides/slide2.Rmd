@@ -1,50 +1,78 @@
 ---
-title: "Rajouter une fonction dans votre package"
+title: "Ajouter une fonction dans votre package"
 author: 
   - "Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE"
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
-    css: xaringan-themer.css
+    css: [xaringan-themer.css,progress-bar.css]
     lib_dir: libs
+    seal: false
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
       ratio: '16:9'
+      slideNumberFormat: |
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>`
 ---
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE,  warning=FALSE, message = FALSE)
 ```
 
-```{r xaringan-themer, include=FALSE, warning=FALSE}
+```{r xaringan-themer, include=FALSE, warning=FALSE, eval=TRUE}
 library(xaringanthemer)
-style_mono_light(
+style_mono_accent(
   base_color = "#000091",
   text_font_family = 'Marianne',
-  code_font_family = 'Fira Code'
+  code_font_family = 'Fira Code',
+  background_color = 'white',
+  title_slide_text_color = "#000091"
 )
 ```
 
 
-```{r xaringanpanelset, echo=FALSE}
+```{r xaringanpanelset, echo=FALSE, eval=TRUE}
 xaringanExtra::use_panelset(in_xaringan = TRUE)
 ```
 
-```{r share-again, echo=FALSE}
+```{r share-again, echo=FALSE, eval=TRUE}
 xaringanExtra::use_share_again()
 ```
 
-```{r xaringan-tile-view, echo=FALSE}
+```{r xaringan-tile-view, echo=FALSE, eval=TRUE}
 xaringanExtra::use_tile_view()
 ```
 
-```{r xaringan-tachyons, echo=FALSE}
+```{r xaringan-tachyons, echo=FALSE, eval=TRUE}
 xaringanExtra::use_tachyons()
 ```
 
-```{r xaringanExtra-clipboard, echo=FALSE}
+```{r meta, echo=FALSE, eval=TRUE, message = FALSE}
+library(metathis)
+meta() %>%
+  meta_general(
+    description = "Aprendre comment intégrer une fonction dans votre package.",
+    generator = "xaringan et remark.js"
+  ) %>% 
+  meta_name("github-repo" = "maeltheuliere/ateliers_rpackage") %>% 
+  meta_social(
+    title = "Créer son premier package R - Ajouter une fonction dans votre package",
+    url = "https://maeltheuliere.github.io/ateliers_rpackage/atelier3.html",
+    image = "https://maeltheuliere.github.io/ateliers_rpackage/slides/www/slide2-card.png",
+    image_alt = "Diapo titre du diaporama ajouter une fonction dans votre package",
+    og_type = "website",
+    og_author = "Juliette ENGELAERE-LEFEBVRE - Maël THEULIERE",
+    twitter_card_type = "summary_large_image"
+  )
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE, eval=TRUE}
 htmltools::tagList(
   xaringanExtra::use_clipboard(
     button_text = "<i class=\"fa fa-clipboard\"></i>",
@@ -54,6 +82,39 @@ htmltools::tagList(
   rmarkdown::html_dependency_font_awesome()
 )
 ```
+class: center, middle
+
+.fl.w-40.pa2[
+```{r, include=TRUE,echo=FALSE, eval=TRUE, fig.width=3}
+knitr::include_graphics("https://raw.githubusercontent.com/MaelTheuliere/ateliers_rpackage/main/slides/www/packagescompagnons.png")
+```
+]
+
+.fl.w-60.pa2[
+
+.f3[Créer son premier] .yellow.f3[package R]
+
+.f1[Ajouter] .yellow.f1[une fonction] .f1[dans votre package]
+]
+
+.tr[
+.f4[Juliette ENGELAERE-LEFEBVRE - Maël THEULIERE]
+]
+---
+# Objectif de cet atelier
+
+Après cet atelier vous saurez ajouter une fonction dans un package. C’est à dire que vous aurez compris :  
+
+- ce qu’est une fonction ;  
+- comment ajouter une fonction dans un package ;  
+- comment documenter une fonction ;
+- comment tester une fonction.  
+
+---
+class: inverse, center, middle
+
+# Qu'est ce qu'une fonction ?
+---
 
 # Qu'est ce qu'une fonction ?
 
@@ -105,10 +166,10 @@ Ensuite cette fonction devra être correctement documentée et testée. On verra
 
 ---
 class: inverse, center, middle
-# Rajouter une fonction dans votre package
+# Ajouter une fonction dans votre package
 
 ---
-#### Rajouter une fonction dans votre package
+#### Ajouter une fonction dans votre package
 
 # créer le fichier .R
 
@@ -122,9 +183,9 @@ Pour rajouter une fonction dans votre package, `{usethis}` vous facilite le trav
 ![](www/ma_fonction.png)
 ]
 ---
-#### Rajouter une fonction dans votre package
+#### Ajouter une fonction dans votre package
 
-# Rajouter votre fonction dans le fichier
+# Ajouter votre fonction dans le fichier
 
 .pull-left[
 Ici on crée la fonction `ma_fonction` qui prend en paramètres : 
@@ -156,7 +217,7 @@ ma_fonction <- function(data = NULL,
 
 ---
 
-#### Rajouter une fonction dans votre package
+#### Ajouter une fonction dans votre package
 
 # Utiliser votre fonction
 
@@ -315,6 +376,88 @@ ma_fonction <- function(data = NULL,
 
 ]
 ---
+#### Documenter votre fonction  
+# Des actuces avec `{prefixer}`  ![](www/addin_prefixer_logo.png)     
+.pull-left[
+
+Le package `{prefixer}` permet de finaliser votre fonction et produire la documentation plus facilement.  
+
+Il s'installe via :   
+```{r eval = FALSE}
+remotes::install_github("dreamRs/prefixer")
+```
+Il s'agit d'un package qui installe un addin, c'est à dire qui ajoute des fonctionnalités à RStudio.  
+
+L'objectif des addins est généralement d'accélérer la réalisation de tâches répétitives ou fastidieuses.
+]
+.pull-right[   
+On accède aux fonctionnalités nouvelles via le menu addins :    
+
+![](www/addin_prefixer.png)  
+  
+On peut ajouter des raccourcis clavier pour accélérer encore l'utilisation des fonctions des addins.
+]
+---
+#### Documenter votre fonction - Astuces `{prefixer}`  
+# Commande addin `Prefixer::`   
+
+La commande `Prefixer::` ouvre une boite de dialogue qui vous propose d'ajouter, pour chaque fonction utilisée dans notre script de définition de fonction, le préfixe adéquat.     
+
+`r emo::ji("warning")` Seuls les packages actuellement actifs (appelés via `library`) seront proposés.  
+
+![](www/addin_prefixer_fonct.png)
+
+La commande `Unprefix` supprime tous les préfixes de notre script actif.
+
+---
+#### Documenter votre fonction - Astuces `{prefixer}`     
+# Commande addin `@importFrom`  
+
+.pull-left[
+La commande `@importFrom` :  
+
+- parcourt votre script de définition de fonction, 
+- y détecte toutes les préfixes utilisés et
+- ajoute au dessus de la fonction, la ou les balises `@importFrom package1 fonctions1`
+]
+
+.pull-right[
+![](www/addin_prefixer_importFrom.png)
+]  
+
+`r emo::ji("warning")` Ces lignes restent à adapter :   
+- il faut préfixer les datasets, mais ne pas les faire figurer dans une balise importFrom qui est réservée aux fonctions,
+- on n'importe pas les autres fonctions du package en cours de développement, 
+- le pronom `.data` n'est pas préfixé : ajouter `importFrom rlang .data` quand on y recourt.
+---
+#### Documenter votre fonction - Astuces `{prefixer}`  
+# Commande addin `Not-ASCII`  
+
+Utiliser un encodage multi-plateforme est absolument nécessaire pour que notre package puisse fonctionner partout, que ce soit sur un serveur linux, un PC, un Mac... 
+
+.pull-left[
+
+La commande `@Not-ASCII` :
+
+- scanne l'ensemble du fichier contenant le script de définition de fonction,    
+- y détecte tous les caractères à problème (entre "quote"),    
+- et les convertit avec leur code unicode.   
+]
+.pull-right[
+Par exemple :  
+```{r, eval = FALSE}
+filter(dataset, TypeZone == "Régions")
+```
+  
+devient : 
+```{r, eval = FALSE}
+filter(dataset, TypeZone == "R\u00e9gions")
+```
+]   
+
+
+Cela ne fonctionne pas dans les commentaires de documentation, de toutes façons, ils ne seraient rendus correctement.
+---
 #### Documenter votre fonction
 
 # {roxygen2} : document()
@@ -393,6 +536,7 @@ Dans le cas de notre exemple : `usethis::use_package("dplyr")`
 ```
 ]
 ---
+
 #### Documenter votre fonction
 
 # Partie 'imports' de DESCRIPTION
@@ -419,7 +563,7 @@ Cela a pour effet d'ajouter une partie *'Remotes :'* à notre fichier descriptio
 ![](www/use_remote_package.png)
 ]
 ---
-class : inverse, center, middle
+class: inverse, center, middle
 # Tester votre fonction
 ---
 #### Tester votre fonction

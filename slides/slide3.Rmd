@@ -1,5 +1,5 @@
 ---
-title: "Rajouter un dataset dans votre package"
+title: "Ajouter un dataset dans votre package"
 author: 
   - "Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE"
 date: '`r Sys.Date()`'
@@ -22,7 +22,7 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE, warning=FALSE, message = FALSE)
 library(sf)
 ```
 
@@ -95,7 +95,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/MaelTheuliere/atelier
 
 .f3[Créer son premier] .yellow.f3[package R]
 
-.f1[Rajouter] .yellow.f1[un dataset] .f1[dans votre package]
+.f1[Ajouter] .yellow.f1[un dataset] .f1[dans votre package]
 ]
 
 .tr[

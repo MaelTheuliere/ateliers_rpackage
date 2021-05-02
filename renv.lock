@@ -493,6 +493,13 @@
       "Repository": "CRAN",
       "Hash": "a399e4773075fc2375b71f45fca186c4"
     },
+    "pagedown": {
+      "Package": "pagedown",
+      "Version": "0.14",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "773ffdf73cccffaee9623adf91461521"
+    },
     "pillar": {
       "Package": "pillar",
       "Version": "1.4.7",
@@ -682,20 +689,6 @@
       "Repository": "CRAN",
       "Hash": "d82215b501772c9faadb4dcd71395c7d"
     },
-    "showtext": {
-      "Package": "showtext",
-      "Version": "0.9-2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "e5dab22dca0b4626733ffca54b81fb6b"
-    },
-    "showtextdb": {
-      "Package": "showtextdb",
-      "Version": "3.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "c12e756cf947e58b0f2c2a520521a5a8"
-    },
     "stringi": {
       "Package": "stringi",
       "Version": "1.5.3",
@@ -716,13 +709,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "b227d13e29222b4574486cfcbde077fa"
-    },
-    "sysfonts": {
-      "Package": "sysfonts",
-      "Version": "0.8.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "6a750650ae5e5ba11b45cb5012bd6167"
     },
     "testthat": {
       "Package": "testthat",
