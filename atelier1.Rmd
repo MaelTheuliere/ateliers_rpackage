@@ -20,7 +20,7 @@ Après cet atelier vous saurez :
 
 ## supports
 
-- [diaporama](slides/slide1.html)
+- diaporama [version html](slides/slide1.html) ou [version pdf](slides/slide1.pdf)
 
 ```{r embed-xaringan, echo=FALSE}
 xaringanExtra::embed_xaringan(url = "slides/slide1.html", ratio = "16:9")
