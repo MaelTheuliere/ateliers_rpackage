@@ -1,0 +1,275 @@
+---
+title: "Ajouter des vignettes et un site de documentation"
+author: 
+  - "Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: [xaringan-themer.css,progress-bar.css]
+    lib_dir: libs
+    seal: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+      slideNumberFormat: |
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>`
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE, warning=FALSE, message = FALSE)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE, eval=TRUE}
+library(xaringanthemer)
+style_mono_accent(
+  base_color = "#000091",
+  text_font_family = 'Marianne',
+  code_font_family = 'Fira Code',
+  background_color = 'white',
+  title_slide_text_color = "#000091"
+)
+```
+
+
+```{r xaringanpanelset, echo=FALSE, eval=TRUE}
+xaringanExtra::use_panelset(in_xaringan = TRUE)
+```
+
+```{r share-again, echo=FALSE, eval=TRUE}
+xaringanExtra::use_share_again()
+```
+
+```{r xaringan-tile-view, echo=FALSE, eval=TRUE}
+xaringanExtra::use_tile_view()
+```
+
+```{r xaringan-tachyons, echo=FALSE, eval=TRUE}
+xaringanExtra::use_tachyons()
+```
+
+```{r meta, echo=FALSE, eval=TRUE}
+library(metathis)
+meta() %>%
+  meta_general(
+    description = "Apprendre comment ajouter des vignettes dans votre package et lui construire un site de présentation.",
+    generator = "xaringan et remark.js"
+  ) %>% 
+  meta_name("github-repo" = "maeltheuliere/ateliers_rpackage") %>% 
+  meta_social(
+    title = "Créer son premier package R - Ajouter des vignettes et un site de documentation",
+    url = "https://maeltheuliere.github.io/ateliers_rpackage/atelier4.html",
+    image = "https://maeltheuliere.github.io/ateliers_rpackage/slides/www/slide4.png",
+    image_alt = "Diapo titre du diaporama Ajouter des vignettes et un site de documentation",
+    og_type = "website",
+    og_author = "Juliette ENGELAERE-LEFEBVRE - Maël THEULIERE",
+    twitter_card_type = "summary_large_image"
+  )
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE, eval=TRUE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+class: center, middle
+
+.fl.w-40.pa2[
+```{r, include=TRUE,echo=FALSE, eval=TRUE, fig.width=3}
+knitr::include_graphics("https://raw.githubusercontent.com/MaelTheuliere/ateliers_rpackage/main/slides/www/packagescompagnons.png")
+```
+]
+
+.fl.w-60.pa2[
+
+.f3[Créer son premier] .yellow.f3[package R]
+
+.f1[Ajouter des ] .yellow.f1[vignettes] .f1[ et un ] .yellow.f1[site de documentation] .f1[dans votre package]
+]
+
+.tr[
+.f4[Juliette ENGELAERE-LEFEBVRE - Maël THEULIERE]
+]
+---
+# Objectif de cet atelier
+
+Après cet atelier vous saurez :
+
+  - Ce qu'est une vignette de package  
+  
+  - Installer un package en incluant les vignettes  
+  
+  - Ajouter une vignette dans votre package   
+  
+  - Rassembler la documentation du package sous forme de site   
+  
+  - Déployer votre site grâce à l'intégration continue  
+
+---
+class: inverse, center, middle
+
+# Mais qu'est ce qu'une vignette ?
+---
+
+#### Qu'est ce qu'une vignette ?
+## Pourquoi une vignette ?
+
+La vignette est une page html ou pdf, incorporée dans le package qui présente des exemples d'usages des fonctions, leur syntaxe et leurs résultats, entremêlés de commentaires. 
+Elle est produite par un script Rmarkdown lui aussi accessible dans le package.  
+Elle complète, de manière facultative, la documentation conventionnelle obligatoire de chacune des fonctions.  
+
+
+Leur utilité est multiple :  
+
+- présenter à l'utilisateur  :   
+  - à quels usages le package sert et pour quels besoins il a été conçu,  
+  - comment il fonctionne, généralement, en commençant par comment il s'installe,   
+  - et sa logique d'ensemble, en présentant successivement plusieurs fonctions du package ;
+  
+- proposer un tutoriel ;
+  
+- vérifier en plus de tests que chaque fonction produit les résultats attendus ; 
+
+- ou encore, dialoguer avec le commanditaire d'une publication propre, pour lui présenter le résultat de l'exécution de chaque brique développée, grâce à l'intégration continue.  
+
+---
+#### Qu'est ce qu'une vignette ?
+## Exemple du package `{sf}` : accès
+
+.pull-left[
+> Depuis le panneau "Packages" (en bas à droite),   
+
+> sélectionner `{sf}`   
+
+> et cliquer sur _User guides, package vignettes and other documentation_   
+
+> pour avoir accès aux 7 vignettes proposées.  
+
+]
+
+.pull-right[
+```{r, echo=FALSE,eval=TRUE}
+knitr::include_graphics("www/vignettes_exemple_sf.png")
+```
+]
+---
+#### Qu'est ce qu'une vignette ?
+## Exemple du package `{sf}` : les vignettes disponibles  
+.pull-left[
+On a accès :  
+
+- à la vignette compilée : `HTML`   
+  (certains packages proposent plutôt `PDF`),  
+  
+- au document Rmd source : `source`,    
+
+- aux seules portions de code : `R code`.  
+
+]
+.pull-right[
+```{r, echo=FALSE,eval=TRUE}
+knitr::include_graphics("www/vignettes_exemple_sf2.png")
+```
+]
+---
+#### Qu'est ce qu'une vignette ?
+## Exemple du package `{sf}` : vignette 1 
+
+Le lien [https://r-spatial.github.io/sf/articles/](https://r-spatial.github.io/sf/articles/) invite à consulter la vignette sur le web, produite par l'intégration continue du [repo sf github](https://github.com/r-spatial/sf).
+
+```{r, echo=FALSE,eval=TRUE}
+knitr::include_graphics("www/vignettes_exemple_sf3.png")
+```
+---
+
+#### Qu'est-ce qu'une vignette ?
+## Accéder aux vignettes disponibles sur mon poste 
+
+La fonction `vignette()` retourne une liste des vignettes disponibles. 
+Cette liste peut être globale et concerner l’ensemble des packages installés, ou partielle en se limitant aux packages en cours d'utilisation avec l'argument `all=FALSE`, ou encore se restreindre à un seul package avec l'argument `package = "DBI" ` par exemple, pour lister les seules vignettes du package `{DBI}`.  
+
+```{r echo=TRUE, eval=TRUE}
+vign <- vignette(all=FALSE)
+vign$results[, c("Package", "Title")]
+```
+Sa petite soeur `browseVignettes(all = FALSE)` utilise les mêmes arguments et facilite la navigation HTML.  
+---
+class: inverse, center, middle
+
+# Installer un package en incluant les vignettes
+
+---
+#### Installer un package en incluant les vignettes  
+## Les vignettes ne sont pas systématiquement installées avec le packages   
+
+C'est même le comportement par défaut lorsqu'un package est installé via `remotes::install_github` ou `remotes::install_gitlab`.    
+
+Les raisons ?     
+- cela est consommateur de temps : la vignette est compilée sur votre poste, avant d'être rendue disponible,    
+
+- la compilation des vignettes peut échouer si les dépendances ne sont pas les mêmes que celles du package,   
+
+- généralement les vignettes sont accessibles sur gitlab ou github pages.   
+---
+#### Installer un package en incluant les vignettes  
+## Installer localement les vignettes   
+
+.pull-left[
+Et pourquoi ça ?      
+
+- naviguer dans l'ensemble de l'aide depuis RStudio,    
+
+- vérifier que le package fonctionne correctement sur mon poste.    
+
+]
+
+
+.pull-right[
+```{r, echo=TRUE, eval=FALSE}
+remotes::install_gitlab(repo = "dreal-datalab/bilan.eco.insee",
+                        build_vignettes = TRUE)
+
+remotes::install_github("MaelTheuliere/COGiter", 
+                        build_vignettes = TRUE)
+```
+]
+
+---
+class: inverse, center, middle
+
+#  Ajouter une vignette dans votre package  
+---
+#### Ajouter une vignette dans votre package 
+## usethis::use_vignette("ma_vignette")
+  
+---
+class: inverse, center, middle
+
+# Rassembler la documentation du package sous forme de site   
+  
+---
+#### Produire un site pour notre package 
+## {pkgdown} et {usethis}
+
+---
+class: inverse, center, middle
+
+# Déployer notre site grâce à l'intégration continue  
+
+---
+#### Publier notre site grâce avec la CI 
+## La quoi ?
+---
+#### Publier notre site grâce avec la CI 
+## un snipet sur gitlab.com
+---

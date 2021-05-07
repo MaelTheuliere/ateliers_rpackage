@@ -29,7 +29,7 @@ library(gouvdown.fonts)
 
 - [Atelier 3](atelier3.html) : Ajouter des datasets `r emo::ji("open_file_folder")`
 
-- Atelier 4 : Ajouter des vignettes et un site de documentation
+- [Atelier 4](atelier4.html) : Ajouter des vignettes et un site de documentation `r emo::ji("black_nib")`
 
 - Atelier 5 : Ajouter des templates `r emo::ji("page")`
 
