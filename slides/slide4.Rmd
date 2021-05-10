@@ -212,14 +212,15 @@ class: inverse, center, middle
 #### Installer un package en incluant les vignettes  
 ## Les vignettes ne sont pas systématiquement installées avec le packages   
 
-C'est même le comportement par défaut lorsqu'un package est installé via `remotes::install_github` ou `remotes::install_gitlab`.    
+C'est même le comportement par défaut lorsqu'un package est installé via `remotes::install_github` ou `remotes::install_gitlab` ou le bouton 
+`r knitr::include_graphics("www/vignettes_install_restart.png")` du panneau 'Build'.    
 
 Les raisons ?     
-- cela est consommateur de temps : la vignette est compilée sur votre poste, avant d'être rendue disponible,    
+- cela est consommateur de temps : la vignette est compilée sur votre poste de bout en bout,
 
 - la compilation des vignettes peut échouer si les dépendances ne sont pas les mêmes que celles du package,   
 
-- généralement les vignettes sont accessibles sur gitlab ou github pages.   
+- généralement les vignettes sont déjà accessibles sur gitlab ou github pages.   
 ---
 #### Installer un package en incluant les vignettes  
 ## Installer localement les vignettes   
@@ -251,7 +252,13 @@ class: inverse, center, middle
 ---
 #### Ajouter une vignette dans votre package 
 ## usethis::use_vignette("ma_vignette")
-  
+
+docu ju 
+https://ericmarcon.github.io/travailleR/chap-package.html#vignette-et-pkgdown   
+https://r-pkgs.org/vignettes.html   
+https://bookdown.org/yihui/rmarkdown-cookbook/package-vignette.html   
+
+
 ---
 class: inverse, center, middle
 
