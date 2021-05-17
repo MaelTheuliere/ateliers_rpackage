@@ -5,7 +5,7 @@ author:
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
-    css: [xaringan-themer.css,progress-bar.css]
+    css: [xaringan-themer.css, progress-bar.css]
     lib_dir: libs
     seal: false
     nature:
@@ -89,6 +89,9 @@ class: center, middle
 ```{r, include=TRUE,echo=FALSE, eval=TRUE, fig.width=3}
 knitr::include_graphics("https://raw.githubusercontent.com/MaelTheuliere/ateliers_rpackage/main/slides/www/packagescompagnons.png")
 ```
+
+.f3[`r emo::ji("link")` [bit.ly/2RmHK8c](bit.ly/2RmHK8c)]
+
 ]
 
 .fl.w-60.pa2[
@@ -380,3 +383,8 @@ plot(countries[,1])
 
 ]
 
+---
+class: center, middle
+
+# Retrouver le parcours de formation
+## `r emo::ji("link")` [bit.ly/2RmHK8c](bit.ly/2RmHK8c)
