@@ -562,21 +562,54 @@ Un [exemple Gitlab pour un package](https://gitlab.com/dreal-datalab/bilan.eco.i
 
 `usethis::use_pkgdown_github_pages()` -> publier un site pkgdown
 
-Un [exemple concernant ce support d'atelier](https://github.com/MaelTheuliere/ateliers_rpackage/blob/main/.github/workflows/distill.yaml)
+Un [exemple concernant `{COGiter}`](https://github.com/MaelTheuliere/COGiter/tree/2021/.github/workflows)
 
-En [savoir plus sur l'intégration continue sur Github](https://ericmarcon.github.io/travailleR/chap-ci.html) 
+En [savoir plus sur l'intégration continue sur Github](https://ericmarcon.github.io/travailleR/chap-ci.html#sec:package-ci6) 
 ]
 
 ---
 
 #### Publier notre site grâce avec la CI
 ## Accéder aux résultats de la CI sur gitlab
-### Gitlab  
-- En cas d'échec un mail est envoyé au propriétaire du projet  
-- Aperçu du menu pipelines et CI de gitlab  
-- Aperçu du menu settings/pages pour retrouver le lien vers le site  
-- Aperçu du menu settings/continuous integration pour le lien vers le code coverage et les badges  
 
+.pull-left[
+- En cas d'échec un mail est envoyé
+
+- Le menu pipelines et CI de gitlab [`-/pipelines`] :   
+
+```{r, echo=FALSE,eval=TRUE, out.width='285px'}
+knitr::include_graphics("www/CI_menu_GitLab.png")
+```
+
+]   
+
+.pull-right[
+```{r, echo=FALSE,eval=TRUE, out.height='60%'}
+knitr::include_graphics("www/CI_pipelines_GitLab.png")
+```
+]
+
+---
+#### Publier notre site grâce avec la CI
+## Accéder aux résultats de la CI sur gitlab
+
+- Pour retrouver l'URL du site publié : aller au dernier menu en bas à gauche : settings/pages [`/pages`]    
+.center[
+```{r, echo=FALSE,eval=TRUE}
+knitr::include_graphics("www/CI_pages_GitLab.png")
+```
+]
+---
+#### Publier notre site grâce avec la CI
+## Accéder aux résultats de la CI sur gitlab
+
+- Pour le lien vers le rapport de couverture du code et les badges :
+menu settings/continuous integration  [`/-/settings/ci_cd`]
+
+
+```{r, echo=FALSE, eval=TRUE, out.width='800px'}
+knitr::include_graphics("www/CI_badges_GitLab.png")
+```
 ---
 class: inverse, center, middle
 
