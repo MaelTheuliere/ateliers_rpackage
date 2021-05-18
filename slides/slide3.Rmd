@@ -58,7 +58,7 @@ xaringanExtra::use_tachyons()
 library(metathis)
 meta() %>%
   meta_general(
-    description = "Aprendre comment intégrer un dataset dans votre package.",
+    description = "Apprendre comment intégrer un dataset dans votre package.",
     generator = "xaringan et remark.js"
   ) %>% 
   meta_name("github-repo" = "maeltheuliere/ateliers_rpackage") %>% 
