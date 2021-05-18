@@ -105,6 +105,8 @@ knitr::include_graphics("https://raw.githubusercontent.com/MaelTheuliere/atelier
 
 Après cet atelier vous saurez :
 
+  - Ajouter un fichier readme à votre package
+  
   - Ce qu'est une vignette de package  
   
   - Installer un package en incluant les vignettes  
@@ -340,25 +342,27 @@ knitr::include_graphics("www/vignettes_apercu_rmd_a_completer.png")
 
 On utilise la [syntaxe légère de mise en forme markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) pour le texte.
 
-On met les exemples de code dans des chunks, càd entre 2 séries de 3 ` avec {r nom_du_chunk, options} au début :    
+On met les exemples de code dans des chunks, càd entre 2 séries de 3 "'" avec {r nom_du_chunk, options} au début :
 
-````markdown  
-`r ''````{r, eval = FALSE}
+````md
+```{r, eval = FALSE}`r ''`
 mon_resultat <- ma_fonction
 mon_resultat
-```    
-```` 
-Si l'option `eval` est fixée à `TRUE`, le résultat sera affiché sous l'instruction dans le document compilé.    
+```
+````
 
-On compile le document avec le bouton knit ![](www/vignettes_knit.png)
-pour visualiser le rendu.  
+Si l'option `eval` est fixée à `TRUE`, le résultat sera affiché sous l'instruction dans le document compilé.
 
-Pour en savoir plus sur l'utilisation de Rmarkdown :   
+On compile le document avec le bouton knit ![](www/vignettes_knit.png) pour visualiser le rendu.
+
+Pour en savoir plus sur l'utilisation de Rmarkdown :
+
 - une [initiation en français](https://lms.fun-mooc.fr/c4x/UPSUD/42001S02/asset/RMarkdown.html) ;
-- une [feuille de triche](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf) ;   
-- le [guide complet](https://bookdown.org/yihui/rmarkdown-cookbook/).  
+- une [feuille de triche](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf) ;
+- le [guide complet](https://bookdown.org/yihui/rmarkdown-cookbook/).
 
 ---
+
 #### Ajouter une vignette dans votre package 
 ## Compléter la vignette
 
@@ -379,14 +383,15 @@ Et _kniter_ pour visualiser le rendu.
 
 .pull-right[
 
-````markdown  
+````markdown
+
 Le package R `{monpremierpackage}` s'installe depuis gitlab avec :  
 
-`r ''````{r install, eval=FALSE}
+```{r install, eval=FALSE}`r ''`
 remotes::install_gitlab(repo = "jengelaere/monpremierpackage")
 ```
 
-`r ''````{r setup}
+```{r setup}`r ''`
 library(monpremierpackage)
 ```
 
@@ -396,13 +401,74 @@ On utilise le paramètre `n_head` pour indiquer le nombre de lignes du début à
 Il contient également un jeu de données d'exemple `co2_emission`, présentant les émissions annuelles de CO~2~ par pays.
 
 
-`r ''````{r exemple}
+```{r exemple}`r ''`
 mon_resultat <- ma_fonction(data = co2_emission, n_head = 3, n_tail = 2 )
 mon_resultat
 ```
 ````
 ] 
 
+---
+class: inverse, center, middle
+
+# Ajouter un fichier README
+---
+#### Ajouter un fichier README
+# Pourquoi un fichier README ?
+
+Le fichier `README` est une présentation introductive de votre package. 
+
+Ce sera souvent le premier contact de vos utilisateurs avec votre package, par exemple ce sera la page d'accueil de votre site pkgdown que nous verrons ensuite. 
+
+`r emo::ji("warning")` Il est donc important de bien le soigner.
+
+Usuellement, on présente dans le `README` l'objet du package, comment l'installer et un premier cas d'usage.
+---
+#### Ajouter un fichier README
+# Comment ajouter un fichier README ?
+
+### `r emo::ji("superhero")` {`usethis`} bien sûr !
+
+`usethis::use_readme_rmd()` vous permettra de rajouter un fichier readme à votre package, également sous forme de document Rmarkdown.
+
+---
+
+#### Ajouter un fichier README
+## Compléter le README
+
+.pull-left[
+Indiquer par exemple :  
+
+- l'objet du package
+
+- comment s'installe le package  
+
+- comment activer le package
+
+Et _kniter_ pour compiler le rendu en un fichier `README.md`.   
+
+
+.center[  ![](www/vignettes_knit.png) ]
+]
+
+.pull-right[
+
+````markdown
+
+L'objectif du package R `{monpremierpackage}` est de m'apprendre à faire un package.
+
+Il s'installe depuis gitlab avec :  
+
+```{r install, eval=FALSE}`r ''`
+remotes::install_gitlab(repo = "jengelaere/monpremierpackage")
+```
+Il s'active comme cela
+
+```{r setup}`r ''`
+library(monpremierpackage)
+```
+````
+] 
 
 ---
 class: inverse, center, middle
