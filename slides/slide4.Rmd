@@ -504,6 +504,55 @@ knitr::include_graphics("www/pkgdown_apercu.png")
 ---
 #### Produire un site pour notre package  
 ## Notre site est prêt ! `r emo::ji("tada")` 
+---
+#### Produire un site pour notre package  
+## Configuration
+
+La configuration de votre site pkgdown se fait dans le fichier `_pkgdown.yml`
+
+Vous pouvez notamment : 
+- ordonner la page des références de vos fonctions et datasets 
+- organiser les articles correspondants à vos vignettes
+- choisir un thème de votre choix parmis ceux disponibles sur [bootswatch.com](https://bootswatch.com/)
+---
+#### Produire un site pour notre package  
+## Configuration
+
+Exemple :
+
+.pull-left[
+```{r, eval =FALSE, echo=TRUE}
+template:
+  params:
+    bootswatch: flatly
+
+navbar:
+  components:
+    accueil: ~
+
+reference:
+- title: "Mes datasets"
+  desc: >
+    Mes supers datasets
+- contents:
+  - co2_emission
+- title: "Mes fonctions"
+  desc: "Mes supers fonctions."
+- contents:
+  - matches("fonction")
+```
+
+]
+
+.pull-right[
+```{r, echo=FALSE, include=TRUE, eval=TRUE}
+knitr::include_graphics('www/pkgdown_yml.png')
+```
+
+]
+---
+#### Produire un site pour notre package  
+## Bilan
 
 On a maintenant un magnifique site présentant notre package, mais assez difficile d'accès pour l'utilisateur.  
 
@@ -513,11 +562,13 @@ Ce dernier peut y avoir accès, une fois notre package installé, via :
 
 Faut le savoir !
 
-
 ---
 class: inverse, center, middle
 
-# Et maintenant ? Déployons notre site grâce à l'intégration continue 
+# Et maintenant ? 
+--
+
+# Déployons notre site grâce à l'intégration continue 
 
 
 ---
