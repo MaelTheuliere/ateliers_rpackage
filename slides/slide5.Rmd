@@ -1,0 +1,252 @@
+---
+title: "Ajouter des templates Rmarkdown à votre package"
+author: 
+  - "Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: [xaringan-themer.css,progress-bar.css]
+    lib_dir: libs
+    seal: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+      slideNumberFormat: |
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>`
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE, warning=FALSE, message = FALSE)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE, eval=TRUE}
+library(xaringanthemer)
+style_mono_accent(
+  base_color = "#000091",
+  text_font_family = 'Marianne',
+  code_font_family = 'Fira Code',
+  background_color = 'white',
+  title_slide_text_color = "#000091"
+)
+```
+
+
+```{r xaringanpanelset, echo=FALSE, eval=TRUE}
+xaringanExtra::use_panelset(in_xaringan = TRUE)
+xaringanExtra::style_panelset_tabs(tabs_sideways_max_width  = "33%")
+```
+
+```{r share-again, echo=FALSE, eval=TRUE}
+xaringanExtra::use_share_again()
+```
+
+```{r xaringan-tile-view, echo=FALSE, eval=TRUE}
+xaringanExtra::use_tile_view()
+```
+
+```{r xaringan-tachyons, echo=FALSE, eval=TRUE}
+xaringanExtra::use_tachyons()
+```
+
+```{r meta, echo=FALSE, eval=TRUE}
+library(metathis)
+meta() %>%
+  meta_general(
+    description = "Apprendre comment ajouter des templates Rmarkdown à un package",
+    generator = "xaringan et remark.js"
+  ) %>% 
+  meta_name("github-repo" = "maeltheuliere/ateliers_rpackage") %>% 
+  meta_social(
+    title = "Ajouter des templates Rmarkdown à votre package",
+    url = "https://maeltheuliere.github.io/ateliers_rpackage/atelier5.html",
+    image = "https://maeltheuliere.github.io/ateliers_rpackage/slides/www/slide5.png",
+    image_alt = "Diapo titre du diaporama Ajouter des templates Rmarkdown à votre package",
+    og_type = "website",
+    og_author = "Juliette ENGELAERE-LEFEBVRE - Maël THEULIERE",
+    twitter_card_type = "summary_large_image"
+  )
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE, eval=TRUE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+class: center, middle
+
+.fl.w-40.pa2[
+```{r, include=TRUE,echo=FALSE, eval=TRUE, fig.width=3}
+knitr::include_graphics("https://raw.githubusercontent.com/MaelTheuliere/ateliers_rpackage/main/slides/www/packagescompagnons.png")
+```
+]
+
+.fl.w-60.pa2[
+
+.f3[Créer son premier] .yellow.f3[package R]
+
+.f1[Ajouter des ] .yellow.f1[templates rmarkdown] .f1[ et un ] .f1[dans votre package]
+]
+
+.tr[
+.f4[Juliette ENGELAERE-LEFEBVRE - Maël THEULIERE]
+]
+---
+# Objectif de cet atelier
+
+Après cet atelier vous saurez :
+
+  - Ajouter un template rmarkdown à votre package
+  
+  - Ajouter un template bookdown à votre package
+  
+---
+# Pourquoi des templates de publication ?
+
+Une publication statistique peut être pensée dans son processus de travail comme un livrable d'un package : 
+
+- des données insérer dans le package
+- une datapréparation documentée dans dataraw
+- des fonctions qui produisent les illustrations (tableaux, graphiques, cartes, chiffres clefs...)
+- un squelette de publication qui intègre ces éléments précalculés
+- un système de versionning pour gérer le développement et les millésimes de la publication
+
+C'est la démarche PROPRE et tout cela est mieux documenté dans le [document de présentation de la démarche](https://rdes_dreal.gitlab.io/propre/index.html).
+---
+# Comment insérer un template de publication ?
+
+### `r emo::ji("superhero")` {`usethis`} off course !
+
+`usethis::use_rmarkdown_template()` est la fonction de `{usethis}` qui permet cela. Elle vous positionne au bon endroit les bons fichiers pour créer un template.
+
+```{r}
+usethis::use_rmarkdown_template(template_name = "propre.climat",
+                                template_description = "Un squelette de publication sur le climat")
+```
+
+```md
+√ Setting active project to 'C:/Users/mael.theuliere/Documents/R/monpackage'
+√ Creating 'inst/rmarkdown/templates/propre-climat/skeleton/'
+√ Writing 'inst/rmarkdown/templates/propre-climat/template.yaml'
+√ Writing 'inst/rmarkdown/templates/propre-climat/skeleton/skeleton.Rmd'
+```
+
+---
+# Comment insérer un template de publication ?
+
+.pull-left[
+Vous pouvez l'ouvrir en allant dans le répertoire `inst/rmarkdown/templates/propre-climat/skeleton`.
+
+Ou directement : 
+
+```{r, eval = FALSE}
+rstudioapi::navigateToFile("inst/rmarkdown/templates/propre-climat/skeleton/skeleton.Rmd")
+```
+
+]
+
+.pull-right[
+```{r, echo=FALSE,eval=TRUE}
+knitr::include_graphics("www/rmarkdown.skeleton.png")
+```
+]
+---
+# Comment développer notre squelette.
+
+Le processus de travail est bien documenté dans la démarche PROPRE.
+
+Voyons ici un exemple minimal en ajoutant une fonction de valorisation de nos données. 
+.panelset.sideways[
+.panel[.panel-name[`usethis::use_r("creer_graphique_co2")`]
+```{r}
+#' graphique sur le CO2
+#'
+#' @param code Code iso a3 du pays
+#'
+#' @return un ggplot
+#' @export
+#' @examples
+#' creer_graphique_co2("FRA")
+#' @importFrom dplyr filter
+#' @importFrom ggplot2 ggplot geom_line theme_minimal labs
+creer_graphique_co2 <- function(code) {
+  data <- dplyr::filter(monpackage::co2_emission, code == code)
+  nom_pays <- unique(data$entity)
+  graphique <- ggplot2::ggplot(data = data) +
+    ggplot2::geom_line(x = .data$year, y = .data$annual_co2_emissions) +
+    ggplot2::theme_minimal() +
+    ggplot2::labs(title = paste("Emmissions annuel de CO2 en", nom_pays))
+  return(graphique)
+}
+
+```
+]
+.panel[.panel-name[Ajouter les dépendances]
+```{r}
+usethis::use_package("dplyr")
+usethis::use_package("ggplot2")
+usethis::use_package("rlang")
+```
+]
+.panel[.panel-name[Insérer la fonction dans votre template]
+
+````
+---
+title: "Emmissions de CO2"
+author: "GIEC"
+date: ""
+output: output_format
+---
+
+```{r setup, include=FALSE}`r ''`
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Emmissions de CO2 en France
+
+```{r}`r ''`
+creer_graphique_co2("FRA")
+```
+
+````
+
+]
+.panel[.panel-name[Relancer le check et l'installation]
+```{r}
+devtools::check()
+devtools::install()
+.rs.restartR()
+```
+]
+.panel[.panel-name[Découvrez votre template]
+
+]
+]
+---
+# test
+
+.panelset.sideways[
+.panel[.panel-name[ui.R]
+```r
+# shiny ui code here...
+```
+]
+
+.panel[.panel-name[server.R]
+```r
+function(input, output, session) {
+  # shiny server code here...
+}
+```
+]
+]
