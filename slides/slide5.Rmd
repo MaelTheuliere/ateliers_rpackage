@@ -39,7 +39,12 @@ style_mono_accent(
 
 ```{r xaringanpanelset, echo=FALSE, eval=TRUE}
 xaringanExtra::use_panelset(in_xaringan = TRUE)
-xaringanExtra::style_panelset_tabs(tabs_sideways_max_width  = "33%")
+```
+
+```{css echo=FALSE}
+.panelset {
+  --panel-tabs-sideways-max-width: 33%;
+}
 ```
 
 ```{r share-again, echo=FALSE, eval=TRUE}
@@ -161,31 +166,43 @@ knitr::include_graphics("www/rmarkdown.skeleton.png")
 ```
 ]
 ---
-# Comment développer notre squelette.
+# Comment développer notre squelette ?
 
 Le processus de travail est bien documenté dans la démarche PROPRE.
 
 Voyons ici un exemple minimal en ajoutant une fonction de valorisation de nos données. 
 .panelset.sideways[
-.panel[.panel-name[`usethis::use_r("creer_graphique_co2")`]
+.panel[.panel-name[Creer la fonction]
+
+```{r}
+usethis::use_r("creer_graphique_co2")
+```
+
+Insérer ce code : 
 ```{r}
 #' graphique sur le CO2
 #'
-#' @param code Code iso a3 du pays
+#' @param code_pays Code iso a3 du pays
 #'
 #' @return un ggplot
 #' @export
+#' @importFrom dplyr filter
+#' @importFrom ggplot2 ggplot geom_col scale_fill_viridis_c theme_minimal theme labs
+#' @importFrom rlang .data
 #' @examples
 #' creer_graphique_co2("FRA")
-#' @importFrom dplyr filter
-#' @importFrom ggplot2 ggplot geom_line theme_minimal labs
-creer_graphique_co2 <- function(code) {
-  data <- dplyr::filter(monpackage::co2_emission, code == code)
-  nom_pays <- unique(data$entity)
-  graphique <- ggplot2::ggplot(data = data) +
-    ggplot2::geom_line(x = .data$year, y = .data$annual_co2_emissions) +
+creer_graphique_co2 <- function(code_pays) {
+  df <- dplyr::filter(monpackage::co2_emission, .data$code == code_pays)
+  nom_pays <- unique(df$entity)
+  graphique <- ggplot2::ggplot(data = df) +
+    ggplot2::geom_col(ggplot2::aes(x = .data$year,
+                                   y = .data$annual_co2_emissions,
+                                   fill = .data$annual_co2_emissions)
+                      ) +
+    ggplot2::scale_fill_viridis_c() +
     ggplot2::theme_minimal() +
-    ggplot2::labs(title = paste("Emmissions annuel de CO2 en", nom_pays))
+    ggplot2::theme(legend.position = "none") +
+    ggplot2::labs(title = paste("Emmissions annuel de CO2 en", nom_pays), x=NULL,y=NULL)
   return(graphique)
 }
 
@@ -205,17 +222,24 @@ usethis::use_package("rlang")
 title: "Emmissions de CO2"
 author: "GIEC"
 date: ""
-output: output_format
+output: html_document
 ---
 
 ```{r setup, include=FALSE}`r ''`
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
+library(monpackage)
 ```
 
 ## Emmissions de CO2 en France
 
 ```{r}`r ''`
 creer_graphique_co2("FRA")
+```
+
+## Emmissions de CO2 aux Etats Unis
+
+```{r}`r ''`
+creer_graphique_co2("USA")
 ```
 
 ````
@@ -229,24 +253,28 @@ devtools::install()
 ```
 ]
 .panel[.panel-name[Découvrez votre template]
+.pull-left[
+```{r, eval=TRUE, echo=FALSE}
+knitr::include_graphics("www/openrmd.png")
+```
+]
+.pull-right[
+```{r, eval=TRUE, echo=FALSE}
+knitr::include_graphics("www/select_propre_climat.png")
+```
+]
 
 ]
 ]
 ---
-# test
-
-.panelset.sideways[
-.panel[.panel-name[ui.R]
-```r
-# shiny ui code here...
+.fl.w-60.pa2[
+```{r, eval=TRUE, echo=FALSE}
+knitr::include_graphics("https://media.giphy.com/media/l2QE4Qq11zzx5eenS/giphy.gif")
 ```
 ]
-
-.panel[.panel-name[server.R]
-```r
-function(input, output, session) {
-  # shiny server code here...
-}
+.fl.w-40.pa2[
+```{r, echo=FALSE,eval=TRUE, out.width='90%'}
+knitr::include_graphics("www/propre.climat.template.png")
 ```
-]
+
 ]
