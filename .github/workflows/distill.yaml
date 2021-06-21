@@ -13,6 +13,11 @@ jobs:
       GITHUB_PAT: ${{ secrets.GH_PAT }}
 
     steps:
+      - name: Install macOS system dependencies
+        run: |
+          brew install imagemagick@6
+          brew install libgit2
+
       - name: add chrome
         uses: browser-actions/setup-chrome@latest
 
