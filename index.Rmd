@@ -31,7 +31,7 @@ library(gouvdown.fonts)
 
 - [Atelier 4](atelier4.html) : Ajouter des vignettes et un site de documentation `r emo::ji("black_nib")`
 
-- Atelier 5 : Ajouter des templates `r emo::ji("page")`
+- [Atelier 5](atelier5.html) : Ajouter des templates Rmarkdown `r emo::ji("page")`
 
 - Atelier 6 : gérer les versions d'un package `r emo::ji("newspaper")`
 
