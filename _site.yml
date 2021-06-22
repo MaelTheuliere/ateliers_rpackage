@@ -21,6 +21,8 @@ navbar:
           href: atelier3.html
         - text: "Ajouter des vignettes et un site de documentation"
           href: atelier4.html
+        - text: "Ajouter des templates Rmarkdown"
+          href: atelier5.html
 output: 
   distill::distill_article:
     theme: theme.css

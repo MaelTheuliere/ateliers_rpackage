@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Objectifs
 
-Après cet atelier vous saurez rajouter des des vignettes et un site de documentation à votre package.
+Après cet atelier vous saurez rajouter des vignettes et un site de documentation à votre package.
 
 ## supports
 
