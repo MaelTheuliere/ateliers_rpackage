@@ -1,0 +1,109 @@
+---
+title: "Gérer les version de votre package"
+author: 
+  - "Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: [xaringan-themer.css,progress-bar.css]
+    lib_dir: libs
+    seal: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+      slideNumberFormat: |
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>`
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE, warning=FALSE, message = FALSE)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE, eval=TRUE}
+library(xaringanthemer)
+style_mono_accent(
+  base_color = "#000091",
+  text_font_family = 'Marianne',
+  code_font_family = 'Fira Code',
+  background_color = 'white',
+  title_slide_text_color = "#000091"
+)
+```
+
+
+```{r xaringanpanelset, echo=FALSE, eval=TRUE}
+xaringanExtra::use_panelset(in_xaringan = TRUE)
+```
+
+```{css echo=FALSE}
+.panelset {
+  --panel-tabs-sideways-max-width: 33%;
+}
+```
+
+```{r share-again, echo=FALSE, eval=TRUE}
+xaringanExtra::use_share_again()
+```
+
+```{r xaringan-tile-view, echo=FALSE, eval=TRUE}
+xaringanExtra::use_tile_view()
+```
+
+```{r xaringan-tachyons, echo=FALSE, eval=TRUE}
+xaringanExtra::use_tachyons()
+```
+
+```{r meta, echo=FALSE, eval=TRUE}
+library(metathis)
+meta() %>%
+  meta_general(
+    description = "Gérer les versions de votre package",
+    generator = "xaringan et remark.js"
+  ) %>% 
+  meta_name("github-repo" = "maeltheuliere/ateliers_rpackage") %>% 
+  meta_social(
+    title = "Gérer les versions de votre package",
+    url = "https://maeltheuliere.github.io/ateliers_rpackage/atelier6.html",
+    image = "https://maeltheuliere.github.io/ateliers_rpackage/slides/www/slide6.png",
+    image_alt = "Diapo titre du diaporama gérer les versions de votre package",
+    og_type = "website",
+    og_author = "Juliette ENGELAERE-LEFEBVRE - Maël THEULIERE",
+    twitter_card_type = "summary_large_image"
+  )
+```
+
+```{r xaringanExtra-clipboard, echo=FALSE, eval=TRUE}
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+```
+class: center, middle
+
+.fl.w-40.pa2[
+```{r, include=TRUE,echo=FALSE, eval=TRUE, fig.width=3}
+knitr::include_graphics("https://raw.githubusercontent.com/MaelTheuliere/ateliers_rpackage/main/slides/www/packagescompagnons.png")
+```
+]
+
+.fl.w-60.pa2[
+
+.f3[Créer son premier] .yellow.f3[package R]
+
+.f1[Gérer ] .yellow.f1[les versions] .f1[de votre package]
+]
+
+.tr[
+.f4[Juliette ENGELAERE-LEFEBVRE - Maël THEULIERE]
+]
+---
