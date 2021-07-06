@@ -1,5 +1,5 @@
 ---
-title: "Gérer les version de votre package"
+title: "Gérer les versions de votre package"
 author: 
   - "Maël THEULIERE - Juliette ENGELAERE-LEFEBVRE"
 date: '`r Sys.Date()`'
@@ -128,7 +128,7 @@ Une version mineure peut contenir des corrections de bugs, des nouvelles fonctio
 
 Les versions majeures sont réservées : 
   - soit à l'annonce d'une version stabilisée de vos fonctionnalités (1.0.0) ;
-  - soit à l'annonce, pour les suivantes, de ruptures majeures dans vos packages (souvent générant des problèmes de rétrocompatibilité importants).
+  - soit à l'annonce, pour les suivantes, de ruptures majeures dans vos packages (générant souvent des problèmes de rétrocompatibilité importants).
 
 ---
 # Pourquoi gérer les versions d'un package R ? 
@@ -141,7 +141,7 @@ Versionner permet :
 
 - en documentant ces évolutions ;
 
-- le tout sans rompre des chaînes de traitements de vos utilisateurs, qui pourront toujours utiliser une version donnée.
+- le tout sans rompre des chaînes de traitements de vos utilisateurs, qui pourront toujours utiliser une version antérieure donnée.
 ---
 # Exemple : la vie de dplyr
 
@@ -170,7 +170,7 @@ Exemple :
 - Nouvelles fonctionnalités
 - Fonctionnalités expérimentales
 - Améliorations mineures et corrections de bugs
-- Evolutions susceptibles d'engendrer des modifications du code de vos utilisateurs (*breaking changes*)
+- Evolutions susceptibles de 'casser' le code de vos utilisateurs (*breaking changes*)
 
 
 ---
@@ -224,4 +224,71 @@ Sur gitlab, l'opération de publication de la version est à réaliser manuellem
 knitr::include_graphics("www/release_gitlab.gif")
 ```
 ]
+
+---
+# En pratique : la check list synthétique `r emo::ji("check")`
+
+A partir de la branche de dev contenant les nouvelles fonctionnalités ou autres nouveautés/amélioration :
+
+1. Check de la branche à `0 error, 0 warnings, 0 notes`.
+
+2. Incrémenter le n° version sur DESCRIPTION.
+
+3. Dans News.md, sous le nouveau n° de version, proposer une présentation structurée des nouveautés. 
+
+4. Faire un commit de release, toujours dans la branche de dev, puis un push de la branche.
+
+5. Fusionner la branche de dev dans master/main.
+
+6. Utiliser la fonction release de github (`usethis::use_github_release()`) ou gitlab.
+
+Les étapes 2., 3. et 4. peuvent être initiées grâce à `usethis::use_version()`.
+
+---
+# Détail sur l'étape 5. gestion des branches git
+
+Deux options pour la fusion :   
+
+- On peut rassembler les différents commits de la branche de dev en un seul sur master/main :   
+
+  + oui si peu de développements : correction de bug, ajout d'un patch  
+  + non si implémentation de plusieurs nouvelles fonctionnalités :  
+  normalement chaque nouvelle fonctionnalité a été développée dans une branche adhoc 
+  et a été versée dans la branche de dev en un seul commit
+  
+- On peut supprimer la branche source (branche de dev) : 
+  non, sauf si à moyen/court terme les développements sont terminés.
+
+---
+# Pour allez plus loin : rétro-compatibilité
+
+La livraison d'une nouvelle versions majeure (en dehors de la v1.0.0) est réservée aux évolutions susceptibles de 'casser' le code des utilisateurs (*breaking changes*). 
+
+Même si on cherche au maximum à éviter ces désagréments, il ne faut pas avoir peur de changer de braquet quand on se rend compte d'une erreur de design, ou que maintenir la rétro-compatibilité devient de plus en plus difficile.
+
+Les choses ne vont généralement pas aller en s'améliorant, et le plus tôt les breaking changes sont apportés est généralement le mieux.
+Il est toutefois recommandé de procéder par étape, en détaillant la position des fonctions, arguments vis à vis du cycle de vie du package. 
+
+Pour en savoir plus : [https://r-pkgs.org/release.html#compatibility](https://r-pkgs.org/release.html#compatibility)
+
+---
+# Pour allez plus loin : cycle de vie
+
+Le package {lifecycle} nous aide à gérer les ruptures de rétro-compatibilité en proposant une série d'outils et de conventions pour gérer le cycle de vie des fonctions des packages. 
+
+Il distingue 4 états majeurs dans le cycle de vie : ![](https://raw.githubusercontent.com/r-lib/lifecycle/19781f7d003383f2c6a155b1a8fd725557eb8103/vignettes/figures/lifecycle-stable.svg), ![](https://raw.githubusercontent.com/r-lib/lifecycle/19781f7d003383f2c6a155b1a8fd725557eb8103/vignettes/figures/lifecycle-deprecated.svg) (déprécié), ![](https://raw.githubusercontent.com/r-lib/lifecycle/19781f7d003383f2c6a155b1a8fd725557eb8103/vignettes/figures/lifecycle-superseded.svg) (supplanté), and ![](https://raw.githubusercontent.com/r-lib/lifecycle/19781f7d003383f2c6a155b1a8fd725557eb8103/vignettes/figures/lifecycle-experimental.svg) (expériemental).
+
+```{r, echo=FALSE,eval=TRUE}
+knitr::include_graphics("www/lifecycle.svg")
+```
+
+Ces 4 états ou statuts peuvent s'appliquer aux packages, fonctions, arguments de fonction, et même valeurs spécifiques d'arguments de fonction.
+
+---
+# Pour allez plus loin : cycle de vie
+Pour en savoir plus :  
+- lire la [vignette "stages"](https://lifecycle.r-lib.org/articles/stages.html) pour apprendre ce que signifient ces 4 statuts ;
+- lire la [vignette "manage"](https://lifecycle.r-lib.org/articles/manage.html) pour apprendre à gérer les changements d'états des fonctions qu'on utilise (càd prendre en compte les avertissements de dépréciation pour bannir des fonctions ou des manières de les utiliser...);
+- lire la [vignette "communicate"](https://lifecycle.r-lib.org/articles/communicate.html) pour apprendre à communiquer sur les changement d'état de nos fonctions. 
+
 
