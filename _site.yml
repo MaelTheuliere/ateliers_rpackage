@@ -23,6 +23,8 @@ navbar:
           href: atelier4.html
         - text: "Ajouter des templates Rmarkdown"
           href: atelier5.html
+        - text: "Gérer les versions de votre package"
+          href: atelier6.html
 output: 
   distill::distill_article:
     theme: theme.css

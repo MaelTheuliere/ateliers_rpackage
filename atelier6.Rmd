@@ -1,0 +1,21 @@
+---
+title: "atelier 6 - Gérer les versions de votre package"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+`r emo::ji("warning")` Site en construction `r emo::ji("warning")`
+
+## Objectifs
+
+Après cet atelier vous saurez comment faire évoluer votre package de façon documentée pour vos utilisateurs
+
+## supports
+
+- diaporama [version html](slides/slide6.html) ou [version pdf](slides/slide6.pdf)
+
+```{r embed-xaringan, echo=FALSE}
+xaringanExtra::embed_xaringan(url = "slides/slide6.html", ratio = "16:9")
+```
