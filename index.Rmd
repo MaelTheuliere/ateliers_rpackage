@@ -12,7 +12,8 @@ knitr::opts_chunk$set(echo = FALSE)
 library(gouvdown.fonts)
 # Learn more about creating websites with Distill at:
 # https://rstudio.github.io/distill/website.html
-
+library(htmltools)
+source("R/create_proj_card.R")
 ```
 
 `r emo::ji("warning")` Site en construction `r emo::ji("warning")`
@@ -23,19 +24,48 @@ library(gouvdown.fonts)
 
 ## Déroulé
 
-- [Atelier 1](atelier1.html) : Créer un package `r emo::ji("baby")`
+```{r}
+create_proj_card(
+  img_src = "slides/www/slide1-card.png",
+  url = "atelier1.html",
+  title = "Atelier 1 : créer son premier package",
+  text = "Comprendre ce qu'est un package",
+  text2 = "Savoir créer un version minimale"
+)
+create_proj_card(
+  img_src = "slides/www/slide2-card.png",
+  url = "atelier2.html",
+  title = "Atelier 2 : ajouter une fonction",
+  text = "Qu'est ce qu'une fonction ?",
+  text2 = "Comment l'ajouter dans un package et la documenter ?"
+)
+create_proj_card(
+  img_src = "slides/www/slide3-card.png",
+  url = "atelier3.html",
+  title = "Atelier 2 : ajouter un dataset",
+  text = "Pourquoi et comment ajouter un dataset dans votre package ?",
+  text2 = "Comment le documenter ?"
+)
+create_proj_card(
+  img_src = "slides/www/slide4-card.png",
+  url = "atelier4.html",
+  title = "Atelier 4 : ajouter des vignettes et un site de documentation",
+  text = "Apprendre à rajouter un fichier readme et des vignettes",
+  text2 = "Apprendre à transformer ces contenus en un site web de documentation"
+)
+create_proj_card(
+  img_src = "slides/www/slide5-card.png",
+  url = "atelier5.html",
+  title = "Atelier 5 : ajouter des templates R markdown",
+  text = "Comprendre pourquoi et comment rajouter des templates R Markdown",
+  text2 = ""
+)
+create_proj_card(
+  img_src = "slides/www/slide6-card.png",
+  url = "atelier6.html",
+  title = "Atelier 6 : gérer les versions de votre package",
+  text = "Comprendre comment faire évoluer votre package en informant vos utilisateurs",
+  text2 = ""
+)
 
-- [Atelier 2](atelier2.html) : Le workflow de l'alimentation d'un package `r emo::ji("loop")`
-
-- [Atelier 3](atelier3.html) : Ajouter des datasets `r emo::ji("open_file_folder")`
-
-- [Atelier 4](atelier4.html) : Ajouter des vignettes et un site de documentation `r emo::ji("black_nib")`
-
-- [Atelier 5](atelier5.html) : Ajouter des templates Rmarkdown `r emo::ji("page")`
-
-- Atelier 6 : gérer les versions d'un package `r emo::ji("newspaper")`
-
-```{r,fig.width=300}
-knitr::include_graphics("https://github.com/MaelTheuliere/ateliers_rpackage/raw/main/slides/www/packagescompagnons.png")
 ```
-
