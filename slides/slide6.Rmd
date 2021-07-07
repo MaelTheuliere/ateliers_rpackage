@@ -274,7 +274,7 @@ Pour en savoir plus : [https://r-pkgs.org/release.html#compatibility](https://r-
 ---
 # Pour allez plus loin : cycle de vie
 
-Le package {lifecycle} nous aide à gérer les ruptures de rétro-compatibilité en proposant une série d'outils et de conventions pour gérer le cycle de vie des fonctions des packages. 
+Le package {`lifecycle`} nous aide à gérer les ruptures de rétro-compatibilité en proposant une série d'outils et de conventions pour gérer le cycle de vie des fonctions des packages. 
 
 Il distingue 4 états majeurs dans le cycle de vie : ![](https://raw.githubusercontent.com/r-lib/lifecycle/19781f7d003383f2c6a155b1a8fd725557eb8103/vignettes/figures/lifecycle-stable.svg), ![](https://raw.githubusercontent.com/r-lib/lifecycle/19781f7d003383f2c6a155b1a8fd725557eb8103/vignettes/figures/lifecycle-deprecated.svg) (déprécié), ![](https://raw.githubusercontent.com/r-lib/lifecycle/19781f7d003383f2c6a155b1a8fd725557eb8103/vignettes/figures/lifecycle-superseded.svg) (supplanté), and ![](https://raw.githubusercontent.com/r-lib/lifecycle/19781f7d003383f2c6a155b1a8fd725557eb8103/vignettes/figures/lifecycle-experimental.svg) (expériemental).
 
