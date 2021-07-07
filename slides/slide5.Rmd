@@ -70,7 +70,7 @@ meta() %>%
   meta_social(
     title = "Ajouter des templates Rmarkdown à votre package",
     url = "https://maeltheuliere.github.io/ateliers_rpackage/atelier5.html",
-    image = "https://maeltheuliere.github.io/ateliers_rpackage/slides/www/slide5.png",
+    image = "https://maeltheuliere.github.io/ateliers_rpackage/slides/www/slide5-card.png",
     image_alt = "Diapo titre du diaporama Ajouter des templates Rmarkdown à votre package",
     og_type = "website",
     og_author = "Juliette ENGELAERE-LEFEBVRE - Maël THEULIERE",
