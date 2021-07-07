@@ -42,7 +42,7 @@ create_proj_card(
 create_proj_card(
   img_src = "slides/www/slide3-card.png",
   url = "atelier3.html",
-  title = "Atelier 2 : ajouter un dataset",
+  title = "Atelier 3 : ajouter un dataset",
   text = "Pourquoi et comment ajouter un dataset dans votre package ?",
   text2 = "Comment le documenter ?"
 )
