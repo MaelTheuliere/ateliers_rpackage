@@ -2377,8 +2377,42 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
+  <style type="text/css">
+  
+  
+  .card {
+      color: #474747;
+      background-color: #FFFFFF;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      border-radius: 10px; 
+      margin: 16px 16px;
+      text-decoration: none;
+      display: flex;
+  }
+  
+  .card-body {
+    padding: 2px 16px;
+  }
+  
+  .card-img {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    border-radius: 30px;
+  }
+  
+  .card-footer {
+    background-color: #000;
+    color: white;
+    text-align: right;
+    padding-right: 5px;
+  }
+  
+  </style>
   <!--/radix_placeholder_site_in_header-->
 
+  <link rel="stylesheet" href="card.css" type="text/css"/>
 
 </head>
 
@@ -2412,6 +2446,7 @@ Ateliers
 <a href="atelier3.html">Ajouter des datasets</a>
 <a href="atelier4.html">Ajouter des vignettes et un site de documentation</a>
 <a href="atelier5.html">Ajouter des templates Rmarkdown</a>
+<a href="atelier6.html">Gérer les versions de votre package</a>
 </div>
 </div>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
@@ -2437,16 +2472,85 @@ Ateliers
 <li><a href="configuration.html">Configurer votre poste</a> 🔨</li>
 </ul>
 <h2 id="déroulé">Déroulé</h2>
-<ul>
-<li><p><a href="atelier1.html">Atelier 1</a> : Créer un package 👶</p></li>
-<li><p><a href="atelier2.html">Atelier 2</a> : Le workflow de l’alimentation d’un package ➿</p></li>
-<li><p><a href="atelier3.html">Atelier 3</a> : Ajouter des datasets 📂</p></li>
-<li><p><a href="atelier4.html">Atelier 4</a> : Ajouter des vignettes et un site de documentation ✒️</p></li>
-<li><p><a href="atelier5.html">Atelier 5</a> : Ajouter des templates Rmarkdown 📄</p></li>
-<li><p>Atelier 6 : gérer les versions d’un package 📰</p></li>
-</ul>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="https://github.com/MaelTheuliere/ateliers_rpackage/raw/main/slides/www/packagescompagnons.png" /><!-- --></p>
+<div class="card">
+<img class="card-img-top" src="slides/www/slide1-card.png" style="width:300px;"/>
+<div class="card-body">
+<h4>
+<a href="atelier1.html">Atelier 1 : créer son premier package</a>
+</h4>
+<p class="card-text">
+Comprendre ce qu'est un package
+<br/>
+Savoir créer un version minimale
+</p>
+</div>
+</div>
+<div class="card">
+<img class="card-img-top" src="slides/www/slide2-card.png" style="width:300px;"/>
+<div class="card-body">
+<h4>
+<a href="atelier2.html">Atelier 2 : ajouter une fonction</a>
+</h4>
+<p class="card-text">
+Qu'est ce qu'une fonction ?
+<br/>
+Comment l'ajouter dans un package et la documenter ?
+</p>
+</div>
+</div>
+<div class="card">
+<img class="card-img-top" src="slides/www/slide3-card.png" style="width:300px;"/>
+<div class="card-body">
+<h4>
+<a href="atelier3.html">Atelier 2 : ajouter un dataset</a>
+</h4>
+<p class="card-text">
+Pourquoi et comment ajouter un dataset dans votre package ?
+<br/>
+Comment le documenter ?
+</p>
+</div>
+</div>
+<div class="card">
+<img class="card-img-top" src="slides/www/slide4-card.png" style="width:300px;"/>
+<div class="card-body">
+<h4>
+<a href="atelier4.html">Atelier 4 : ajouter des vignettes et un site de documentation</a>
+</h4>
+<p class="card-text">
+Apprendre à rajouter un fichier readme et des vignettes
+<br/>
+Apprendre à transformer ces contenus en un site web de documentation
+</p>
+</div>
+</div>
+<div class="card">
+<img class="card-img-top" src="slides/www/slide5-card.png" style="width:300px;"/>
+<div class="card-body">
+<h4>
+<a href="atelier5.html">Atelier 5 : ajouter des templates R markdown</a>
+</h4>
+<p class="card-text">
+Comprendre pourquoi et comment rajouter des templates R Markdown
+<br/>
+
+</p>
+</div>
+</div>
+<div class="card">
+<img class="card-img-top" src="slides/www/slide6-card.png" style="width:300px;"/>
+<div class="card-body">
+<h4>
+<a href="atelier6.html">Atelier 6 : gérer les versions de votre package</a>
+</h4>
+<p class="card-text">
+Comprendre comment faire évoluer votre package en informant vos utilisateurs
+<br/>
+
+</p>
+</div>
+</div>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
