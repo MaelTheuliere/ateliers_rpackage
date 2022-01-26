@@ -16,8 +16,6 @@ library(htmltools)
 source("R/create_proj_card.R")
 ```
 
-`r emo::ji("warning")` Site en construction `r emo::ji("warning")`
-
 ## Avant de commencer
 
 - [Configurer votre poste](configuration.html) `r emo::ji("hammer")`       
