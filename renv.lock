@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.0.3",
+    "Version": "3.6.3",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -133,12 +133,12 @@
       "Version": "0.0.0.9003",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "chromote",
       "RemoteUsername": "rstudio",
+      "RemoteRepo": "chromote",
       "RemoteRef": "HEAD",
-      "RemoteSha": "ba9bffc291be468c48e658f95fa2bc952a1dbff5",
-      "Hash": "230a546c70d44055b030d8a41a522819"
+      "RemoteSha": "e6a9fef95f7393498f5012fd6fd5601eab361836",
+      "RemoteHost": "api.github.com",
+      "Hash": "e9585333e8344a2a7961d35df910e634"
     },
     "class": {
       "Package": "class",
@@ -889,14 +889,13 @@
       "Package": "webshot2",
       "Version": "0.0.0.9000",
       "Source": "GitHub",
-      "Remotes": "rstudio/chromote",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "webshot2",
       "RemoteUsername": "rstudio",
+      "RemoteRepo": "webshot2",
       "RemoteRef": "HEAD",
-      "RemoteSha": "f62e743c9fee3dea313677ee061c041a8bbccb19",
-      "Hash": "c6846e55aecd1c48cd45c8417c7f6a13"
+      "RemoteSha": "6cc8950c43f992e5ed325410e9ade17f86aecde9",
+      "RemoteHost": "api.github.com",
+      "Hash": "e02f0c2db3616874df5091979db3f7a0"
     },
     "websocket": {
       "Package": "websocket",
@@ -928,15 +927,15 @@
     },
     "xaringanExtra": {
       "Package": "xaringanExtra",
-      "Version": "0.5.2",
+      "Version": "0.5.5",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "xaringanExtra",
       "RemoteUsername": "gadenbuie",
+      "RemoteRepo": "xaringanExtra",
       "RemoteRef": "HEAD",
-      "RemoteSha": "2dfa2e2c72d91761244d4ed3708cfb522de70a4d",
-      "Hash": "e3fd17b1b79d0cdfcac34faf088620df"
+      "RemoteSha": "ee5092d2d27bf4b813ea50ec4c264b331283face",
+      "RemoteHost": "api.github.com",
+      "Hash": "b58b67af85936c6519f1faa7df5d5149"
     },
     "xaringanthemer": {
       "Package": "xaringanthemer",
